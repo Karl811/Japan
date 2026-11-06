@@ -694,7 +694,7 @@ details.qa[open] summary svg{transform:rotate(90deg)}
 
 /* ===== Phiên 8 ===== */
 /* Bản đồ du ký */
-.dmap{position:relative;width:100%;max-width:520px;margin:12px auto 6px;aspect-ratio:360/1180;border-radius:26px;overflow:hidden;border:1px solid #D7E2C8;box-shadow:0 18px 34px -26px rgba(24,32,63,.6)}
+.dmap{position:relative;width:100%;max-width:520px;margin:12px auto 6px;aspect-ratio:360/1240;border-radius:26px;overflow:hidden;border:1px solid #D7E2C8;box-shadow:0 18px 34px -26px rgba(24,32,63,.6)}
 .dmap__svg{position:absolute;inset:0;width:100%;height:100%}
 .dmap .fog{transition:opacity .8s var(--ease)}
 .dmap .wave{animation:wave 3s ease-in-out infinite}
@@ -705,7 +705,7 @@ details.qa[open] summary svg{transform:rotate(90deg)}
 .dmap .glow{animation:dots 1.6s infinite}
 .dmap .lantern{transform-box:fill-box;transform-origin:50% 0;animation:ring 2.6s ease-in-out infinite}
 .dmap .pathon{stroke-dasharray:6 6;animation:march 1.2s linear infinite}
-@keyframes march{to{stroke-dashoffset:-12}}
+@keyframes march{to{stroke-dashoffset:-14}}
 .mnode{position:absolute;transform:translate(-50%,0);border:0;cursor:pointer;background:#fff;border-radius:14px;padding:5px 10px 6px;min-width:96px;text-align:center;box-shadow:0 3px 0 rgba(0,0,0,.08),0 8px 16px -10px rgba(24,32,63,.5);line-height:1.15;z-index:2}
 .mnode small{display:block;font-size:9.5px;font-weight:800;letter-spacing:.05em;color:var(--nc2)}
 .mnode b{display:block;font-family:var(--h);font-size:13.5px;color:var(--ink);white-space:nowrap}
@@ -833,6 +833,90 @@ details.maplist summary::-webkit-details-marker{display:none}
   @page{size:A4;margin:12mm}
 }
 
+/* ===== TK10 ===== */
+/* Màn chuyển cảnh vào ải */
+.trn{position:fixed;inset:0;z-index:95;display:grid;place-items:center;overflow:hidden;cursor:pointer;
+  background:radial-gradient(120% 90% at 50% 40%,#2A3570 0%,#131A40 55%,#090D24 100%);color:#fff;animation:fadeIn .35s var(--ease)}
+.trn.out{animation:trnOut .38s var(--ease) forwards}
+@keyframes trnOut{to{opacity:0;transform:scale(1.04)}}
+.trn__in{position:relative;z-index:2;text-align:center;padding:24px;max-width:420px}
+.trn__art{width:min(70vw,300px);margin:0 auto 10px;filter:drop-shadow(0 0 28px var(--ac));animation:trnArt 4.2s var(--ease) both}
+.trn__art svg{width:100%;height:auto;display:block}
+@keyframes trnArt{0%{transform:scale(.6);opacity:0;filter:blur(6px) drop-shadow(0 0 0 transparent)}25%{transform:scale(1.02);opacity:1;filter:none}30%{transform:scale(1) translateX(-3px)}34%{transform:translateX(3px)}38%{transform:translateX(0)}100%{transform:scale(1.08)}}
+.trn.short .trn__art{animation:trnArtS 1.1s var(--ease) both}
+@keyframes trnArtS{from{transform:scale(.85);opacity:0}to{transform:none;opacity:1}}
+.trn__code{font-family:var(--h);font-weight:800;letter-spacing:.12em;color:var(--y);font-size:13px;margin:0 0 2px;animation:up .6s var(--ease) .5s both}
+.trn__name{font-size:30px;margin:0 0 14px;animation:up .6s var(--ease) .65s both}
+.trn__hk p{margin:0 0 4px;font-family:var(--h);font-size:19px;font-style:italic;color:rgba(255,255,255,.88);letter-spacing:.02em;animation:ink 1.1s var(--ease) both}
+.trn__fog{position:absolute;width:160%;height:45%;left:-30%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.16),transparent);filter:blur(8px);pointer-events:none}
+.trn__fog.f1{top:8%;animation:fogL 6s ease-in-out infinite}
+.trn__fog.f2{bottom:4%;animation:fogR 7s ease-in-out infinite}
+@keyframes fogL{0%,100%{transform:translateX(-12%)}50%{transform:translateX(12%)}}
+@keyframes fogR{0%,100%{transform:translateX(10%)}50%{transform:translateX(-10%)}}
+.trn__skip{position:absolute;right:16px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:3;display:inline-flex;align-items:center;gap:4px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:8px 14px;font-weight:600;cursor:pointer}
+/* Mục tiêu: gợi ý nhỏ */
+details.tip{margin-top:10px}
+details.tip summary{display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-weight:600;font-size:14px;color:var(--c-d);list-style:none}
+details.tip summary::before{content:"+";display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--c-t);font-weight:800}
+details.tip[open] summary::before{content:"−"}
+details.tip summary::-webkit-details-marker{display:none}
+/* Làm lại để ôn */
+.redo{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:var(--ok-t);border:1px solid #A9E2CB;border-radius:16px;padding:8px 10px 8px 14px;margin:6px 0 4px;font-size:14px;color:#0B5E41;font-weight:600}
+.redo span{display:inline-flex;align-items:center;gap:6px}
+.retrybtn{font-size:16.5px}
+/* Thống kê cuối bản ghi chép */
+.rstats{background:#FAFBFE;border-style:dashed}
+.rstats small{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.rstats p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.6}
+.rstats b{color:var(--ink-2);font-weight:600}
+.a4page .rstats p{font-size:10.5px}
+/* Sổ tay: toàn màn hình trên điện thoại, khung lớn trên máy tính */
+.nb{inset:0;height:100%;height:100dvh;border-radius:0}
+@media (min-width:700px){ .nb{inset:4vh auto auto 50%;transform:translateX(-50%);width:760px;max-width:calc(100vw - 40px);height:92vh;border-radius:24px} }
+
+/* ===== TK11 · bản đồ giấy cắt dán ===== */
+.dmap{border:0;border-radius:18px;box-shadow:0 22px 40px -28px rgba(60,40,10,.7);background:#EFE3C6}
+.mhit{position:absolute;border:0;background:transparent;cursor:pointer;z-index:1;border-radius:20px;padding:0}
+.mhit:focus-visible{outline:3px solid var(--y)}
+.mnode{background:#FFFBF0;border:1.5px solid #C9A86A;box-shadow:0 3px 0 rgba(120,90,40,.25),0 8px 16px -10px rgba(60,40,10,.5)}
+.mnode small{color:#8E3A2B}
+.mnode.lock{background:rgba(255,251,240,.8);border-color:#D8CCAE}
+.mnode.done{background:#FFFBF0}
+.dmap .shark{animation:shark 7s ease-in-out infinite}
+.dmap .shark.s2{animation-duration:9s;animation-direction:reverse}
+@keyframes shark{0%,100%{transform:translateX(0)}50%{transform:translateX(34px)}}
+.dmap .spark circle{animation:dots .9s infinite}.dmap .spark circle:nth-child(2){animation-delay:.3s}.dmap .spark circle:nth-child(3){animation-delay:.6s}
+.dmap .neon{animation:neon 2.2s ease-in-out infinite}
+@keyframes neon{0%,100%{opacity:1}45%{opacity:.75}50%{opacity:1}55%{opacity:.6}}
+.dmap .pathon{stroke-dasharray:6 8;animation:march 3.2s linear infinite}
+.dmap__svg .mtxt{font-family:"Be Vietnam Pro","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;letter-spacing:1.5px}
+.mhau{width:11%}.mboss{width:9%}
+.trn__art .smoke circle{animation:puff 2.4s ease-out infinite}
+.trn__art .neon{animation:neon 2.2s ease-in-out infinite}
+
+/* TK11 · hình minh họa bổ sung */
+.bimg{max-width:300px;margin:4px auto 6px}.bimg svg{width:100%;height:auto}
+.dic{float:right;width:54px;height:54px;margin:-6px -4px 4px 8px}.dic svg{width:100%;height:100%}
+.suitbox{text-align:center;background:#FFF7EC;border:1px solid #F0D9B5;border-radius:18px;padding:10px}
+.suit{width:100%;max-width:280px;height:auto}
+.suit .sin{animation:popIn .5s var(--ease)}
+.suitbox p{margin:4px 0 0;font-size:14px;color:#7A5300}
+.rc--real{background:linear-gradient(120deg,#EAF6EE 0%,#E6EEFC 45%,#F3EAFB 100%);border:1px solid #BCCBE6;position:relative;overflow:hidden}
+.rc--real::after{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 80% 30%,rgba(47,75,216,.05) 0 2px,transparent 2px 10px);pointer-events:none}
+.rc--real .rc__h b{font-family:var(--jp);font-size:15px}.rc--real .rc__h b small{font-family:var(--f);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-left:4px}
+.rc--real .rc__ph{background:#fff;padding:3px}.rc--real .rc__ph svg{width:100%;height:auto}
+.rc--back{margin-top:10px}
+.rc__perm{margin-top:8px;border:1.5px dashed #C9D3E6;border-radius:10px;padding:6px 9px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.dial{max-width:380px;margin:0 auto;background:#18203F;border-radius:30px;padding:10px 10px 14px;box-shadow:0 18px 32px -20px rgba(0,0,0,.6)}
+.dial__top{display:flex;justify-content:space-between;align-items:center;color:#fff;font-size:12px;padding:4px 12px 8px}
+.dial__top b{font-size:14px}
+.dial__sos{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.dial__sos div{background:#E8604F;color:#fff;border-radius:18px;padding:10px;text-align:center}
+.dial__sos b{display:block;font-family:var(--h);font-size:28px;line-height:1}.dial__sos small{font-size:12px;opacity:.9}
+.dial .chan{background:#fff;border-radius:20px;padding:8px}
+.dial .chan div{border:0;border-bottom:1px solid var(--rule);border-radius:0}
+.dial .chan div:last-child{border-bottom:0}
+
 /* Thông báo */
 .toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);z-index:90;opacity:0;pointer-events:none;
   display:flex;align-items:center;gap:8px;width:max-content;max-width:calc(100vw - 28px);background:var(--ink);color:#fff;border-radius:999px;padding:10px 16px;font-size:14.5px;font-weight:500;
@@ -919,7 +1003,7 @@ function tanaka(mood){
     (mood==='worry' ? '<ellipse cx="60" cy="84" rx="3.4" ry="3" fill="#6B3B2A"/>' :
     (mood==='praise' ? '<path d="M50 80q10 11 20 0z" fill="#B5463A" stroke="#6B3B2A" stroke-width="2.4" stroke-linejoin="round"/>' :
     '<path d="M51 81q9 8 18 0" stroke="#6B3B2A" stroke-width="3" fill="none" stroke-linecap="round"/>'));
-  var thumb = mood==='praise' ? '<g class="thumb"><rect x="86" y="92" width="22" height="20" rx="7" fill="#F7D5B5" stroke="#E2B48F" stroke-width="1.5"/><rect x="92" y="76" width="9" height="20" rx="4.5" fill="#F7D5B5" stroke="#E2B48F" stroke-width="1.5"/></g>' : '';
+  var thumb = mood==='praise' ? '<g class="thumb"><rect x="89" y="96" width="16" height="15" rx="6" fill="#F7D5B5" stroke="#E2B48F" stroke-width="1.4"/><rect x="88" y="80" width="5" height="19" rx="2.5" fill="#F7D5B5" stroke="#E2B48F" stroke-width="1.2" transform="rotate(-14 90.5 98)"/><rect x="97" y="80" width="5" height="19" rx="2.5" fill="#F7D5B5" stroke="#E2B48F" stroke-width="1.2" transform="rotate(12 99.5 98)"/><path d="M90 103h12" stroke="#E2B48F" stroke-width="1.2"/></g>' : '';
   return '<svg class="chr chr-tan m-'+mood+'" viewBox="0 0 120 120" aria-hidden="true">'+
     '<path d="M24 120c2-18 18-26 36-26s34 8 36 26z" fill="#9DB8E8"/>'+
     '<path d="M60 94l-9 7 9 19 9-19z" fill="#23306B"/><path d="M42 98l18-4 18 4-6 9-12-6-12 6z" fill="#BFD1F1"/>'+
@@ -1058,6 +1142,7 @@ var IC = {
   sound:'<path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5a3.5 3.5 0 0 1 0 5"/>',
   mute:'<path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/>',
   shield:'<path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/>',
+  redo:'<path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/>',
   ask:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.6 2.6 0 0 1 5 .9c0 1.7-2.5 2.2-2.5 3.6"/><circle cx="12" cy="17.2" r=".6" fill="currentColor"/>'
 };
 function icon(k,sz,sw){ sz=sz||22; return '<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(sw||2)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(IC[k]||'')+'</svg>'; }
@@ -1137,57 +1222,185 @@ function spiralSVG(labels){
 }
 function okReceipt(){
   return '<div class="okrec"><div class="okrec__h"><b>PHIẾU THU</b><small>Số 0125/PT</small></div>'+
-    '<p><span>Đơn vị thu:</span> Công ty phái cử XYZ (Giấy phép hoạt động dịch vụ số …)</p>'+
+    '<p><span>Đơn vị thu:</span> Công ty phái cử ABC (Giấy phép hoạt động dịch vụ số …)</p>'+
     '<p><span>Nội dung:</span> Tiền dịch vụ theo Hợp đồng số 123/HĐ</p>'+
     '<p><span>Hình thức:</span> Chuyển khoản vào tài khoản công ty</p>'+
     '<div class="okrec__seal">'+sealSVG('印',54)+'</div><div class="okrec__tag">Phiếu thu đúng: có tên, giấy phép, con dấu doanh nghiệp, khoản ghi theo hợp đồng.</div></div>';
 }
 
 /* =========================================================
-   PHẦN 1c · BẢN ĐỒ DU KÝ (fantasy map, vẽ gốc bằng SVG)
-   Đất Việt ở trên, vượt biển, xuống dần tới xứ Phù Tang.
+   PHẦN 1d · HÌNH MINH HỌA BỔ SUNG (TK11)
    ========================================================= */
-var MAPW=360, MAPH=1180;
-var MPOS={0:[92,96],1:[262,206],2:[100,500],3:[258,600],4:[100,702],5:[258,804],6:[100,906],7:[258,1004],8:[166,1110]};
+function illus(k){
+  var s='<svg viewBox="0 0 64 64" aria-hidden="true">';
+  if(k==='remit') s+='<rect x="8" y="22" width="30" height="32" rx="3" fill="#DCE3FF"/><path d="M6 24l17-12 17 12z" fill="#2F4BD8"/><rect x="18" y="38" width="10" height="16" fill="#2F4BD8"/><circle cx="46" cy="24" r="12" fill="#F4B63B"/><text x="46" y="29" text-anchor="middle" font-size="13" font-weight="800" fill="#5A3B00" font-family="sans-serif">¥</text><path d="M40 44h16l-5-5M56 44l-5 5" stroke="#14A874" stroke-width="3" fill="none" stroke-linecap="round"/>';
+  if(k==='cash') s+='<rect x="10" y="16" width="40" height="22" rx="3" fill="#BFE6D3" stroke="#14A874" stroke-width="2"/><circle cx="30" cy="27" r="6" fill="none" stroke="#14A874" stroke-width="2"/><path d="M6 44q10-8 22-2h14q4 0 4 4t-4 4H26" stroke="#B9773E" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M6 44v12h20" stroke="#B9773E" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M50 12l6-6M54 18l7-2" stroke="#E8604F" stroke-width="2.4" stroke-linecap="round"/>';
+  if(k==='tiktok') s+='<rect x="18" y="6" width="28" height="52" rx="6" fill="#18203F"/><rect x="21" y="12" width="22" height="38" rx="2" fill="#2C2730"/><path d="M34 20v14a5 5 0 1 1-4-5" stroke="#35D0E0" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M34 20q2 6 7 6" stroke="#FF4FA3" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="14" r="8" fill="#F4B63B"/><text x="50" y="18" text-anchor="middle" font-size="10" font-weight="800" fill="#5A3B00" font-family="sans-serif">¥</text>';
+  if(k==='iphone') s+='<rect x="12" y="8" width="26" height="48" rx="6" fill="#4A5275"/><rect x="15" y="14" width="20" height="34" rx="2" fill="#C9D3FB"/><path d="M36 30l14-8 10 10-14 14z" fill="#E8604F"/><circle cx="51" cy="28" r="2" fill="#fff"/><text x="47" y="41" text-anchor="middle" font-size="9" font-weight="800" fill="#fff" font-family="sans-serif" transform="rotate(-30 47 38)">-50%</text>';
+  if(k==='bank') s+='<path d="M6 24L32 8l26 16z" fill="#2F4BD8"/><rect x="10" y="24" width="44" height="4" fill="#1D2F9E"/><g fill="#DCE3FF"><rect x="13" y="30" width="6" height="18"/><rect x="25" y="30" width="6" height="18"/><rect x="37" y="30" width="6" height="18"/><rect x="47" y="30" width="5" height="18"/></g><rect x="8" y="48" width="48" height="6" fill="#1D2F9E"/><circle cx="50" cy="14" r="9" fill="#14A874"/><path d="M45.5 14l3 3 6-6" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/>';
+  if(k==='quake') s+='<path d="M10 30L30 14l20 16v24H10z" fill="#F4E3C3" stroke="#8E5A2B" stroke-width="2"/><path d="M28 30l4 6-5 5 4 6" stroke="#E8604F" stroke-width="2.4" fill="none"/><path d="M4 58q6-5 12 0t12 0 12 0 12 0 12 0" stroke="#2F4BD8" stroke-width="2.4" fill="none"/><circle cx="52" cy="12" r="8" fill="#FFE08A" stroke="#C98A12"/><text x="52" y="16" text-anchor="middle" font-size="11" font-weight="800" fill="#7A5300" font-family="sans-serif">?</text>';
+  if(k==='idcard') s+='<rect x="6" y="14" width="52" height="36" rx="4" fill="#EAF4FF" stroke="#9FB2E6" stroke-width="2"/><rect x="11" y="20" width="14" height="18" rx="2" fill="#C9D3FB"/><circle cx="18" cy="26" r="3.5" fill="#8C93B0"/><path d="M12 37q6-6 12 0" fill="#8C93B0"/><path d="M30 22h22M30 28h18M30 34h20M12 44h40" stroke="#9FB2E6" stroke-width="2"/>';
+  if(k==='credit') s+='<rect x="6" y="16" width="52" height="32" rx="4" fill="#2F4BD8"/><rect x="6" y="22" width="52" height="6" fill="#1D2F9E"/><rect x="12" y="34" width="12" height="8" rx="1.5" fill="#F4B63B"/><path d="M30 38h22" stroke="#DCE3FF" stroke-width="2"/>';
+  if(k==='broom') s+='<path d="M40 6L24 34" stroke="#8E5A2B" stroke-width="4" stroke-linecap="round"/><path d="M18 30l14 8-8 18q-10-2-16-10z" fill="#F4B63B" stroke="#C98A12" stroke-width="1.5"/><path d="M14 44l6 4M18 40l8 6" stroke="#C98A12" stroke-width="1.4"/><g fill="#8FC3F0"><circle cx="46" cy="44" r="3"/><circle cx="52" cy="36" r="2"/></g>';
+  if(k==='coin') s+='<circle cx="26" cy="38" r="16" fill="#F4B63B" stroke="#C98A12" stroke-width="2"/><text x="26" y="44" text-anchor="middle" font-size="16" font-weight="800" fill="#7A5300" font-family="sans-serif">¥</text><circle cx="44" cy="22" r="12" fill="#FFE08A" stroke="#C98A12" stroke-width="2"/><path d="M38 22h12M44 16v12" stroke="#7A5300" stroke-width="2"/>';
+  if(k==='clock') s='<svg viewBox="0 0 160 110" aria-hidden="true"><rect x="40" y="8" width="62" height="94" rx="8" fill="#DCE3FF" stroke="#4A5275" stroke-width="2.5"/><circle cx="71" cy="36" r="20" fill="#fff" stroke="#4A5275" stroke-width="2.5"/><path d="M71 36V22M71 36l11 6" stroke="#18203F" stroke-width="3" stroke-linecap="round"/><rect x="54" y="66" width="34" height="8" rx="2" fill="#18203F"/><rect x="62" y="48" width="18" height="24" rx="2" fill="#FFF7E3" stroke="#C98A12" transform="rotate(-8 71 60)"/><path d="M66 54h10M66 58h8" stroke="#C98A12" stroke-width="1.5" transform="rotate(-8 71 60)"/>'+
+    '<rect x="112" y="20" width="36" height="74" rx="4" fill="#F7F3EA" stroke="#9AA6B8" stroke-width="2"/><g fill="#fff" stroke="#C9C1B0"><rect x="116" y="26" width="12" height="16"/><rect x="132" y="26" width="12" height="16"/><rect x="116" y="46" width="12" height="16"/><rect x="132" y="46" width="12" height="16"/><rect x="116" y="66" width="12" height="16"/></g>'+
+    '<g transform="translate(16 40)"><circle r="14" fill="#FFE08A" stroke="#C98A12" stroke-width="2"/><text y="5" text-anchor="middle" font-size="12" font-weight="800" fill="#7A5300" font-family="sans-serif">5′</text></g>';
+  return s+'</svg>';
+}
+function suitcaseSVG(items){
+  var slots=[[44,52],[86,52],[128,52],[65,82],[107,82]];
+  var h='<svg viewBox="0 0 180 120" class="suit" aria-hidden="true"><rect x="70" y="6" width="40" height="16" rx="6" fill="none" stroke="#8E5A2B" stroke-width="5"/><rect x="18" y="20" width="144" height="94" rx="12" fill="#C98A5A" stroke="#8E5A2B" stroke-width="3"/><path d="M18 46h144" stroke="#8E5A2B" stroke-width="2.5"/><rect x="84" y="40" width="12" height="12" rx="2" fill="#F4B63B" stroke="#8E5A2B"/>';
+  items.forEach(function(it,i){ var p=slots[i]; if(!p) return; h+='<g transform="translate('+(p[0]-15)+' '+(p[1]-15)+')" class="'+(it.on?'sin':'soff')+'"><rect width="30" height="30" rx="7" fill="'+(it.on?'#FFFBF0':'#B07A4A')+'" stroke="'+(it.on?'#fff':'#8E5A2B')+'" stroke-width="2"/>'+(it.on?'<g transform="translate(3 3) scale(.375)">'+illus(it.k).replace(/^<svg[^>]*>|<\/svg>$/g,'')+'</g>':'<text x="15" y="20" text-anchor="middle" font-size="14" font-weight="800" fill="#8E5A2B" font-family="sans-serif">?</text>')+'</g>'; });
+  return h+'</svg>';
+}
+function streetSVG(){
+  var st=function(x,y){ return '<g transform="translate('+x+' '+y+')"><rect x="-30" y="22" width="76" height="6" fill="#9AA6B8"/><path d="M-30 30h76" stroke="#6B6B78" stroke-width="2" stroke-dasharray="4 3"/><rect x="-26" y="4" width="28" height="18" fill="#FFF7E3" stroke="#B98A5A"/><path d="M-30 5l16-10 16 10z" fill="#8E3A2B"/><rect x="-21" y="9" width="18" height="7" rx="1" fill="#2F4BD8"/><text x="-12" y="15" text-anchor="middle" font-size="6" font-weight="800" fill="#fff" font-family="sans-serif">駅</text>'+
+      '<rect x="6" y="8" width="38" height="14" rx="5" fill="#14A874"/><rect x="6" y="15" width="38" height="3" fill="#fff"/><g fill="#DCF5EB"><rect x="10" y="10" width="7" height="4" rx="1"/><rect x="20" y="10" width="7" height="4" rx="1"/><rect x="30" y="10" width="7" height="4" rx="1"/></g></g>'; };
+  var sp=function(x,y){ return '<g transform="translate('+x+' '+y+')"><rect x="-26" y="10" width="52" height="24" fill="#fff" stroke="#C9C1B0"/><rect x="-28" y="-2" width="56" height="10" rx="2" fill="#F07A3E"/><text x="0" y="6" text-anchor="middle" font-size="7" font-weight="800" fill="#fff" font-family="M PLUS Rounded 1c,sans-serif">スーパー</text>'+
+      '<g>'+[0,1,2,3,4,5].map(function(i){ return '<rect x="'+(-26+i*8.7)+'" y="8" width="8.7" height="5" fill="'+(i%2?'#fff':'#E8604F')+'"/>'; }).join('')+'</g><rect x="-7" y="20" width="14" height="14" fill="#BFE0F5"/>'+
+      '<g transform="translate(32 26)" stroke="#4A5275" stroke-width="1.6" fill="none"><path d="M-6-6h3l3 8h8l2-6h-12"/><circle cx="1" cy="5" r="1.6"/><circle cx="7" cy="5" r="1.6"/></g></g>'; };
+  var fd=function(x,y){ var h='<g transform="translate('+x+' '+y+')">'; for(var i=0;i<4;i++){ h+='<rect x="-34" y="'+(6+i*8)+'" width="68" height="5" rx="2.5" fill="#B98A5A"/>'; for(var j=0;j<5;j++){ h+='<path d="M'+(-28+j*14)+' '+(6+i*8)+'q-4-6 0-8q4 2 0 8z" fill="#5E9A4A"/>'; } } return h+'<ellipse cx="22" cy="36" rx="7" ry="4" fill="#9B4F8E" transform="rotate(-20 22 36)"/></g>'; };
+  var pk=function(x,y){ return '<g transform="translate('+x+' '+y+')"><path d="M-22 34v-14" stroke="#7A5A48" stroke-width="3"/><circle cx="-22" cy="12" r="12" fill="#8CC06F"/><circle cx="-14" cy="18" r="8" fill="#9ACB7E"/>'+
+      '<path d="M2 34L10 8L18 34M28 34L20 8" stroke="#8E5A2B" stroke-width="2.4" fill="none"/><path d="M10 8h10" stroke="#8E5A2B" stroke-width="2.4"/><path d="M13 9v14M17 9v14" stroke="#9AA6B8" stroke-width="1"/><rect x="11" y="23" width="8" height="2.5" fill="#E8604F"/>'+
+      '<rect x="-6" y="28" width="14" height="3" fill="#B98A5A"/><path d="M-5 31v4M7 31v4" stroke="#8E5A2B" stroke-width="1.5"/></g>'; };
+  var bc=function(x,y){ return '<g transform="translate('+x+' '+y+')"><ellipse cx="0" cy="24" rx="40" ry="12" fill="#F2E2B8"/><path d="M-20 22q4-8 8 0zM-22 22h12" fill="#F4B6A8" stroke="#E08A78" stroke-width="1"/><path d="M6 26q4-7 8 0z" fill="#FFE0B8" stroke="#E0A878" stroke-width="1"/><path d="M18 14h10l-2 12h-6z" fill="#E8604F"/><path d="M19 14q4-6 8 0" stroke="#4A5275" stroke-width="1.2" fill="none"/></g>'; };
+  var bw=function(x,y){ var h='<g transform="translate('+x+' '+y+')"><path d="M-40 30L30 12" stroke="#9AA6B8" stroke-width="8" stroke-linecap="round"/>'; [-30,-16,-2,12].forEach(function(t,i){ h+='<g transform="translate('+t+' '+(27-i*4)+')" fill="#C9CED8" stroke="#8C93B0" stroke-width="1"><path d="M0 0l-6 5M0 0l6 5M0 0v-7"/><circle r="2.4"/></g>'; });
+      return h+'<rect x="30" y="-14" width="10" height="28" fill="#fff" stroke="#8C93B0"/><rect x="30" y="-6" width="10" height="5" fill="#E8604F"/><rect x="30" y="4" width="10" height="5" fill="#E8604F"/><path d="M28-14h14l-7-8z" fill="#E8604F"/><circle cx="35" cy="-17" r="2" fill="#FFE08A"/></g>'; };
+  return '<svg viewBox="0 0 360 230" class="smap__bg" preserveAspectRatio="none" aria-hidden="true">'+
+    '<rect width="360" height="230" fill="#EAF3E1"/>'+
+    '<path d="M196 160Q250 140 300 156T360 146V230H170Q182 186 196 160Z" fill="#BFE0F0"/><path d="M196 160Q250 140 300 156T360 146" stroke="#F2E2B8" stroke-width="8" fill="none"/>'+
+    '<path d="M0 118C80 108 140 126 200 110S300 92 360 96" stroke="#D9DEEA" stroke-width="18" fill="none"/><path d="M0 118C80 108 140 126 200 110S300 92 360 96" stroke="#fff" stroke-width="2" stroke-dasharray="8 8" fill="none"/>'+
+    '<path d="M138 0C130 60 150 90 140 230" stroke="#D9DEEA" stroke-width="14" fill="none"/>'+
+    st(58,72)+sp(158,64)+fd(274,58)+pk(108,158)+bc(216,184)+bw(298,160)+
+    '</svg>';
+}
+
+/* =========================================================
+   PHẦN 1c · BẢN ĐỒ DU KÝ · phong cách giấy cắt dán + thủy mặc
+   Đất Việt (Tràng An) ở trên, vượt biển, xuống dần tới xứ Phù Tang.
+   ========================================================= */
+var MAPW=360, MAPH=1240;
+var MPOS={0:[100,140],1:[262,226],2:[104,520],3:[258,618],4:[102,718],5:[258,818],6:[102,918],7:[258,1006],8:[170,1168]};
+function mapDefs(){
+  return '<defs>'+
+   '<filter id="stk" x="-25%" y="-25%" width="150%" height="150%"><feMorphology in="SourceAlpha" operator="dilate" radius="2.6" result="d"/><feFlood flood-color="#FFFDF6"/><feComposite in2="d" operator="in" result="w"/>'+
+     '<feGaussianBlur in="d" stdDeviation="2.4" result="b"/><feOffset in="b" dx="1.5" dy="3.5" result="o"/><feFlood flood-color="#3A2A10" flood-opacity=".3"/><feComposite in2="o" operator="in" result="sh"/>'+
+     '<feMerge><feMergeNode in="sh"/><feMergeNode in="w"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'+
+   '<filter id="paper"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 .45 0 0 0 0 .36 0 0 0 0 .2 0 0 0 .09 0"/></filter>'+
+   '<linearGradient id="ink" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4E5D6C" stop-opacity=".55"/><stop offset="1" stop-color="#4E5D6C" stop-opacity="0"/></linearGradient>'+
+   '<linearGradient id="inkg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3F6B4C" stop-opacity=".5"/><stop offset="1" stop-color="#3F6B4C" stop-opacity="0"/></linearGradient>'+
+   '<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9CFD3"/><stop offset="1" stop-color="#7FB2BC"/></linearGradient>'+
+   '<linearGradient id="fuji" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A6FA8"/><stop offset="1" stop-color="#8FA0C9"/></linearGradient>'+
+     '</defs>';
+}
+function star5(cx,cy,r,fill){ var p=''; for(var i=0;i<10;i++){ var a=-Math.PI/2+i*Math.PI/5, rr=i%2?r*.4:r; p+=(i?'L':'M')+(cx+rr*Math.cos(a)).toFixed(2)+' '+(cy+rr*Math.sin(a)).toFixed(2); } return '<path d="'+p+'Z" fill="'+fill+'"/>'; }
+function bamboo(x,y,h){ var s=''; for(var i=0;i<3;i++){ var xx=x+i*6; s+='<path d="M'+xx+' '+y+'v-'+(h-i*6)+'" stroke="#5E8F4A" stroke-width="2.6" stroke-linecap="round"/>'; for(var k=1;k<4;k++){ var yy=y-k*(h/4)-i*2; s+='<path d="M'+xx+' '+yy+'q8-4 13 1q-8 3-13-1zM'+xx+' '+(yy+3)+'q-8-4-12 1q7 3 12-1z" fill="#7DB35F"/>'; } } return '<g>'+s+'</g>'; }
+function sakura(x,y,s){ s=s||1; return '<g transform="translate('+x+' '+y+') scale('+s+')"><path d="M0 22q2-14-6-24M0 10q6-8 14-10" stroke="#7A5A48" stroke-width="2.4" fill="none" stroke-linecap="round"/>'+
+  '<circle cx="-8" cy="-6" r="9" fill="#F6BFD0"/><circle cx="4" cy="-10" r="10" fill="#F9CCDA"/><circle cx="15" cy="-3" r="8" fill="#F6BFD0"/><circle cx="-1" cy="2" r="7" fill="#FBD8E3"/>'+
+  '<g fill="#E58AA8"><circle cx="-6" cy="-8" r="1.4"/><circle cx="6" cy="-12" r="1.4"/><circle cx="14" cy="-4" r="1.4"/><circle cx="0" cy="0" r="1.2"/></g></g>'; }
+function pine(x,y){ return '<g transform="translate('+x+' '+y+')"><path d="M0 20v-8" stroke="#6B4A2E" stroke-width="3"/><path d="M-14 12h28l-14-12zM-11 4h22l-11-11zM-8-4h16l-8-10z" fill="#3E6B4E"/></g>'; }
 function lmk(n,c){
-  var x=MPOS[n][0], y=MPOS[n][1], g='<g transform="translate('+x+' '+(y-30)+')">';
-  if(n===0) g+='<rect x="-34" y="-8" width="68" height="34" rx="3" fill="#FFF7E3" stroke="#B98A5A" stroke-width="2"/><path d="M-40-6L0-30 40-6z" fill="#C8372D"/><rect x="-8" y="8" width="16" height="18" fill="#B98A5A"/><rect x="-26" y="2" width="12" height="10" fill="#CFE7F7"/><rect x="14" y="2" width="12" height="10" fill="#CFE7F7"/><path d="M30-30v-26" stroke="#4A5275" stroke-width="2"/><path d="M30-56h18l-4 6 4 6H30z" fill="#C8372D"/><path d="M35-52l1.5 3h3l-2.5 2 1 3-3-2-3 2 1-3-2.5-2h3z" fill="#F4B63B"/>';
-  if(n===1) g+='<rect x="-30" y="-20" width="10" height="46" fill="#B98A5A"/><rect x="20" y="-20" width="10" height="46" fill="#B98A5A"/><path d="M-42-18q42-22 84 0l-6 8q-36-16-72 0z" fill="'+c+'"/><path d="M-38-30q38-18 76 0l-4 10q-34-14-68 0z" fill="#8E5A2B"/><rect x="-16" y="-10" width="32" height="12" rx="2" fill="#FFF7E3" stroke="#8E5A2B" stroke-width="1.5"/><path d="M-10-4h20" stroke="#8E5A2B" stroke-width="1.5"/>';
-  if(n===2) g+='<rect x="-24" y="-30" width="48" height="56" fill="#F7F3EA" stroke="#9AA6B8" stroke-width="2"/><path d="M-32-28h64l-8-14h-48z" fill="'+c+'"/><rect x="-14" y="-18" width="28" height="18" rx="3" fill="#fff" stroke="'+c+'" stroke-width="2"/><circle cx="-6" cy="-9" r="3.5" fill="'+c+'"/><path d="M0-12h9M0-6h7" stroke="'+c+'" stroke-width="1.6"/><rect x="-8" y="6" width="16" height="20" fill="#9AA6B8"/>';
-  if(n===3) g+='<path d="M-44 26q4-50 44-54q40 4 44 54z" fill="#B9C9A4"/><path d="M-14 26v-16q14-16 28 0v16z" fill="#6B5A44"/><rect x="-32" y="0" width="10" height="8" rx="2" fill="#FFE08A"/><rect x="22" y="0" width="10" height="8" rx="2" fill="#FFE08A"/><path d="M-18-10q18-12 36 0" stroke="'+c+'" stroke-width="3" fill="none"/>';
-  if(n===4) g+='<rect x="-30" y="-10" width="60" height="36" fill="#E4D9C9" stroke="#8C7B66" stroke-width="2"/><path d="M-36-8h72l-10-14h-52z" fill="'+c+'"/><rect x="14" y="-40" width="10" height="26" fill="#6B6B78"/><g class="smoke"><circle cx="19" cy="-48" r="6" fill="#E3E6EE"/><circle cx="26" cy="-58" r="5" fill="#E3E6EE"/><circle cx="21" cy="-68" r="4" fill="#E3E6EE"/></g><path d="M-14 26v-14h14v14z" fill="#8C7B66"/><path d="M-26 6h10l-2 6h-6z" fill="#4A5275"/>';
-  if(n===5) g+='<path d="M-44 26v-26l14-12 14 12v26z" fill="#F4E3E9" stroke="#B9A0A8" stroke-width="1.5"/><path d="M-14 26v-34l16-14 16 14v34z" fill="#FFF7E3" stroke="#B9A0A8" stroke-width="1.5"/><path d="M20 26v-22l12-10 12 10v22z" fill="#F4E3E9" stroke="#B9A0A8" stroke-width="1.5"/><path d="M-46 0l16-14 16 14M-16-8l18-16 18 16M18 4l14-12 14 12" stroke="'+c+'" stroke-width="3" fill="none" stroke-linejoin="round"/><ellipse cx="2" cy="-14" rx="4" ry="6" fill="#E8604F"/>';
-  if(n===6) g+='<path d="M-46 26q-2-30 12-40q4-18 22-14q10-14 26-2q18-2 20 16q14 10 10 40z" fill="#3F6B45"/><path d="M-18 26q0-26 18-26t18 26z" fill="#1E2A22"/><circle cx="-6" cy="12" r="2.6" fill="#FFD54A" class="glow"/><circle cx="6" cy="12" r="2.6" fill="#FFD54A" class="glow"/><path d="M-14-2l6-10 4 9M14-2l-6-10-4 9" fill="#F08A3C"/>';
-  if(n===7) g+='<rect x="-24" y="-8" width="48" height="34" fill="#2C2730"/><path d="M-34-6h68l-10-12h-48z" fill="#C8372D"/><rect x="-16" y="-32" width="32" height="16" fill="#2C2730"/><path d="M-26-30h52l-8-12h-36z" fill="#C8372D"/><rect x="-6" y="8" width="12" height="18" fill="#F4B63B"/><g class="lantern"><ellipse cx="-30" cy="6" rx="5" ry="7" fill="#E8604F"/><ellipse cx="30" cy="6" rx="5" ry="7" fill="#E8604F"/></g>';
-  if(n===8) g+='<circle cx="0" cy="-26" r="30" fill="#E8604F" opacity=".85"/><path d="M-62 30L-14-30q14-12 28 0L62 30z" fill="#6D7FB8"/><path d="M-14-30q14-12 28 0l-8 10-6-6-6 6z" fill="#fff"/>';
+  var x=MPOS[n][0], y=MPOS[n][1], g='<g filter="url(#stk)" transform="translate('+x+' '+(y-28)+') scale(.8)">';
+  if(n===0){ /* Tràng An · Hoa Lư · cờ đỏ sao vàng */
+    g+='<path d="M-64 28Q-62-24-46-40Q-34-52-28-24Q-24-6-16 28Z" fill="#5C8A66"/><path d="M-22 28Q-18-46-2-72Q16-50 20 28Z" fill="#3F6B4C"/><path d="M14 28Q20-20 36-38Q52-26 58 28Z" fill="#6E9A72"/>'+
+      '<path d="M-44-34q6 10 2 30M-4-62q8 20 4 52M34-30q6 12 2 30" stroke="#2E5238" stroke-width="2" fill="none" opacity=".55"/>'+
+      '<path d="M-68 22Q0 10 68 22V34H-68Z" fill="#8EC1CF"/><path d="M-50 27q8-3 16 0M10 26q8-3 16 0" stroke="#fff" stroke-width="1.4" fill="none"/>'+
+      '<path d="M-8 22h22l-4 5h-14z" fill="#8E5A2B"/><path d="M2 22v-10" stroke="#8E5A2B" stroke-width="1.5"/><path d="M2 12l8 9h-8z" fill="#F4E3C3"/>'+
+      '<g transform="translate(-40 6)"><rect x="-12" y="-4" width="24" height="18" fill="#C9B79A"/><path d="M-4 14v-9q4-5 8 0v9z" fill="#4A3A2A"/><path d="M-17-4h34l-5-7h-24z" fill="#8E3A2B"/><path d="M-12-11h24l-4-6h-16z" fill="#A9453A"/></g>'+
+      '';
+  }
+  if(n===1){ /* Cổng làng + lũy tre */
+    g+=bamboo(-62,28,52)+bamboo(44,28,56)+
+      '<rect x="-34" y="-12" width="68" height="40" fill="#E8DCC4"/><path d="M-12 28v-20q12-14 24 0v20z" fill="#5B4632"/>'+
+      '<path d="M-44-10Q0-24 44-10L38-20Q0-32-38-20Z" fill="#8E5A2B"/><path d="M-26-24Q0-34 26-24L20-34Q0-42-20-34Z" fill="#A86A36"/>'+
+      '<g stroke="#6B4220" stroke-width="1"><path d="M-30-17l2-6M-18-20l1-6M-6-21v-6M6-21v-6M18-20l-1-6M30-17l-2-6"/></g>'+
+      '<rect x="-12" y="-6" width="24" height="9" rx="1.5" fill="#F4E3C3" stroke="#8E5A2B"/><path d="M-7-1.5h14" stroke="#8E5A2B" stroke-width="1.4"/>';
+  }
+  if(n===2){ /* Torii treo tấm thẻ */
+    g+='<rect x="-30" y="-36" width="8" height="64" fill="#D23B2B"/><rect x="22" y="-36" width="8" height="64" fill="#D23B2B"/>'+
+      '<path d="M-44-46Q0-56 44-46L42-38Q0-47-42-38Z" fill="#2A2A2A"/><path d="M-40-38Q0-46 40-38V-33H-40Z" fill="#D23B2B"/><rect x="-36" y="-26" width="72" height="6" fill="#D23B2B"/><rect x="-3" y="-33" width="6" height="8" fill="#D23B2B"/>'+
+      '<path d="M-6-20v6M6-20v6" stroke="#6B4A2E" stroke-width="1.2"/><rect x="-14" y="-14" width="28" height="20" rx="2.5" fill="#fff" stroke="'+c+'" stroke-width="2"/><rect x="-10" y="-10" width="9" height="11" rx="1.5" fill="#C9D3FB"/><path d="M1-8h9M1-4h7M1 0h8" stroke="'+c+'" stroke-width="1.4"/>'+
+      '<rect x="-34" y="26" width="16" height="4" fill="#9AA6B8"/><rect x="18" y="26" width="16" height="4" fill="#9AA6B8"/>';
+  }
+  if(n===3){ /* Nhà mái tranh Shirakawa-go */
+    g+='<path d="M-46 22L0-54L46 22Z" fill="#9A7B4F"/><g stroke="#7A5E38" stroke-width="1.2" opacity=".8"><path d="M-36 14L0-44M-24 18L0-30M36 14L0-44M24 18L0-30M-40 8h80M-30-6h60M-18-22h36"/></g>'+
+      '<path d="M-46 22L0-54L46 22" fill="none" stroke="#5E4628" stroke-width="2.4"/>'+
+      '<rect x="-32" y="6" width="64" height="24" fill="#F4EFE4"/><g stroke="#4A3A2A" stroke-width="2"><path d="M-32 6h64M-32 18h64M-16 6v24M0 6v24M16 6v24"/></g>'+
+      '<rect x="-12" y="-14" width="10" height="9" fill="#FFE08A"/><rect x="2" y="-14" width="10" height="9" fill="#FFE08A"/><path d="M-44 20l-6 6M44 20l6 6" stroke="#fff" stroke-width="2" opacity=".8"/>';
+  }
+  if(n===4){ /* Lò rèn kiếm Seki */
+    g+='<rect x="-36" y="-12" width="58" height="40" fill="#D9CBB6"/><path d="M-42-10h70l-12-16h-46z" fill="#3E3A44"/><rect x="10" y="-46" width="10" height="30" fill="#6B6B78"/>'+
+      '<g class="smoke"><circle cx="15" cy="-54" r="6" fill="#E3E6EE"/><circle cx="21" cy="-64" r="5" fill="#E3E6EE"/><circle cx="16" cy="-74" r="4" fill="#E3E6EE"/></g>'+
+      '<path d="M-24 28v-22h20v22z" fill="#2C2730"/><path d="M-21 26q7-12 14 0z" fill="#FF8A1F" class="glow"/>'+
+      '<path d="M26 28h18l-3-8h-12z" fill="#4A5275"/><path d="M28 20h14v-4h-14z" fill="#6B6B78"/>'+
+      '<g class="spark"><circle cx="33" cy="10" r="1.6" fill="#FFD54A"/><circle cx="38" cy="6" r="1.2" fill="#FFB020"/><circle cx="29" cy="5" r="1.2" fill="#FFD54A"/></g>'+
+      '<g transform="translate(-6 -2) rotate(-18)"><path d="M0 0l30-2" stroke="#C9D3E6" stroke-width="3" stroke-linecap="round"/><path d="M-2-3v6" stroke="#8E5A2B" stroke-width="3"/><path d="M-10 0h8" stroke="#2C2730" stroke-width="3" stroke-linecap="round"/></g>';
+  }
+  if(n===5){ /* Phố có tháp Tokyo */
+    g+='<g transform="translate(18 0)"><path d="M-14 28L-2-74h4L14 28z" fill="#E8533A"/><g fill="#fff"><path d="M-10 6h20l-1-6h-18zM-6-26h12l-1-6h-10zM-3-52h6l-.5-6h-5z"/></g><path d="M-14 28L0-16 14 28M-9 8L0-40 9 8" stroke="#B23A28" stroke-width="1" fill="none"/><rect x="-8" y="-20" width="16" height="5" fill="#C9D3E6"/></g>'+
+      '<rect x="-52" y="-6" width="26" height="34" fill="#F4E3E9" stroke="#B9A0A8"/><rect x="-24" y="-18" width="22" height="46" fill="#FFF7E3" stroke="#B9A0A8"/>'+
+      '<g fill="#8FB6E8"><rect x="-48" y="0" width="6" height="6"/><rect x="-36" y="0" width="6" height="6"/><rect x="-48" y="12" width="6" height="6"/><rect x="-20" y="-12" width="6" height="6"/><rect x="-10" y="-12" width="6" height="6"/><rect x="-20" y="2" width="6" height="6"/></g>'+
+      '<path d="M40 28V2" stroke="#4A5275" stroke-width="2"/><rect x="36" y="-12" width="8" height="16" rx="2" fill="#2C2730"/><circle cx="40" cy="-8" r="2" fill="#E8604F"/><circle cx="40" cy="0" r="2" fill="#14A874"/>'+
+      '<g stroke="#2F4BD8" stroke-width="1.6" fill="none"><circle cx="-44" cy="34" r="4"/><circle cx="-32" cy="34" r="4"/><path d="M-44 34l5-6h5l3 6"/></g>';
+  }
+  if(n===6){ /* Cổng đỏ nối dài · cáo đá */
+    g+='<path d="M-50 28q-4-34 10-48q6-20 26-16q12-16 30-2q20 0 22 20q14 12 10 46z" fill="#3F6B45"/>';
+    [[22,-30,.55],[10,-18,.72],[-4,-4,.9]].forEach(function(t){ var s=t[2]; g+='<g transform="translate('+t[0]+' '+t[1]+') scale('+s+')"><rect x="-22" y="-20" width="6" height="48" fill="#E23D2A"/><rect x="16" y="-20" width="6" height="48" fill="#E23D2A"/><path d="M-30-26Q0-32 30-26V-20H-30Z" fill="#2A2A2A"/><rect x="-24" y="-14" width="48" height="5" fill="#E23D2A"/></g>'; });
+    g+='<circle cx="-5" cy="16" r="2.4" fill="#FFD54A" class="glow"/><circle cx="5" cy="16" r="2.4" fill="#FFD54A" class="glow"/>'+
+      '<g transform="translate(-40 10)"><path d="M-8 18v-14q0-10 8-14l2-10 3 9q6 4 6 15v14z" fill="#E9E4DA"/><path d="M-6 0h14l-2 6h-10z" fill="#E23D2A"/><circle cx="2" cy="-12" r="1.2" fill="#2C2730"/></g>';
+  }
+  if(n===7){ /* Phố đèn neon Dōtonbori */
+    g+='<rect x="-50" y="-30" width="30" height="58" fill="#2C2730"/><rect x="-18" y="-46" width="34" height="74" fill="#3A3442"/><rect x="18" y="-22" width="30" height="50" fill="#2C2730"/>'+
+      '<g class="neon"><rect x="-46" y="-24" width="8" height="34" rx="2" fill="#FF4FA3"/><rect x="-12" y="-40" width="22" height="10" rx="2" fill="#35D0E0"/><rect x="-12" y="-24" width="22" height="10" rx="2" fill="#FFD54A"/><rect x="24" y="-16" width="18" height="18" rx="3" fill="#FF6B3D"/></g>'+
+      '<g fill="#fff"><circle cx="29" cy="-11" r="1.6"/><circle cx="37" cy="-3" r="1.6"/><circle cx="33" cy="-7" r="1.6"/></g>'+
+      '<path d="M-58 28h116v6h-116z" fill="#4C6E8A"/><path d="M-40 31h10M-6 31h14M26 31h10" stroke="#FFD54A" stroke-width="1.6" opacity=".7"/>'+
+      '<g class="lantern"><ellipse cx="-30" cy="-36" rx="5" ry="7" fill="#E8604F"/><ellipse cx="34" cy="-30" rx="5" ry="7" fill="#E8604F"/></g>';
+  }
+  if(n===8){ /* Núi Phú Sĩ · mặt trời mọc */
+    g+='<circle cx="26" cy="-46" r="22" fill="#E8533A"/><path d="M-66 28L-16-40Q0-52 16-40L66 28Z" fill="url(#fuji)"/><path d="M-16-40Q0-52 16-40L8-30L2-36L-4-28L-10-34Z" fill="#fff"/>'+
+      '<path d="M-40 28q20-16 40 0q20-16 40 0" stroke="#fff" stroke-width="1.5" fill="none" opacity=".6"/>'+sakura(-56,10,.8)+sakura(54,14,.7);
+  }
   return g+'</g>';
 }
-function fogSVG(n){ var x=MPOS[n][0], y=MPOS[n][1]-26;
-  return '<g class="fog" transform="translate('+x+' '+y+')"><ellipse cx="0" cy="8" rx="70" ry="30" fill="#fff" opacity=".9"/><circle cx="-36" cy="-6" r="26" fill="#fff"/><circle cx="2" cy="-16" r="32" fill="#fff"/><circle cx="38" cy="-4" r="24" fill="#fff"/><path d="M-30 0q8-10 16 0q-6 6-12 2M14-8q8-10 16 0q-6 6-12 2" stroke="#D9E1F7" stroke-width="2" fill="none"/></g>'; }
-function segPath(a,b){ var A=MPOS[a],B=MPOS[b], my=(A[1]+B[1])/2; return 'M'+A[0]+' '+(A[1]+8)+' C'+A[0]+' '+my+' '+B[0]+' '+my+' '+B[0]+' '+(B[1]-62); }
+function fogSVG(n){ var x=MPOS[n][0], y=MPOS[n][1]-52;
+  return '<g class="fog" transform="translate('+x+' '+y+') scale(.8)"><ellipse cx="0" cy="30" rx="96" ry="44" fill="#FBF8EF" opacity=".97"/><circle cx="-48" cy="2" r="36" fill="#FBF8EF"/><circle cx="0" cy="-20" r="44" fill="#FFFDF7"/><circle cx="50" cy="0" r="34" fill="#FBF8EF"/><circle cx="-14" cy="20" r="34" fill="#FFFDF7"/>'+
+    '<g fill="none" stroke="#C9C2AE" stroke-width="2" stroke-linecap="round"><path d="M-58 8q12-16 26-2q-9 9-16 2q-2-5 2-6"/><path d="M10-18q14-16 28 0q-9 9-17 2q-2-5 2-6"/><path d="M-20 40q34 10 60-2"/></g></g>'; }
+function segPath(a,b){ var A=MPOS[a],B=MPOS[b], my=(A[1]+B[1])/2; return 'M'+A[0]+' '+(A[1]+10)+' C'+A[0]+' '+my+' '+B[0]+' '+my+' '+B[0]+' '+(B[1]-76); }
 function mapBg(){
-  var h='<rect width="360" height="1180" fill="#EAF3E1"/>'+
-    '<rect y="0" width="360" height="300" fill="#DDEFD3"/>'+
-    '<g fill="#BFDDAA">'+[[20,250],[300,90],[330,270],[40,170]].map(function(p){ return '<path d="M'+p[0]+' '+p[1]+'q4-30 8-46M'+(p[0]+10)+' '+p[1]+'q2-34 6-52M'+(p[0]+20)+' '+p[1]+'q0-28 2-40" stroke="#8CC06F" stroke-width="3" fill="none"/>'; }).join('')+'</g>'+
-    '<g stroke="#C6E0B4" stroke-width="3">'+[0,1,2,3].map(function(i){ return '<path d="M150 '+(250+i*10)+'h80"/>'; }).join('')+'</g>'+
-    '<path d="M0 300Q90 284 180 300T360 296V470Q270 456 180 468T0 466z" fill="#CFE7F7"/>'+
-    '<g stroke="#fff" stroke-width="2" fill="none" opacity=".9" stroke-linecap="round">'+[[40,330],[150,360],[260,330],[90,410],[220,420],[310,390]].map(function(p){ return '<path class="wave" d="M'+p[0]+' '+p[1]+'q8-6 16 0t16 0"/>'; }).join('')+'</g>'+
-    '<g class="boat"><path d="M168 392h40l-6 10h-28z" fill="#B98A5A"/><path d="M188 392v-24l14 20z" fill="#fff" stroke="#9AA6B8"/></g>'+
-    '<path d="M60 316q110-50 240 16" stroke="#9AA6B8" stroke-width="2" stroke-dasharray="4 6" fill="none"/><g transform="translate(250 312) rotate(18)"><path d="M-12 0h24l4 2-4 2h-24zM-2 0l-6-8h4l8 8M-2 4l-6 8h4l8-8" fill="#4A5275"/></g>'+
-    '<text x="180" y="448" text-anchor="middle" font-size="12" font-weight="700" fill="#5B8BB8" font-family="sans-serif" letter-spacing="2">VƯỢT BIỂN</text>'+
-    '<path d="M0 466Q120 450 240 470T360 462V1180H0z" fill="#EEF4E2"/>'+
-    '<g fill="#D9E6C6">'+[[30,560],[320,660],[24,780],[330,880],[20,990]].map(function(p){ return '<path d="M'+(p[0]-30)+' '+p[1]+'l30-40 30 40z"/>'; }).join('')+'</g>'+
-    '<g fill="#F7C9D4" opacity=".8">'+[[300,520],[60,640],[300,740],[56,850],[300,950],[60,1060]].map(function(p){ return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="10"/><circle cx="'+(p[0]+12)+'" cy="'+(p[1]+4)+'" r="8"/><path d="M'+(p[0]+4)+' '+(p[1]+8)+'v14" stroke="#9C7A64" stroke-width="2"/>'; }).join('')+'</g>'+
-    '<text x="196" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#5E8B48" font-family="sans-serif" letter-spacing="2">ĐẤT VIỆT</text>'+
-    '<text x="290" y="1170" text-anchor="end" font-size="12" font-weight="700" fill="#B86B5E" font-family="sans-serif" letter-spacing="2">XỨ PHÙ TANG</text>';
+  var h='<rect width="360" height="1240" fill="#EFE3C6"/><rect width="360" height="1240" filter="url(#paper)"/>'+
+    /* Đất Việt: đồng lúa, thủy mặc */
+    '<path d="M0 0H360V320Q270 300 180 316T0 312Z" fill="#DCE6C2" opacity=".85"/>'+
+    '<path d="M-10 250Q30 150 70 210Q100 120 140 200Q170 150 200 230L200 320H-10Z" fill="url(#inkg)"/>'+
+    '<path d="M190 300Q240 170 290 250Q320 180 370 240V320H190Z" fill="url(#inkg)"/>'+
+    '<g stroke="#B9CE93" stroke-width="2" opacity=".9">'+[0,1,2,3,4].map(function(i){ return '<path d="M150 '+(272+i*8)+'h90"/>'; }).join('')+'</g>'+
+    /* Biển */
+    '<path d="M0 312Q90 296 180 314T360 306V486Q270 470 180 484T0 480Z" fill="url(#sea)"/><g stroke="#fff" stroke-width="1.6" fill="none" opacity=".55" stroke-linecap="round"><path d="M40 352q8-5 16 0M226 360q8-5 16 0M120 446q8-5 16 0M290 430q8-5 16 0"/></g>'+
+    '<g class="boat"><path d="M150 404h44l-7 12h-30z" fill="#8E5A2B"/><path d="M172 404v-30l18 26z" fill="#FFF7E3" stroke="#B9A98A"/><path d="M168 404v-22l-14 20z" fill="#F4E3C3" stroke="#B9A98A"/></g>'+
+    '<g class="shark s1"><path d="M70 372l12-20 6 20z" fill="#3E4A5A"/><path d="M60 374q18 4 34 0" stroke="#fff" stroke-width="1.6" fill="none"/></g>'+
+    '<g class="shark s2"><path d="M268 432l11-18 6 18z" fill="#3E4A5A"/><path d="M258 434q16 4 32 0" stroke="#fff" stroke-width="1.6" fill="none"/></g>'+
+    /* La bàn */
+    '<g transform="translate(312 358)" opacity=".85"><circle r="22" fill="#F7EED6" stroke="#8E6A3A" stroke-width="1.5"/><path d="M0-20L5 0 0 20-5 0z" fill="#8E3A2B"/><path d="M-20 0L0 5 20 0 0-5z" fill="#4A5275"/><text y="-24" text-anchor="middle" font-size="9" font-weight="700" fill="#8E3A2B" class="mtxt">B</text></g>'+
+    /* Phù Tang: núi thủy mặc, rừng thông, hoa anh đào */
+    '<path d="M0 480Q120 464 240 484T360 476V1240H0Z" fill="#EEE6CC"/>'+
+    '<path d="M-20 680Q20 560 60 640Q80 590 110 660L110 720H-20Z" fill="url(#ink)"/><path d="M250 760Q300 640 340 720Q360 680 380 720V800H250Z" fill="url(#ink)"/>'+
+    '<path d="M-20 960Q30 850 70 930Q90 880 120 950V1000H-20Z" fill="url(#ink)"/><path d="M240 1080Q290 980 330 1050Q350 1010 380 1050V1120H240Z" fill="url(#ink)"/>'+
+    pine(30,600)+pine(326,700)+pine(22,820)+pine(336,920)+pine(30,1040)+
+    sakura(316,560,.9)+sakura(38,690,.8)+sakura(320,790,.85)+sakura(42,890,.8)+sakura(318,990,.85)+sakura(62,1090,.9)+pine(318,1100)+
+    '<path d="M300 1200Q270 1150 300 1110Q320 1080 300 1050" stroke="#9CC5D2" stroke-width="5" fill="none" opacity=".6" stroke-linecap="round"/>'+
+    /* Khung bản đồ */
+    '<rect x="6" y="6" width="348" height="1228" rx="14" fill="none" stroke="#8E6A3A" stroke-width="2"/><rect x="12" y="12" width="336" height="1216" rx="10" fill="none" stroke="#8E6A3A" stroke-width=".8" stroke-dasharray="3 4"/>'+
+    '<g transform="translate(180 30)"><path d="M-58-12h116l-8 12 8 12h-116l8-12z" fill="#8E3A2B"/><text y="5" text-anchor="middle" font-size="12" font-weight="800" fill="#FFF3D6" class="mtxt">ĐẤT VIỆT</text></g>'+
+    '<g transform="translate(180 1218)"><path d="M-66-12h132l-8 12 8 12h-132l8-12z" fill="#8E3A2B"/><text y="5" text-anchor="middle" font-size="12" font-weight="800" fill="#FFF3D6" class="mtxt">XỨ PHÙ TANG</text></g>'+
+    '<text x="180" y="338" text-anchor="middle" font-size="11" font-weight="800" fill="#2E5A70" class="mtxt" opacity=".85">VƯỢT BIỂN</text>';
   return h;
 }
 function mapHTML(){
   var cur = !startDone() ? 0 : (nextTarget()?nextTarget().n:8);
   var reached=function(n){ return n===0 || aiOpen(n); };
-  var svg='<svg viewBox="0 0 '+MAPW+' '+MAPH+'" class="dmap__svg" aria-hidden="true">'+mapBg();
+  var svg='<svg viewBox="0 0 '+MAPW+' '+MAPH+'" class="dmap__svg" aria-hidden="true">'+mapDefs()+mapBg();
   for(var n=0;n<8;n++){ var d=segPath(n,n+1), on=reached(n+1);
-    svg+='<path d="'+d+'" stroke="#B9A98A" stroke-width="3" stroke-dasharray="3 7" fill="none" stroke-linecap="round"/>'+(on?'<path d="'+d+'" stroke="#F4B63B" stroke-width="5" fill="none" stroke-linecap="round" class="pathon"/>':''); }
+    svg+='<path d="'+d+'" stroke="#B9A27A" stroke-width="2.5" stroke-dasharray="2 8" fill="none" stroke-linecap="round" opacity=".7"/>'+(on?'<path d="'+d+'" stroke="#F4B63B" stroke-width="4" fill="none" stroke-linecap="round" class="pathon"/>':''); }
   for(var k=0;k<=8;k++){ var a=aiOf(k); svg+=lmk(k, a.col||'#2F4BD8'); }
   for(var k2=1;k2<=8;k2++){ if(!reached(k2)) svg+=fogSVG(k2); }
   svg+='</svg>';
@@ -1195,15 +1408,17 @@ function mapHTML(){
   for(var i=0;i<=8;i++){
     var a=aiOf(i), p=MPOS[i], open=reached(i)&&(i===0||BUILT[i]), sealed=i===0?startDone():!!S.seals[i];
     var code = i===0?'CHUẨN BỊ':(i===8?'ĐÍCH':'CỬA ẢI '+pad(i));
-    var cls='mnode'+(open?'':' lock')+(i===cur?' cur':'')+(sealed?' done':'');
-    h+='<button class="'+cls+'" style="left:'+(p[0]/MAPW*100)+'%;top:'+(p[1]/MAPH*100)+'%;--nc:'+(a.col||'#2F4BD8')+';--nc2:'+shade(a.col||'#2F4BD8')+'" data-act="'+(open?'ai':'locked')+'" data-n="'+i+'">'+
+    var act=(open?'ai':'locked');
+    h+='<button class="mhit" style="left:'+((p[0]-50)/MAPW*100)+'%;top:'+((p[1]-96)/MAPH*100)+'%;width:'+(100/MAPW*100)+'%;height:'+(82/MAPH*100)+'%" data-act="'+act+'" data-n="'+i+'" aria-label="'+esc(a.vn)+'"></button>';
+    var cls='mnode'+(open?'':' lock')+(i===cur&&!sealed?' cur':'')+(sealed?' done':'');
+    h+='<button class="'+cls+'" style="left:'+(p[0]/MAPW*100)+'%;top:'+(p[1]/MAPH*100)+'%;--nc:'+(a.col||'#2F4BD8')+';--nc2:'+shade(a.col||'#2F4BD8')+'" data-act="'+act+'" data-n="'+i+'">'+
       '<small>'+code+'</small><b>'+esc(i===0?'Lên đường':a.vn.replace('Ải ',''))+'</b>'+
       (sealed&&i>0?'<span class="mseal">'+sealSVG(a.badge?a.badge.k:a.k,30)+'</span>':'')+
       (!open?'<span class="mlock">'+icon('lock',12)+'</span>':'')+'</button>';
-    if(open && !sealed && a.boss && i===cur){ h+='<span class="mboss" style="left:'+((p[0]+(p[0]<180?46:-46))/MAPW*100)+'%;top:'+((p[1]-58)/MAPH*100)+'%">'+av(a.boss)+'</span>'; }
+    if(open && !sealed && a.boss && i===cur){ h+='<span class="mboss" style="left:'+((p[0]+(p[0]<180?52:-52))/MAPW*100)+'%;top:'+((p[1]-62)/MAPH*100)+'%">'+av(a.boss)+'</span>'; }
   }
   var cp=MPOS[cur];
-  h+='<span class="mhau" style="left:'+((cp[0]+(cp[0]<180?-46:46))/MAPW*100)+'%;top:'+((cp[1]-70)/MAPH*100)+'%">'+av('hau','cheer')+'<i>'+cloudSVG('#fff')+'</i></span>';
+  h+='<span class="mhau" style="left:'+((cp[0]+(cp[0]<180?-50:50))/MAPW*100)+'%;top:'+((cp[1]-76)/MAPH*100)+'%">'+av('hau','cheer')+'<i>'+cloudSVG('#fff')+'</i></span>';
   return h+'</div>';
 }
 /* =========================================================
@@ -1212,18 +1427,18 @@ function mapHTML(){
    Tikme, Casestudy TTS Esuhai (chỉ dùng để xây tình huống), Sổ tay TTS của OTIT (bản tiếng Việt),
    Sổ tay hướng dẫn cư trú và lao động 2024 (Cơ quan Quản lý XNC & cư trú Nhật Bản).
    ========================================================= */
-var VERSION = 'TK09';
+var VERSION = 'TK12';
 var COURSE = 'HP05 · Kiến thức quy định';
 var GATE_Q = 'Ngộ Không thích ăn quả gì nhất?';
 var GATE_A = ['dao'];           /* "đào" — giáo viên đọc trên lớp */
 var BUILT = {start:1, 1:1, 2:1, 3:1, 4:1, 5:1, 6:1, 7:1, 8:1};   /* TK04: đủ 7 ải và Phù Tang */
 
-var START = {n:0, k:'出発', kana:'しゅっぱつ', ro:'Shuppatsu · Lên đường', vn:'Lên đường', d:'Gặp đoàn lữ hành và năm tầng quy định', ic:'start', col:'#2F4BD8',
-  intro:'Trước khi qua ải, [Tên] làm quen với cả đoàn, nói cho mình biết mục tiêu của bạn, và xem những quy định nào sẽ bảo vệ bạn khi sang Nhật nhé.',
+var START = {n:0, haiku:['Sáng ngày lên đường','điều giữ trong lòng','là đường trở về'], k:'出発', kana:'しゅっぱつ', ro:'Shuppatsu · Lên đường', vn:'Lên đường', d:'Gặp đoàn lữ hành và năm tầng quy định', ic:'start', col:'#2F4BD8',
+  intro:'Trước khi qua ải, [Tên] làm quen với cả đoàn nhé, chia sẻ với Ngộ Không mục tiêu của bạn trong 1-2 câu và cùng xem qua những quy định nào sẽ bảo vệ [Tên] khi sang Nhật nhé.',
   acts:['s1','s2']};
 var AIS = [
-  {n:1, k:'門', kana:'もん', ro:'Mon · Cổng', vn:'Ải Cổng Làng', d:'Chọn đúng đường đi, tránh cò mồi', ic:'gate', col:'#E8834A', boss:'ho',
-    intro:'Cửa ải đầu tiên nằm ngay ở Việt Nam, trước khi [Tên] lên máy bay. Chọn sai đường từ cổng làng thì mọi chặng sau đều lung lay.',
+  {n:1, haiku:['Giọng nói ngọt ngào','ngay nơi cổng làng','cẩn thận cáo rình'], k:'門', kana:'もん', ro:'Mon · Cổng', vn:'Ải Cổng Làng', d:'Chọn đúng đường đi, tránh cò mồi', ic:'gate', col:'#E8834A', boss:'ho',
+    intro:'Cửa ải đầu tiên nằm ngay ở Việt Nam, trước khi [Tên] sang Nhật. Chọn sai đường từ cổng làng thì mọi chặng sau đều lung lay.',
     shield:'Luật Việt Nam buộc doanh nghiệp phái cử công khai mọi khoản phí và cấm dùng cò: bạn có quyền hỏi, có quyền xem kỹ trước khi ký.',
     bossLine:'Ở cổng làng, Hồ Ly đội lốt "người quen có đường dây": hứa đi nhanh, bao đậu, chỉ cần đóng tiền riêng cho nó.',
     acts:['a11','a12','a13'], warm:'w1',
@@ -1231,32 +1446,32 @@ var AIS = [
     kinh:{t:'Bí kíp số 1 · Chính Đạo', p:[
       'Chỉ đi qua doanh nghiệp phái cử có giấy phép còn hạn. Tra cứu trên trang chính thức của DOLAB.',
       'Đọc kỹ hợp đồng. Mọi khoản phí phải ghi rõ trong hợp đồng, đóng cho doanh nghiệp và có phiếu thu.',
-      'Ai hứa "bao đậu, bay nhanh" và đòi tiền riêng: báo thầy cô hoặc anh chị Esuhai.'],
+      'Ai hứa "bao đậu, đi nhanh" và đòi tiền riêng: báo thầy cô hoặc anh chị Esuhai.'],
       jp:'急がば回れ', ro:'Isogaba maware', vi:'Càng vội, càng nên đi đường chắc chắn.'}},
-  {n:2, k:'札', kana:'ふだ', ro:'Fuda · Thẻ bài', vn:'Ải Thẻ Bài', d:'Thẻ cư trú và những việc được phép làm', ic:'card', col:'#14A874', boss:'yeu',
-    intro:'Thẻ cư trú là tấm thẻ bài giữ cho [Tên] được ở Nhật hợp pháp. Giữ thẻ đúng cách, và đọc kỹ xem thẻ cho phép mình làm gì.',
+  {n:2, haiku:['Tấm thẻ mang tên','đem người khác mượn','hóa thành hư không'], k:'札', kana:'ふだ', ro:'Fuda · Thẻ bài', vn:'Ải Thẻ Bài', d:'Thẻ cư trú và những việc được phép làm', ic:'card', col:'#14A874', boss:'yeu',
+    intro:'Thẻ cư trú là tấm thẻ bài giữ cho [Tên] được ở Nhật hợp pháp. Giữ thẻ an toàn, và đọc kỹ để hiểu trên thẻ ghi những gì.',
     shield:'Không ai được giữ thẻ cư trú, hộ chiếu của bạn, kể cả công ty: tấm thẻ bài ấy luôn nằm trong tay bạn.',
-    bossLine:'Yêu "Chắc Không Sao" hay thì thầm: "quên thẻ một hôm chắc không sao", "cho bạn mượn tí thôi", "bật kiếm tiền TikTok ai biết".',
+    bossLine:'Yêu "Chắc Không Sao" hay thì thầm: "quên thẻ một hôm chắc không sao", "cho bạn mượn tí thôi", "bật kiếm tiền TikTok/Youtube ai biết".',
     acts:['a21','a22','a23'], warm:'w2',
     badge:{k:'証', n:'Giữ Thẻ', d:'Bạn biết giữ và đọc thẻ cư trú đúng cách.'},
     kinh:{t:'Bí kíp số 2 · Giữ Thẻ', p:[
       'Thẻ cư trú luôn mang theo người. Không cho mượn, không gửi ai giữ hộ, không đăng ảnh thẻ lên mạng.',
-      'Thẻ ghi rõ bạn được làm gì: chỉ làm ở nơi đã đăng ký, không kiếm thêm thu nhập nào khác.',
-      'Số My Number chỉ khai cho cơ quan có thẩm quyền. Mất thẻ: báo cảnh sát, xin cấp lại trong 14 ngày.'],
+      'Thẻ ghi rõ bạn được làm gì: chỉ làm ở nơi đã đăng ký (Công ty tiếp nhận) và không được kiếm thêm thu nhập nào khác.',
+      'Số My Number chỉ khai cho cơ quan có thẩm quyền. Mất thẻ: báo cảnh sát và xin cấp lại trong 14 ngày.'],
       jp:'備えあれば憂いなし', ro:'Sonae areba urei nashi', vi:'Chuẩn bị sẵn thì không phải lo.'}},
-  {n:3, k:'寮', kana:'りょう', ro:'Ryō · Ký túc xá', vn:'Ải Động Ký Túc', d:'Sống chung đúng nội quy', ic:'house', col:'#7C5CE0', boss:'yeu',
+  {n:3, haiku:['Đêm khuya thanh vắng','khẽ mở cửa phòng','bóng tối lẻn vào'], k:'寮', kana:'りょう', ro:'Ryō · Ký túc xá', vn:'Ải Động Ký Túc', d:'Sống chung đúng nội quy', ic:'house', col:'#7C5CE0', boss:'yeu',
     intro:'KTX là nhà của [Tên] suốt những năm ở Nhật, và cũng là nhà của các em Kohai sau này. Sống đúng nội quy là giữ nhà cho cả người đi sau.',
     shield:'Hợp đồng thuê nhà và nội quy giúp bạn có chỗ ở ổn định, yên tĩnh, và giữ chỗ ở cho các em Kohai sau này.',
     bossLine:'Ở KTX, Yêu "Chắc Không Sao" sống ngay trong phòng: "ngủ nhờ một đêm chắc không sao", "ai cũng vứt rác vậy mà".',
     acts:['a31','a32','a33'], warm:'w3',
     badge:{k:'和', n:'Hòa Khí', d:'Bạn giữ được nhà chung yên ổn cho mình và cho Kohai.'},
     kinh:{t:'Bí kíp số 3 · Hòa Khí', p:[
-      'Không đưa người ngoài vào ở. Đi xa, ngủ ngoài cần xin phép công ty và Hiệp hội trước.',
+      'Không đưa người ngoài vào ở KTX. Đi xa, trọ ở ngoài cần xin phép Công ty và Hiệp hội trước.',
       'Giữ yên lặng sau 10 giờ tối, phân loại rác đúng ngày, giữ chỗ ở sạch sẽ.',
-      'Đủ 20 tuổi mới được hút thuốc, uống rượu. Có mâu thuẫn thì nói chuyện và nhờ người hướng dẫn, không gắn camera, không động tay.'],
+      'Đủ 20 tuổi mới được hút thuốc, uống rượu. Có mâu thuẫn thì nói chuyện và nhờ người hướng dẫn, không gắn camera, không "động thủ".'],
       jp:'郷に入っては郷に従え', ro:'Gō ni itte wa gō ni shitagae', vi:'Nhập gia tùy tục.'}},
-  {n:4, k:'職場', kana:'しょくば', ro:'Shokuba · Nơi làm việc', vn:'Ải Xưởng Rèn', d:'Hợp đồng, lương và quyền lợi của bạn', ic:'gear', col:'#0E9F9E', boss:'yeu',
-    intro:'Xưởng là nơi [Tên] rèn tay nghề mỗi ngày. Ở đây cần hai điều cùng lúc: ngay thẳng với công ty, và dám lên tiếng khi quyền lợi của mình bị xâm phạm.',
+  {n:4, haiku:['Búa nện vào thép','vang tiếng ngay thẳng','dối trá lùi xa'], k:'職場', kana:'しょくば', ro:'Shokuba · Nơi làm việc', vn:'Ải Xưởng Rèn', d:'Hợp đồng, lương và quyền lợi của bạn', ic:'gear', col:'#0E9F9E', boss:'yeu',
+    intro:'Xưởng là nơi [Tên] làm việc mỗi ngày. Ở đây cần bạn lưu ý 2 điều: Làm việc nghiêm túc, trung thực và biết tìm đến đúng người để lên tiếng khi quyền lợi của mình bị xâm phạm.',
     shield:'Luật lao động Nhật bảo vệ giờ làm, tiền tăng ca, ngày phép của bạn. Bị đối xử sai, bạn được tố cáo mà không bị đối xử bất lợi.',
     bossLine:'Trong xưởng, Yêu "Chắc Không Sao" nói hai giọng: "ăn gian năm phút ai biết", và "bị bắt nạt thì cứ chịu, nói ra mất việc".',
     acts:['a41','a42','a43'], warm:'w4',
@@ -1266,32 +1481,32 @@ var AIS = [
       'Trung thực từng phút chấm công, từng món đồ của công ty. Lỗi của mình thì nhận và sửa.',
       'Bị bắt nạt, bị giữ giấy tờ, không được trả tăng ca: ghi lại, báo người hướng dẫn, Hiệp hội, OTIT. Không im lặng, không bỏ trốn.'],
       jp:'正直は一生の宝', ro:'Shōjiki wa isshō no takara', vi:'Trung thực là báu vật cả đời.'}},
-  {n:5, k:'街', kana:'まち', ro:'Machi · Phố phường', vn:'Ải Phố Phường', d:'Giao thông và luật nơi công cộng', ic:'bike', col:'#E0558E', boss:'yeu',
-    intro:'Ra khỏi xưởng và KTX là phố phường Nhật Bản: sạch, yên tĩnh, và có luật ở từng góc phố. [Tên] đi một vòng cùng Ngộ Không nhé.',
+  {n:5, haiku:['Phố phường về đêm','bước chân lơ là','thành ngay cạm bẫy'], k:'街', kana:'まち', ro:'Machi · Phố phường', vn:'Ải Phố Phường', d:'Giao thông và luật nơi công cộng', ic:'bike', col:'#E0558E', boss:'yeu',
+    intro:'Ra khỏi Công ty và KTX là phố phường Nhật Bản: sạch sẽ, yên tĩnh, nhưng quy định thì có ở từng góc phố. [Tên] đi một vòng cùng Ngộ Không nhé.',
     shield:'Luật giao thông và quy định nơi công cộng giữ an toàn cho chính bạn trên đường, ngoài biển, giữa phố.',
     bossLine:'Ngoài phố, Yêu "Chắc Không Sao" thì thầm: "đồ bỏ đi mà", "ai cũng đi vỉa hè", "biển cấm chỉ để dọa thôi".',
     acts:['a51','a52','a53'], warm:'w5',
-    badge:{k:'慎', n:'Cẩn Trọng', d:'Bạn đi giữa phố Nhật mà không vấp luật nào.'},
+    badge:{k:'慎', n:'Cẩn Trọng', d:'Bạn đi giữa phố Nhật mà không "vấp" luật nào.'},
     kinh:{t:'Bí kíp số 5 · Cẩn Trọng', p:[
-      'Không lấy thứ không phải của mình: xe đạp bỏ đi, đồ ở điểm rác, quả và rau nhà người khác, sò ốc ở vùng cấm.',
+      'Không lấy thứ không phải của mình: xe đạp bỏ đi, đồ ở điểm rác, rau quả nhà người khác, sò ốc ở vùng cấm.',
       'Xe đạp: đi bên trái lòng đường, bật đèn, không điện thoại, không tai nghe, không chở người. Xe tự chạy bằng ga thì cần bằng lái.',
-      'Tôn trọng người khác: không làm ồn, không đeo bám, không đụng chạm, không đùa quá trớn. Biển cấm là để giữ mạng sống.'],
+      'Tôn trọng người khác: không làm ồn, không đeo bám, không đụng chạm, không đùa quá trớn. Biển cấm là để giữ bạn an toàn.'],
       jp:'君子危うきに近寄らず', ro:'Kunshi ayauki ni chikayorazu', vi:'Người khôn không đến gần chỗ nguy hiểm.'}},
-  {n:6, k:'詐欺', kana:'さぎ', ro:'Sagi · Lừa đảo', vn:'Ải Hang Hồ Ly', d:'Nhận diện lừa đảo, không thành đồng phạm', ic:'fox', col:'#F07A3E', boss:'ho',
-    intro:'Hồ Ly không đáng sợ ở bộ mặt thật, mà ở những lốt nó đội: người quen, người yêu, người tốt bụng. [Tên] cùng Ngộ Không luyện mắt nhìn thấu nhé!',
+  {n:6, haiku:['Cổng đỏ nối dài','ngoảnh lại lần nữa','mắt cáo vẫn nhìn'], k:'詐欺', kana:'さぎ', ro:'Sagi · Lừa đảo', vn:'Ải Hang Hồ Ly', d:'Nhận diện lừa đảo, không thành đồng phạm', ic:'fox', col:'#F07A3E', boss:'ho',
+    intro:'Hồ Ly không đáng sợ ở bộ mặt thật, mà ở những lốt mà nó đội: người quen, người tốt, bạn đồng hương, thậm chí người yêu. [Tên] cùng Ngộ Không luyện mắt nhìn thấu nhé!',
     shield:'Luật Nhật trừng phạt kẻ lừa đảo. Bị lừa mà báo sớm, cảnh sát và Hiệp hội đứng về phía bạn.',
-    bossLine:'Kẻ lừa đảo đội lốt người tốt. Nó không bảo bạn làm điều xấu, chỉ nhờ bạn "giúp một chút".',
+    bossLine:'Kẻ lừa đảo đội lốt người tốt. Hắn không bảo bạn làm điều xấu, chỉ nhờ bạn "giúp một chút", "thử một lần xem"…',
     acts:['a61','a62','a63'], warm:'w6',
     badge:{k:'眼', n:'Hỏa Nhãn', d:'Bạn đã nhìn thấu ba lốt của Hồ Ly.'},
     kinh:{t:'Bí kíp số 6 · Hỏa Nhãn', p:[
       'Tài khoản, thẻ, điện thoại, địa chỉ đứng tên mình: không bán, không cho thuê, không cho mượn.',
-      'Chỉ làm việc ở nơi đã đăng ký. Việc nhẹ lương cao, dặn giấu công ty là bẫy.',
+      'Chỉ làm việc ở nơi đã đăng ký. Việc nhẹ lương cao, dặn bạn giấu công ty là bẫy.',
       'Nghi ngờ thì hỏi người hướng dẫn, Hiệp hội, Esuhai. Bị đe dọa thì gọi 110.'],
       jp:'うまい話には裏がある', ro:'Umai hanashi ni wa ura ga aru', vi:'Chuyện ngon ăn luôn có mặt trái.'}},
-  {n:7, k:'誘惑', kana:'ゆうわく', ro:'Yūwaku · Cám dỗ', vn:'Ải Sòng Đỏ Đen', d:'Cờ bạc, vay mượn và tiền bạc', ic:'dice', col:'#C8457A', boss:'ngu',
+  {n:7, haiku:['Đêm vừa thắng bạc','quỷ dữ cười khẩy','xích sắt khua vang'], k:'誘惑', kana:'ゆうわく', ro:'Yūwaku · Cám dỗ', vn:'Ải Sòng Đỏ Đen', d:'Cờ bạc, vay mượn và tiền bạc', ic:'dice', col:'#C8457A', boss:'ngu',
     intro:'Ải cuối cùng có hai yêu quái bắt tay nhau. Lão Đỏ Đen kéo [Tên] vào nợ, Hồ Ly đứng chờ sẵn với "việc làm thêm" để trả nợ. Vào Phòng chiếu Kōban xem một câu chuyện có thật như thế nhé.',
     shield:'Luật Nhật giới hạn lãi suất và trừng phạt kẻ đòi nợ bằng đe dọa: bị đòi nợ, bạn được cảnh sát bảo vệ.',
-    bossLine:'Lúc đầu cho bạn thắng, rồi giữ chặt bạn bằng nợ. Khi bạn cùng đường, Hồ Ly bước ra: "Có việc này kiếm được tiền…"',
+    bossLine:'Lúc đầu cho bạn thắng, rồi giữ chặt bạn bằng nợ. Khi bạn cùng đường, Hồ Ly bước ra: "Muốn trả nợ không? Có việc này kiếm được tiền…"',
     acts:['a71','a72','a73'], warm:'w7',
     badge:{k:'克', n:'Tự Chủ', d:'Bạn làm chủ được đồng tiền và thời gian của mình.'},
     kinh:{t:'Bí kíp số 7 · Tự Chủ', p:[
@@ -1300,13 +1515,13 @@ var AIS = [
       'Giải trí có giới hạn: tự đặt luật chơi game, ngủ đủ, giữ mục tiêu ban đầu.'],
       jp:'身から出た錆', ro:'Mi kara deta sabi', vi:'Gỉ sét sinh ra từ chính thân mình: họa do mình tự chuốc.'}}
 ];
-var FINAL = {n:8, k:'扶桑', kana:'ふそう', ro:'Fusō · Phù Tang', vn:'Phù Tang', d:'Về đích trọn vẹn: đi đến nơi, về đến chốn', ic:'peak', col:'#C98A12',
-  intro:'[Tên] đã qua đủ 7 ải. Chặng cuối không còn yêu quái, chỉ còn những việc cần làm cho trọn vẹn: về nước sạch sẽ, mang theo túi cứu viện, và viết trang bí kíp của riêng mình.',
+var FINAL = {n:8, haiku:['Nắng mai rọi chiếu','nơi cuối hành trình','trang giấy trắng tinh'], k:'扶桑', kana:'ふそう', ro:'Fusō · Phù Tang', vn:'Phù Tang', d:'Về đích trọn vẹn: đi đến nơi, về đến chốn', ic:'peak', col:'#C98A12',
+  intro:'[Tên] đã qua đủ 7 ải. Chặng cuối không còn yêu quái, chỉ còn những việc cần làm cho trọn vẹn: thu xếp chu toàn trước khi về nước, mang theo túi cứu viện, và viết trang bí kíp của riêng mình.',
   acts:['f1','f2','f3'],
   badge:{k:'志', n:'Bí Kíp Trọn Bộ', d:'Bạn đã đến xứ Phù Tang: đi đến nơi, về đến chốn.'},
   kinh:{t:'Bí kíp trọn bộ · Trang cuối không chữ', p:[
     'Bảy bí kíp là luật. Trang cuối không chữ là lời hứa bạn tự viết.',
-    'Về nước sạch sẽ: đóng tài khoản, hủy điện thoại, trả hết nợ, làm thủ tục Nenkin.',
+    'Thu xếp chu toàn trước khi về nước: đóng tài khoản, hủy điện thoại, trả hết nợ, làm thủ tục Nenkin.',
     'Túi cứu viện luôn mang theo: 110, 119, #9110, OTIT, Hiệp hội, Esuhai.'],
     jp:'石の上にも三年', ro:'Ishi no ue ni mo sannen', vi:'Ngồi trên đá ba năm, đá cũng ấm: kiên trì thì thành.'}};
 var TOTAL_ACTS = 2 + 7*3 + 3;
@@ -1315,7 +1530,7 @@ var TOTAL_ACTS = 2 + 7*3 + 3;
 var LADDER = [
   'Bị nhắc nhở bằng lời',
   'Bị lập biên bản nhắc nhở, cảnh cáo',
-  'Dừng chương trình, về nước giữa chừng (tự trả vé)',
+  'Dừng chương trình, về nước trước hạn',
   'Cảnh sát điều tra, có thể bị phạt',
   'Bị trục xuất khỏi Nhật Bản',
   'Bị cấm quay lại Nhật từ 5 đến 10 năm'
@@ -1331,25 +1546,25 @@ var SOTAY24 = 'Sổ tay hướng dẫn cư trú và lao động 2024 (Cơ quan Q
 var NOIQUY = 'Quy định của công ty, Hiệp hội (tùy nơi)';
 
 var CAST = [
-  {id:'hau', role:'Bạn đồng hành', bg:'#ECF0FF', fg:'#1D2F9E', d:'Có đôi mắt nhìn thấu lốt hóa trang. Ngộ Không sẽ nhắc bạn soi kỹ trước mỗi ngã rẽ.'},
-  {id:'tan', role:'Cảnh sát ở đồn Kōban', bg:'#E7ECF8', fg:'#23306B', d:'Giải thích luật Nhật và cho bạn biết chuyện gì xảy ra sau mỗi lựa chọn. Nghiêm, nhưng rất tử tế.'},
-  {id:'ho', role:'Yêu quái lừa đảo', bg:'#FFF0E6', fg:'#A84A16', d:'Đội lốt người quen, người yêu, người tốt bụng. Không bảo bạn làm điều xấu, chỉ nhờ bạn "giúp một chút".'},
-  {id:'ngu', role:'Yêu quái cám dỗ', bg:'#FBEAEC', fg:'#8E2433', d:'Mời gọi cờ bạc, cá độ, vay nóng. Lúc đầu cho bạn thắng, rồi giữ chặt bạn bằng nợ.'},
-  {id:'yeu', role:'Con yêu bên trong mỗi người', bg:'#EAF6E2', fg:'#3F7A22', d:'Hay thì thầm: "ai cũng làm mà", "chắc không sao đâu", "em không biết". Gặp nhiều nhất trên đường.'}
+  {id:'hau', role:'Bạn đồng hành', bg:'#ECF0FF', fg:'#1D2F9E', d:'Có đôi mắt nhìn thấu lòng người. Ngộ Không sẽ nhắc bạn soi kỹ trước mỗi ngã rẽ.'},
+  {id:'tan', role:'Cảnh sát ở đồn Kōban', bg:'#E7ECF8', fg:'#23306B', d:'Giải thích luật pháp của Nhật và cho bạn biết điều gì xảy ra sau mỗi lựa chọn. Chú ấy nghiêm, nhưng rất tử tế.'},
+  {id:'ho', role:'Yêu quái lừa đảo', bg:'#FFF0E6', fg:'#A84A16', d:'Đội lốt người quen, người tốt, người đồng hương. Không bảo bạn làm điều xấu ngay, chỉ nhờ bạn "giúp một chút".'},
+  {id:'ngu', role:'Yêu quái cám dỗ', bg:'#FBEAEC', fg:'#8E2433', d:'Mời gọi bạn chơi cờ bạc, cá độ, vay nóng. Lúc đầu cho bạn thắng, rồi giữ chặt bạn bằng nợ.'},
+  {id:'yeu', role:'Con yêu bên trong mỗi người', bg:'#EAF6E2', fg:'#3F7A22', d:'Hay thì thầm: "ai cũng làm mà", "chắc không sao đâu", "em không biết", "chỉ một lần này thôi". Bạn có thấy quen?'}
 ];
 
 /* ---------------- CÁC CHẶNG ---------------- */
 var ACTS = {
 /* ===== LÊN ĐƯỜNG ===== */
 s1:{ai:0, t:'Gặp đoàn lữ hành', d:'Làm quen 5 nhân vật, viết mục tiêu của bạn', mins:4, steps:[
-  {k:'say', who:'hau', mood:'cheer', text:'Trong Tây du ký, thầy trò Đường Tăng phải qua 81 kiếp nạn mới đến nơi. Hành trình sang xứ Phù Tang của [Tên] cũng có nhiều "yêu quái" đội lốt người tốt. Mình giới thiệu cả đoàn nhé!'},
-  {k:'cast', note:'Nhân vật là hư cấu. Nhiều tình huống trong khóa dựa trên chuyện đã từng xảy ra, tên người đã được thay đổi.'},
+  {k:'say', who:'hau', mood:'cheer', text:'Trong Tây du ký, thầy trò Đường Tăng phải qua 81 kiếp nạn mới đến nơi. Hành trình sang xứ Phù Tang của [Tên] cũng có nhiều "yêu quái" đội lốt người tốt. Cùng làm quen với cả đoàn nào!'},
+  {k:'cast', note:'Nhiều tình huống trong khóa dựa trên chuyện đã từng xảy ra, tên nhân vật đã được thay đổi. Nếu trùng tên bạn vui lòng tha thứ cho Ngộ Không nhé.'},
   {k:'goal'},
   {k:'safe'}
 ]},
 s2:{ai:0, t:'Năm tầng quy định', d:'Sang Nhật, bạn giữ 5 tầng quy định cùng lúc', mins:4, steps:[
   {k:'layers'},
-  {k:'classify', intro:'Mỗi quy định dưới đây thuộc tầng nào? Chạm vào tầng đúng.',
+  {k:'classify', intro:'Mỗi quy định dưới đây thuộc tầng nào? Chạm vào ô để chọn.',
     cats:['Luật Nhật Bản','Luật cư trú cho người nước ngoài','Luật Việt Nam','Hiệp hội','Công ty và KTX'],
     items:[
       {t:'Không được lấy xe đạp bỏ ngoài đường, kể cả xe cũ hỏng.', a:0, why:'Lấy đồ không phải của mình là trộm cắp theo luật Nhật, áp dụng cho mọi người.', src:L_HS},
@@ -1366,31 +1581,31 @@ w1:{ai:1, warm:1, t:'Khởi động 30 giây', d:'Đúng hay sai? Ba câu nhanh'
   {k:'tf', items:[
     {t:'Đi Nhật qua người quen "có đường dây" sẽ nhanh và rẻ hơn.', a:false, why:'Người không thuộc doanh nghiệp có giấy phép thì không đưa bạn đi hợp pháp được. Luật Việt Nam cấm doanh nghiệp dùng "cò" để tuyển người.'},
     {t:'Bạn có quyền được xem đầy đủ các khoản phí trước khi ký hợp đồng.', a:true, why:'Doanh nghiệp phái cử phải công khai, minh bạch các khoản phí trước khi bạn ký.'},
-    {t:'Sang Nhật rồi thì Hiệp hội và OTIT không liên quan gì đến TTS.', a:false, why:'Hiệp hội quản lý, hỗ trợ bạn. OTIT kiểm tra công ty và Hiệp hội, có đường dây tư vấn tiếng Việt.'}
+    {t:'Sang Nhật rồi thì Hiệp hội và OTIT không liên quan gì đến Thực tập sinh.', a:false, why:'Hiệp hội quản lý, hỗ trợ bạn. OTIT kiểm tra công ty và Hiệp hội, có đường dây tư vấn tiếng Việt.'}
   ]}
 ]},
 a11:{ai:1, t:'Ai là ai trên đường đi?', d:'Biết đúng người lo đúng việc cho mình', mins:4, steps:[
   {k:'say', who:'hau', mood:'hi', text:'Trong Tây du ký, qua mỗi nước đều có người đóng dấu vào văn điệp cho thầy trò. Đường sang Nhật của [Tên] cũng có nhiều bên cùng lo. Biết ai làm gì thì khi cần, bạn tìm đúng người.'},
-  {k:'classify', intro:'Mỗi mô tả dưới đây là việc của bên nào? Chạm vào tên đúng.',
+  {k:'classify', intro:'Mỗi mô tả dưới đây là việc của bên (tổ chức) nào? Chạm vào tên đúng.',
     cats:['Esuhai và JPC','DOLAB','Hiệp hội','OTIT','Công ty tiếp nhận'],
     items:[
       {t:'Đào tạo tiếng Nhật, kỹ năng trước khi đi và phái cử bạn sang Nhật.', a:0, why:'Bạn học ở JPC, Esuhai là doanh nghiệp phái cử có người đại diện ở Nhật để hỗ trợ bạn.', src:''},
       {t:'Cơ quan Việt Nam cấp phép, kiểm tra doanh nghiệp phái cử. Bạn tra cứu được giấy phép trên trang web chính thức.', a:1, why:'DOLAB là Cục Quản lý lao động ngoài nước, nay thuộc Bộ Nội vụ.', src:L_69},
-      {t:'Quản lý, hỗ trợ bạn tại Nhật. Bạn liên hệ khi công ty chưa giải quyết được.', a:2, why:'Hiệp hội (Nghiệp đoàn) là đơn vị quản lý bạn tại địa phương.', src:L_TTKN},
-      {t:'Cơ quan của Nhật kiểm tra công ty và Hiệp hội, có đường dây tư vấn tiếng Việt.', a:3, why:'OTIT là Tổ chức Thực tập kỹ năng quốc tế. Khi Ikusei Shuro bắt đầu, cơ quan này dự kiến được tổ chức lại, vai trò bảo vệ người lao động vẫn còn.', src:L_TTKN},
-      {t:'Nơi bạn làm việc, học kỹ năng mỗi ngày và thường lo cả chỗ ở cho bạn.', a:4, why:'Công ty tiếp nhận là nơi bạn gắn bó nhiều nhất, người hướng dẫn ở đây là người gần bạn nhất.', src:''}
+      {t:'Quản lý, hỗ trợ bạn trong công việc, cuộc sống. Bạn nên liên hệ khi công ty chưa giải quyết được lo lắng của mình.', a:2, why:'Hiệp hội (Nghiệp đoàn) là đơn vị quản lý bạn tại địa phương.', src:L_TTKN},
+      {t:'Cơ quan của Nhật giám sát hoạt động của công ty và Hiệp hội, có line tư vấn tiếng Việt.', a:3, why:'OTIT là Tổ chức Thực tập kỹ năng quốc tế. Khi Ikusei Shuro bắt đầu, cơ quan này dự kiến được tổ chức lại, vai trò bảo vệ người lao động vẫn còn.', src:L_TTKN},
+      {t:'Nơi bạn làm việc và rèn tay nghề mỗi ngày và thường sắp xếp cả chỗ ở cho bạn cùng Hiệp hội.', a:4, why:'Công ty tiếp nhận là nơi bạn gắn bó nhiều nhất, người hướng dẫn ở đây là người gần bạn nhất.', src:''}
     ]}
 ]},
 a12:{ai:1, t:'Lời mời ở cổng làng', d:'Ba lốt của Hồ Ly trước ngày bay', mins:7, steps:[
   {k:'branch', title:'Lốt 1 · Người quen có đường dây',
-    ctx:'Bạn đang tìm hiểu đi Nhật. Chú Tư, bạn của bố, nhắn qua Zalo:',
-    from:'Chú Tư', sub:'Bạn của bố',
-    msgs:['Chú quen bên công ty, đi Nhật bao đậu, 3 tháng là bay.','Đóng trước 50 triệu tiền giữ suất cho chú, chú lo hết.','Đừng hỏi bên trung tâm, họ chỉ làm chậm thôi.'],
-    flags:['Hứa "bao đậu", "bay nhanh": không ai hứa được kết quả thi tuyển','Đóng tiền cho cá nhân, không qua doanh nghiệp, không phiếu thu','Ngăn bạn hỏi nơi chính thức'],
+    ctx:'Bạn đang tìm hiểu đi Nhật. Chú Tư hàng xóm ở quê nhắn qua Zalo:',
+    from:'Chú Tư', sub:'Hàng xóm ở quê',
+    msgs:['Chú quen công ty này, đi Nhật bao đậu đi nhanh, 3 tháng là bay.','Con đóng trước 50 triệu tiền giữ suất cho chú, còn lại chú lo hết.','Đừng hỏi bên trung tâm, họ chỉ làm chậm thôi.'],
+    flags:['Hứa "bao đậu đi nhanh": không ai hứa được kết quả phỏng vấn ngoài Nhà tuyển dụng','Đóng tiền cho cá nhân, không qua doanh nghiệp, không phiếu thu','Ngăn bạn hỏi nơi chính thức'],
     opts:[
-      {t:'Đóng tiền cho chú. Người quen của bố, lại hứa có giấy tờ đầy đủ nên yên tâm.', ok:0, out:{t:'Ba tháng, rồi sáu tháng…', p:'Chú Tư hẹn hết lần này đến lần khác rồi không nghe máy. Khoản tiền không có hợp đồng, không có phiếu thu nên rất khó đòi lại. Bạn mất tiền và mất cả một năm.'}},
+      {t:'Đóng tiền cho chú, lại hứa có giấy tờ đầy đủ nên yên tâm.', ok:0, out:{t:'Ba tháng, rồi sáu tháng…', p:'Chú Tư hẹn hết lần này đến lần khác rồi không nghe máy. Khoản tiền không có hợp đồng, không có phiếu thu nên rất khó đòi lại. Bạn mất tiền và mất cả thời gian dài đòi lại tiền.'}},
       {t:'Hỏi lại trung tâm, kiểm tra giấy phép doanh nghiệp trên trang của DOLAB.', ok:1, out:{t:'Bạn đi đúng cửa', p:'Doanh nghiệp có giấy phép cho bạn xem đầy đủ các khoản phí trước khi ký, và có người đại diện ở Nhật để hỗ trợ bạn sau này.'}},
-      {t:'Đóng trước một nửa, đợi có kết quả rồi mới đóng tiếp.', ok:0, out:{t:'Một nửa vẫn là mất', p:'Đóng ít hơn không làm con đường này hợp pháp hơn. Một nửa số tiền vẫn nằm trong tay người không có giấy phép, không có trách nhiệm gì với bạn.'}}
+      {t:'Đóng trước một nửa cho chú, đợi có kết quả phỏng vấn rồi mới đóng nốt phần còn lại.', ok:0, out:{t:'Một nửa vẫn là mất', p:'Đóng ít hơn không làm con đường này hợp pháp hơn. Một nửa số tiền vẫn nằm trong tay người không có giấy phép, không có trách nhiệm gì với bạn.'}}
     ],
     law:{by:'hau', t:'Luật Việt Nam bảo vệ bạn ngay từ cổng làng.', p:[
       'Doanh nghiệp phái cử phải có giấy phép còn hạn. Bạn tra cứu được trên trang chính thức của DOLAB.',
@@ -1399,7 +1614,7 @@ a12:{ai:1, t:'Lời mời ở cổng làng', d:'Ba lốt của Hồ Ly trước 
       src:L_69},
     fix:'Giữ lại mọi tin nhắn, giấy tờ, biên nhận. Báo ngay thầy cô hoặc anh chị Esuhai, và trình báo công an nơi bạn ở.'},
   {k:'branch', title:'Lốt 2 · Người "hỗ trợ" giục ký',
-    ctx:'Đến buổi ký hợp đồng. Một người tự giới thiệu là "nhân viên hỗ trợ" kéo bạn ra ngoài hành lang:',
+    ctx:'Đến buổi ký hợp đồng. Một người tự giới thiệu là "nhân viên hỗ trợ" gọi điện hẹn bạn café:',
     from:'Anh Long', sub:'Tự giới thiệu là "hỗ trợ hồ sơ"',
     msgs:['Ký nhanh đi em, đọc làm gì cho mất thời gian.','Khoản "phí ưu tiên" này em chuyển khoản riêng cho anh nhé, không ghi vào hợp đồng.','Ai hỏi thì bảo là em tự nguyện.'],
     flags:['Giục ký, ngăn bạn đọc hợp đồng','Khoản tiền nằm ngoài hợp đồng, chuyển vào tài khoản cá nhân','Dặn nói dối nếu có ai hỏi'],
@@ -1408,21 +1623,21 @@ a12:{ai:1, t:'Lời mời ở cổng làng', d:'Ba lốt của Hồ Ly trước 
       {t:'Chuyển khoản riêng, nhưng xin anh ấy một tin nhắn xác nhận để làm bằng chứng.', ok:0, out:{t:'Tin nhắn không thay được hợp đồng', p:'Khoản tiền ngoài hợp đồng là khoản không ai chịu trách nhiệm với bạn. Và "nhân viên hỗ trợ" kia có thể không hề là người của doanh nghiệp.'}},
       {t:'Đọc kỹ hợp đồng; khoản tiền ngoài hợp đồng thì hỏi thẳng phòng tư vấn.', ok:1, out:{t:'Cò lộ mặt', p:'Phòng tư vấn xác nhận: không có khoản phí nào ngoài hợp đồng. Người kia không phải nhân viên, sự việc đã được báo lên để cảnh báo các bạn khác.'}}
     ],
-    law:{by:'hau', t:'Hợp đồng là tấm khiên của bạn. Đọc kỹ trước khi ký.', p:[
+    law:{by:'hau', t:'Hợp đồng là tấm khiên quyền lợi đi cùng nghĩa vụ của bạn. Đọc kỹ trước khi ký.', p:[
       'Bạn có quyền xem rõ hợp đồng: điều kiện dừng hợp đồng, giải quyết tranh chấp, bồi thường phải ghi đầy đủ.',
       'Esuhai không thu tiền đặt cọc. Các khoản phí được liệt kê rõ trong hợp đồng phái cử, học viên không phải đóng khoản nào khác.',
-      'Thấy dấu hiệu cò mồi, môi giới: báo thầy cô hoặc anh chị nhân viên Esuhai.'],
+      'Thấy dấu hiệu cò mồi, môi giới: báo thầy cô chủ nhiệm hoặc MS tư vấn, anh chị nhân viên Esuhai.'],
       src:L_69},
     fix:'Lỡ chuyển khoản ngoài hợp đồng: chụp lại giao dịch, báo ngay thầy cô và phòng tư vấn Esuhai để kiểm tra.'},
   {k:'branch', title:'Lốt 3 · Giấy tờ "làm nhanh"', real:1,
-    ctx:'Đơn hàng bạn thích yêu cầu bằng tốt nghiệp THPT, mà bạn chưa có. Một người trong nhóm Zalo nhắn riêng:',
-    from:'Anh Phong', sub:'Nhóm Zalo "Đi Nhật"',
-    msgs:['Anh làm được bằng cấp 3 y như thật, 5 triệu, 3 ngày có.','Bao nhiêu bạn dùng rồi, không ai kiểm tra đâu.'],
+    ctx:'Công việc bạn thích yêu cầu bằng tốt nghiệp THPT, mà bạn chưa có. Một người trong nhóm Zalo nhắn riêng:',
+    from:'Anh Phong', sub:'Nhóm Zalo "Lo hồ sơ đi Nhật"',
+    msgs:['Anh làm được bằng cấp 3 y như thật, 5 triệu, 3 ngày có.','Bao nhiêu bạn anh giúp rồi, không ai kiểm tra đâu.'],
     flags:['Giấy tờ "y như thật" nghĩa là giấy tờ giả','"Không ai kiểm tra" là lời của người bán, không phải sự thật','Hồ sơ đi Nhật được xác minh nhiều vòng'],
     opts:[
-      {t:'Nói thật với thầy cô, hỏi đơn hàng phù hợp hoặc lộ trình học bổ sung.', ok:1, out:{t:'Nói thật để đi đường dài', p:'Thầy cô cùng bạn tìm đơn hàng không yêu cầu bằng đó, hoặc lộ trình học để đủ điều kiện. Chậm hơn một chút, nhưng hồ sơ của bạn sạch.'}},
+      {t:'Nói thật với thầy cô, hỏi công việc khác phù hợp hơn hoặc hỏi cần học gì, thời gian học bổ sung.', ok:1, out:{t:'Nói thật để đi đường dài', p:'Thầy cô cùng bạn tìm công việc không yêu cầu bằng đó, hoặc lộ trình học để đủ điều kiện. Chậm hơn một chút, nhưng hồ sơ của bạn là trung thực.'}},
       {t:'Mượn bằng của anh trai rồi sửa lại tên, vì đằng nào mình cũng học hết lớp 12.', ok:0, out:{t:'Sửa giấy tờ cũng là làm giả', p:'Sửa tên trên văn bằng của người khác cũng là làm giả giấy tờ. Khi bị xác minh, bạn mất hồ sơ, còn anh trai cũng bị liên lụy.'}},
-      {t:'Làm bằng luôn, chỉ là tờ giấy để đủ hồ sơ.', ok:0, out:{t:'Hồ sơ dừng lại', p:'Năm 2026, một học viên dùng bằng giả. Khi cần xác minh, bạn hẹn lần này lần khác, cuối cùng phải thừa nhận chưa tốt nghiệp. Hồ sơ bị dừng. Khai gian trong hồ sơ xin visa còn có thể khiến bạn bị từ chối vào Nhật.'}}
+      {t:'Làm bằng luôn, chỉ là tờ giấy để đủ hồ sơ; sang Nhật làm việc rồi thì đâu còn ai hỏi lại bằng cấp nữa.', ok:0, out:{t:'Hồ sơ dừng lại', p:'Năm 2025, có một học viên dùng bằng giả. Khi cần xác minh, bạn hẹn lần này lần khác, cuối cùng phải thừa nhận chưa tốt nghiệp. Hồ sơ đi Nhật bị dừng lại. Khai gian trong hồ sơ xin visa còn có thể khiến bạn bị từ chối vào Nhật sau này.'}}
     ],
     law:{by:'hau', t:'Hồ sơ thật mới đưa bạn đi xa.', p:[
       'Làm giả, sửa chữa hay sử dụng giấy tờ, văn bằng giả là hành vi vi phạm pháp luật Việt Nam.',
@@ -1431,12 +1646,12 @@ a12:{ai:1, t:'Lời mời ở cổng làng', d:'Ba lốt của Hồ Ly trước 
       src:'Bộ luật Hình sự Việt Nam 2015, Điều 341 (tội làm giả và sử dụng tài liệu giả của cơ quan, tổ chức)'},
     fix:'Lỡ nộp rồi: nói thật ngay với thầy cô và phòng hồ sơ. Tự nhận sớm luôn nhẹ hơn để bị phát hiện.'}
 ]},
-a13:{ai:1, t:'Soi giấy biên nhận', d:'Nhìn ra 5 dấu hiệu của tiền đóng sai chỗ', mins:4, steps:[
+a13:{ai:1, t:'Kiểm tra giấy biên nhận', d:'Nhìn ra 5 dấu hiệu của tiền đóng sai chỗ', mins:4, steps:[
   {k:'flags', doc:1, intro:'Một bạn học viên khóa trước đưa cho bạn xem tờ giấy này. Có 5 dấu hiệu cho thấy tiền đã đóng sai chỗ. Chạm vào từng dòng đáng ngờ.',
     from:'Giấy biên nhận', sub:'Viết tay',
     segs:[
       {t:'Tôi tên Long, làm hỗ trợ hồ sơ đi Nhật.', f:1, why:'Người nhận là một cá nhân, không phải doanh nghiệp có giấy phép.'},
-      {t:'Có nhận của học viên số tiền 60.000.000 đồng.'},
+      {t:'Có nhận của học viên số tiền 50.000.000 đồng.'},
       {t:'Lý do: tiền giữ suất, bao đậu đơn, bay trong 3 tháng.', f:1, why:'Không có khoản phí hợp pháp nào tên là "giữ suất" hay "bao đậu".'},
       {t:'Chuyển khoản vào tài khoản cá nhân của Long.', f:1, why:'Tiền đi Nhật chỉ đóng cho doanh nghiệp phái cử, theo hợp đồng.'},
       {t:'Không hoàn lại trong mọi trường hợp.', f:1, why:'Khoản phí hợp pháp có quy định rõ trong hợp đồng, kể cả khi nào được hoàn trả.'},
@@ -1448,8 +1663,8 @@ a13:{ai:1, t:'Soi giấy biên nhận', d:'Nhìn ra 5 dấu hiệu của tiền 
       'Luôn nhận phiếu thu có tên và dấu của doanh nghiệp.',
       'Không đóng vào tài khoản cá nhân, không đóng "tiền giữ suất", "tiền bao đậu".'],
       src:L_69}},
-  {k:'write', intro:'Viết câu hộ thân cho chính mình ở cổng làng: điều bạn muốn luôn nhớ.',
-    fields:[{key:'cong', label:'Khi có người hứa "bao đậu, bay nhanh" và đòi tiền trước, tôi sẽ…', ph:'Ví dụ: …không đóng đồng nào, báo ngay cho thầy cô và kiểm tra trên trang DOLAB.', req:1, min:4}],
+  {k:'write', intro:'Viết câu "hộ thân" cho chính mình ở cổng làng: điều bạn muốn luôn nhớ.',
+    fields:[{key:'cong', label:'Khi có người hứa "bao đậu, đi nhanh" và đòi tiền trước, tôi sẽ…', ph:'Ví dụ: …không đóng đồng nào, báo ngay cho thầy cô và kiểm tra trên trang DOLAB.', req:1, min:4}],
     opt:{key:'bome', label:'Nếu người đó là họ hàng, bạn sẽ nói gì với bố mẹ?', ph:'Ví dụ: Con biết chú muốn giúp, nhưng con chỉ đóng tiền cho công ty có giấy phép, có hợp đồng và phiếu thu.'}}
 ]},
 
@@ -1457,31 +1672,31 @@ a13:{ai:1, t:'Soi giấy biên nhận', d:'Nhìn ra 5 dấu hiệu của tiền 
 w2:{ai:2, warm:1, t:'Khởi động 30 giây', d:'Đúng hay sai? Ba câu nhanh', mins:1, steps:[
   {k:'tf', items:[
     {t:'Đi siêu thị gần KTX thì không cần mang thẻ cư trú.', a:false, why:'Bạn có nghĩa vụ luôn mang thẻ cư trú theo người, đi gần hay xa đều vậy.'},
-    {t:'Công ty có thể giữ hộ thẻ cư trú để bạn khỏi làm mất.', a:false, why:'Không được gửi ai giữ hộ, kể cả công ty hay Hiệp hội. Giữ hộ chiếu, thẻ cư trú của TTS là hành vi vi phạm của đơn vị đó.'},
-    {t:'Số My Number chỉ khai khi cơ quan có thẩm quyền yêu cầu.', a:true, why:'My Number dùng cho thuế, an sinh xã hội, thiên tai. Không cho người khác biết số này.'}
+    {t:'Công ty có thể "giữ hộ" thẻ cư trú để bạn khỏi làm mất.', a:false, why:'Không được gửi ai giữ hộ, kể cả công ty hay Hiệp hội. Giữ hộ chiếu, thẻ cư trú của TTS là hành vi vi phạm của đơn vị đó.'},
+    {t:'Số My Number cần phải khai báo khi cơ quan có thẩm quyền yêu cầu.', a:true, why:'My Number dùng cho thuế, an sinh xã hội, thiên tai. Không cho người khác biết số này.'}
   ]}
 ]},
-a21:{ai:2, t:'Đọc thẻ bài', d:'Mỗi dòng trên thẻ cư trú nói gì với bạn', mins:4, steps:[
+a21:{ai:2, t:'Đọc thẻ cư trú', d:'Mỗi dòng trên thẻ cư trú nói gì với bạn', mins:4, steps:[
   {k:'rcard', intro:'Chạm vào từng ô trên thẻ để đọc ý nghĩa. Có 6 ô, kể cả mặt sau.'},
-  {k:'say', who:'tan', mood:'', text:'Ngoài thẻ cư trú, cháu còn có thẻ My Number dùng cho thuế, an sinh xã hội và khi có thiên tai. Từ 14/6/2026, cháu có thể đăng ký "thẻ cư trú đặc định" gộp hai thẻ làm một. Việc này là tự nguyện, giữ hai thẻ riêng như cũ vẫn được.'}
+  {k:'say', who:'tan', mood:'', text:'Ngoài thẻ cư trú, cháu còn có thẻ My Number dùng cho thuế, an sinh xã hội và khi có thiên tai. Từ 14/6/2026, cháu có thể đăng ký "Thẻ cư trú đặc định" gộp hai thẻ làm một. Việc này là tự nguyện, giữ hai thẻ riêng như cũ vẫn được.'}
 ]},
 a22:{ai:2, t:'Ba lời thì thầm', d:'Yêu "Chắc Không Sao" rủ rê ba lần', mins:6, steps:[
   {k:'say', who:'hau', mood:'think', text:'Con yêu này không đội lốt ai cả. Nó nói bằng chính giọng của [Tên] trong đầu. Nghe thấy câu "chắc không sao", hãy dừng lại một nhịp.'},
   {k:'branch', title:'Lời thì thầm 1 · Quên thẻ ở nhà', real:1, foe:'yeu',
     ctx:'Sáng Chủ nhật, bạn đạp xe ra siêu thị cách KTX 10 phút. Ra đến cổng mới nhớ ví để quên trên bàn.',
     whisper:'Gần mà, quay về mất công. Chắc không sao đâu.',
-    flags:['Thẻ cư trú phải mang theo người mọi lúc','Cảnh sát hay kiểm tra người đi xe đạp','Mất 20 phút còn hơn mất cả buổi ở đồn'],
+    flags:['Thẻ cư trú phải mang theo người mọi lúc','Cảnh sát hay kiểm tra người đi xe đạp','Mất 20 phút còn hơn mất cả buổi ở đồn cảnh sát'],
     opts:[
-      {t:'Đi tiếp, mua nhanh rồi về, chắc không ai hỏi.', ok:0, out:{t:'Cảnh sát hỏi giấy tờ', p:'Ở bãi xe, cảnh sát kiểm tra xe đạp và hỏi giấy tờ. Bạn không có thẻ cư trú. Bạn được đưa về đồn chờ người công ty đến xác nhận. Cả buổi Chủ nhật mất trắng, công ty phải giải trình.', r:3}},
+      {t:'Đi tiếp, mua nhanh rồi về, chắc không ai hỏi.', ok:0, out:{t:'Cảnh sát hỏi giấy tờ', p:'Ở bãi xe, cảnh sát kiểm tra xe đạp và hỏi giấy tờ. Bạn không có thẻ cư trú. Bạn được đưa về đồn chờ người công ty đến xác nhận. Mất hết một ngày Chủ nhật cuối tuần, công ty phải giải trình nữa.', r:3}},
       {t:'Nhờ bạn cùng phòng chụp ảnh thẻ gửi qua Zalo.', ok:0, out:{t:'Ảnh chụp không phải là thẻ', p:'Luật yêu cầu mang theo thẻ thật. Ảnh chụp không thay được, còn để lộ thông tin cá nhân của bạn trên mạng.', r:3}},
-      {t:'Quay về lấy ví rồi mới đi tiếp.', ok:1, out:{t:'Mất thêm 20 phút, yên tâm cả ngày', p:'Bạn đến siêu thị muộn một chút nhưng thoải mái suốt đường đi. Mẹo của các anh chị đi trước: để thẻ cư trú, thẻ bảo hiểm, thẻ ngân hàng riêng một ví nhỏ, ra ngoài là mang theo.'}}
+      {t:'Quay về lấy ví rồi mới đi tiếp.', ok:1, out:{t:'Mất thêm 20 phút, yên tâm cả ngày', p:'Bạn đến siêu thị muộn một chút nhưng thoải mái suốt đường đi. Bạn nên để thẻ cư trú, thẻ bảo hiểm, thẻ ngân hàng riêng một ví nhỏ, ra ngoài là mang theo và nhớ giữ cẩn thận.'}}
     ],
     law:{t:'Thẻ cư trú: luôn mang theo người.', p:[
       'Người nước ngoài lưu trú trung, dài hạn phải luôn mang thẻ cư trú và xuất trình khi cảnh sát hoặc nhân viên có thẩm quyền yêu cầu.',
       'Không mang theo thẻ có thể bị phạt tiền đến 200.000 yên.',
       'Không gửi ai giữ hộ, kể cả công ty hay Hiệp hội.'],
       src:L_XNC+', Điều 23 (mang theo thẻ cư trú) và Điều 75-3 (phạt tiền) · '+SRC_SOTAY+', mục 10'},
-    fix:'Bị hỏi khi không mang thẻ: bình tĩnh, nói thật họ tên, tên công ty và số điện thoại người hướng dẫn. Đừng bỏ chạy, đừng khai sai.'},
+    fix:'Bị hỏi khi không mang thẻ cư trú theo bên mình: bình tĩnh, nói thật họ tên, tên công ty và số điện thoại người hướng dẫn. Đừng bỏ chạy, đừng khai sai.'},
   {k:'branch', title:'Lời thì thầm 2 · Cho mượn thẻ', real:1, foe:'yeu',
     ctx:'Bạn cùng phòng muốn làm hợp đồng điện thoại trả góp, nhưng thẻ của bạn ấy đang chờ gia hạn. Bạn ấy nhắn:',
     from:'Minh', sub:'Bạn cùng phòng',
@@ -1499,15 +1714,15 @@ a22:{ai:2, t:'Ba lời thì thầm', d:'Yêu "Chắc Không Sao" rủ rê ba l�
       'Mua điện thoại nên báo trước người chỉ đạo hoặc Hiệp hội (một số Hiệp hội bắt buộc).'],
       src:L_XNC+' · Luật phòng chống sử dụng trái phép điện thoại di động · '+SRC_SOTAY+', mục 9(2) và 10'},
     fix:'Lỡ cho mượn: lấy lại thẻ ngay. Nếu đã làm hợp đồng, báo người hướng dẫn để cùng ra nhà mạng xử lý.'},
-  {k:'branch', title:'Lời thì thầm 3 · Việc thẻ không cho phép', real:1, foe:'yeu',
+  {k:'branch', title:'Lời thì thầm 3 · Việc không được phép làm', real:1, foe:'yeu',
     ctx:'Video nấu món Việt của bạn trên TikTok được 10.000 lượt xem. Một người lạ nhắn:',
     from:'Người lạ', sub:'Tin nhắn TikTok',
     msgs:['Kênh em hay quá, bật chế độ kiếm tiền đi, tháng được vài man đó!'],
-    whisper:'Chỉ là quay video thôi, đâu phải đi làm. Chắc không sao.',
+    whisper:'Chỉ là quay video thôi, đâu phải đi làm thêm bên ngoài. Chắc không sao.',
     flags:['Tiền từ mạng xã hội là thu nhập','Thẻ cư trú của bạn ghi rõ hạn chế làm việc','Đã có TTS phải về nước vì việc này'],
     opts:[
-      {t:'Bật kiếm tiền, chỉ là video vui thôi mà.', ok:0, out:{t:'Thu nhập ngoài tư cách', p:'Tiền từ TikTok là thu nhập ngoài công việc thực tập. Đã có bạn TTS phải về nước vì việc này.', r:2}},
-      {t:'Không bật kiếm tiền, vẫn đăng video vui như bình thường.', ok:1, out:{t:'Vui vẫn được vui', p:'Bạn vẫn chia sẻ cuộc sống ở Nhật, chỉ không nhận tiền. Nhớ thêm: không chụp ảnh, quay phim trong xưởng khi chưa được công ty cho phép.'}},
+      {t:'Bật kiếm tiền, chỉ là video vui thôi mà.', ok:0, out:{t:'Thu nhập ngoài tư cách lưu trú', p:'Tiền từ TikTok là thu nhập ngoài công việc thực tập. Đã có bạn TTS phải về nước vì việc này.', r:2}},
+      {t:'Không bật kiếm tiền, vẫn đăng video vui như bình thường.', ok:1, out:{t:'Vui vẫn được vui', p:'Bạn vẫn chia sẻ MXH cuộc sống ở Nhật, chỉ không được bật chế độ kiếm tiền. Nhớ thêm điều này nữa: không chụp ảnh, quay phim trong xưởng khi chưa được công ty cho phép.'}},
       {t:'Bật kiếm tiền, nhưng tự đăng ký đóng thuế đầy đủ cho đúng luật.', ok:0, out:{t:'Đóng thuế không làm việc này hợp pháp', p:'Đây đúng là câu một học viên từng hỏi. Câu trả lời: vấn đề không nằm ở thuế, mà ở thẻ cư trú chỉ cho bạn làm một việc. Có đóng thuế cũng không được bật kiếm tiền.', r:2}}
     ],
     law:{t:'Thẻ cư trú ghi rõ: không được làm việc khác ngoài việc đã đăng ký.', p:[
@@ -1524,14 +1739,14 @@ a23:{ai:2, t:'Giữ thẻ đúng cách', d:'Mất thẻ thì làm gì, việc n�
     src:L_XNC+' · '+SOTAY24},
   {k:'swipe', labels:{trap:'Không nên', safe:'Nên'}, intro:'Mỗi thẻ là một việc với thẻ cư trú hay My Number. Chọn "Nên" hoặc "Không nên".',
     cards:[
-      {t:'Chụp thẻ cư trú gửi cho một trang "giảm giá siêu thị" để nhận phiếu ưu đãi.', a:'trap', why:'Người lạ tốt bụng quá mức, xin ảnh thẻ cư trú: đây là cách lấy thông tin để làm giấy tờ giả.'},
+      {t:'Chụp thẻ cư trú gửi cho một trang "Giảm giá siêu thị" để nhận phiếu ưu đãi.', a:'trap', why:'Người lạ tốt bụng quá mức, xin ảnh thẻ cư trú: đây là cách lấy thông tin để làm giấy tờ giả.'},
       {t:'Đọc số My Number cho nhân viên tòa hành chính khi làm thủ tục thuế.', a:'safe', why:'Cơ quan có thẩm quyền yêu cầu thì bạn khai. Ngoài ra không cho ai biết số này.'},
       {t:'Đăng ảnh thẻ cư trú lên Facebook để khoe đã sang Nhật.', a:'trap', why:'Ảnh thẻ trên mạng có thể bị lấy để làm giả, mở tài khoản, ký hợp đồng mang tên bạn.'},
-      {t:'Để thẻ cư trú, thẻ bảo hiểm, thẻ ngân hàng chung một ví nhỏ, luôn mang theo.', a:'safe', why:'Mẹo của anh chị đi trước: ít tiền mặt, đủ giấy tờ. Lỡ rơi thì người nhặt dễ gửi lại.'},
+      {t:'Để thẻ cư trú, thẻ bảo hiểm, thẻ ngân hàng chung một ví nhỏ, luôn mang theo và giữ cẩn thận.', a:'safe', why:'Bạn nên ít tiền mặt, đủ giấy tờ và bảo quản cẩn thận.'},
       {t:'Nhờ chị quen trong nhóm đồng hương giữ hộ thẻ cho khỏi mất.', a:'trap', why:'Không được gửi thẻ cho ai giữ hộ, kể cả người quen, công ty hay Hiệp hội.'},
       {t:'Chuyển chỗ ở mới thì khai báo địa chỉ ở tòa hành chính trong 14 ngày.', a:'safe', why:'Địa chỉ mới sẽ được ghi vào mặt sau thẻ cư trú.'}
     ], src:L_XNC+' · '+SRC_SOTAY+', mục 10 · '+SOTAY24},
-  {k:'write', intro:'Một câu hứa với chính mình về tấm thẻ bài.',
+  {k:'write', intro:'Một lời nhắc nhở với chính mình về tấm thẻ bài.',
     fields:[{key:'bua2', label:'Mỗi sáng trước khi ra khỏi KTX, tôi sẽ…', ph:'Ví dụ: …kiểm tra ví nhỏ có đủ thẻ cư trú, thẻ bảo hiểm và thẻ ngân hàng.', req:1, min:4}],
     opt:{key:'tiktok', label:'Bạn muốn chia sẻ gì về cuộc sống ở Nhật trên mạng mà vẫn đúng quy định?', ph:'Ví dụ: Món ăn mình tự nấu, cảnh mùa thu ở gần KTX, mẹo học tiếng Nhật… không quay trong xưởng, không bật kiếm tiền.'}}
 ]},
@@ -1540,8 +1755,8 @@ a23:{ai:2, t:'Giữ thẻ đúng cách', d:'Mất thẻ thì làm gì, việc n�
 w3:{ai:3, warm:1, t:'Khởi động 30 giây', d:'Đúng hay sai? Ba câu nhanh', mins:1, steps:[
   {k:'tf', items:[
     {t:'Bố mẹ sang Nhật thăm thì được ngủ lại KTX vài đêm.', a:false, why:'Người ngoài không được vào ở trong KTX. Hợp đồng thuê nhà ghi rõ số người ở, muốn đón người thân phải theo quy định của công ty.'},
-    {t:'Ở Nhật, đủ 18 tuổi là được hút thuốc, uống rượu.', a:false, why:'Ở Nhật phải đủ 20 tuổi. Đã có TTS 18 tuổi bị nhắc nhở và phải viết cam kết vì hút thuốc.'},
-    {t:'Phân loại rác sai thường không bị phạt tù, nhưng vẫn có thể bị chủ nhà không cho phép tiếp tục thuê ở.', a:true, why:'Đã có TTS mới sang 1 tháng bị chủ nhà không cho phép tiếp tục ở vì vứt rác sai nhiều lần, trước đó đã ghi rõ trong hợp đồng thuê.'}
+    {t:'Ở Nhật, đủ 18 tuổi là được hút thuốc, uống rượu.', a:false, why:'Ở Nhật phải đủ 20 tuổi. Đã có TTS 18 tuổi bị nhắc nhở vì hút thuốc.'},
+    {t:'Phân loại rác sai không đến mức bị phạt nặng, nhưng vẫn có thể bị chủ nhà không cho phép tiếp tục thuê ở.', a:true, why:'Đã có TTS mới sang 1 tháng bị chủ nhà không cho phép tiếp tục ở vì vứt rác sai nhiều lần, trước đó đã ghi rõ trong hợp đồng thuê.'}
   ]}
 ]},
 a31:{ai:3, t:'Ba đêm ở ký túc xá', d:'Ba lần Yêu "Chắc Không Sao" gõ cửa phòng', mins:7, steps:[
@@ -1553,7 +1768,7 @@ a31:{ai:3, t:'Ba đêm ở ký túc xá', d:'Ba lần Yêu "Chắc Không Sao" g
     flags:['KTX là nhà công ty thuê, hợp đồng ghi rõ số người ở','Người ngoài không được vào ở','Có thể gọi hỏi người hướng dẫn ngay'],
     opts:[
       {t:'Cho ngủ nhờ, sáng sớm bạn về là được.', ok:0, out:{t:'Chủ nhà biết chuyện', p:'Hàng xóm thấy người lạ ra vào lúc nửa đêm và báo chủ nhà. Hợp đồng thuê nhà ghi rõ bao nhiêu người ở. Công ty bị chủ nhà gọi làm việc, bạn nhận biên bản nhắc nhở.', r:1}},
-      {t:'Gọi hỏi người hướng dẫn, rồi giúp bạn tìm chỗ nghỉ gần ga.', ok:1, out:{t:'Bạn vẫn có chỗ ngủ, bạn vẫn giữ chữ tín', p:'Người hướng dẫn chỉ một nhà nghỉ nhỏ gần ga. Bạn thân có chỗ ngủ an toàn, còn bạn giữ được lòng tin của công ty.'}},
+      {t:'Gọi hỏi người hướng dẫn, rồi giúp bạn tìm chỗ nghỉ gần ga.', ok:1, out:{t:'Bạn vẫn có chỗ ngủ, mình vẫn giữ quy tắc', p:'Người hướng dẫn chỉ một nhà nghỉ nhỏ gần ga. Bạn thân có chỗ ngủ an toàn, còn bạn giữ được lòng tin của công ty.'}},
       {t:'Cho ngủ nhờ nhưng dặn bạn đi nhẹ, nói khẽ và về thật sớm trước 6 giờ.', ok:0, out:{t:'Nói khẽ không đổi được hợp đồng', p:'Dù không ai phàn nàn, việc cho người ngoài ở lại vẫn là vi phạm nội quy và hợp đồng thuê nhà. Lần sau công ty sẽ khó tin bạn.', r:1}}
     ],
     law:{t:'KTX là nhà công ty thuê cho bạn, không phải nhà riêng.', p:[
@@ -1561,32 +1776,32 @@ a31:{ai:3, t:'Ba đêm ở ký túc xá', d:'Ba lần Yêu "Chắc Không Sao" g
       'Hợp đồng thuê nhà ghi rõ số người ở. Vi phạm làm công ty khó thuê nhà cho các em Kohai sau này.',
       'Muốn mời người quen đến chơi, phải theo quy định của công ty.'],
       src:NOIQUY+' · hợp đồng thuê nhà'},
-    fix:'Lỡ cho ở rồi: báo người hướng dẫn ngay sáng hôm sau, nói thật và xin lỗi. Giấu đi mới thành chuyện lớn.'},
+    fix:'Lỡ cho ở rồi: báo người hướng dẫn ngay sáng hôm sau, nói thật và xin lỗi. Giấu đi dễ thành chuyện lớn khi bị phát hiện.'},
   {k:'branch', title:'Đêm 2 · Đi chơi xa dịp lễ', real:1, foe:'yeu',
     ctx:'Kỳ nghỉ lễ Obon 5 ngày. Nhóm đồng hương rủ đi Osaka, ngủ lại nhà một người bạn.',
     from:'Nhóm Đi Chơi Obon', sub:'Nhóm chat 6 người',
     msgs:['Đi 3 ngày thôi, nộp giấy xin phép làm gì cho phiền.'],
     whisper:'Nghỉ lễ là thời gian của mình. Chắc không sao.',
-    flags:['Ngủ ngoài phải xin phép trước','Công ty, Hiệp hội cần biết bạn ở đâu khi có chuyện','Đi xa không báo, mọi người sẽ lo bạn bỏ trốn'],
+    flags:['Ngủ lại ở bên ngoài phải xin phép trước','Công ty, Hiệp hội cần biết bạn ở đâu khi có chuyện','Đi xa không báo, mọi người sẽ lo lắng nếu không liên lạc được'],
     opts:[
-      {t:'Đi, nhưng gửi bạn cùng phòng địa chỉ, số điện thoại để có chuyện gì còn liên lạc.', ok:0, out:{t:'Bạn cùng phòng không phải công ty', p:'Công ty và Hiệp hội vẫn không biết bạn ở đâu. Có anh chị đi chơi bị tai nạn, phải tự trả gần 50 triệu viện phí vì đã vi phạm quy định đi chơi.', r:1}},
-      {t:'Đi luôn, nghỉ lễ là thời gian riêng của mình.', ok:0, out:{t:'Không ai liên lạc được', p:'Điện thoại hết pin. Công ty và Hiệp hội tìm bạn suốt 3 ngày, lo bạn đã bỏ trốn. Ngày về, bạn được mời lên gặp quản lý và nhận biên bản.', r:1}},
-      {t:'Nộp giấy xin phép trước cho công ty và Hiệp hội, ghi rõ địa chỉ, số điện thoại.', ok:1, out:{t:'Đi chơi mà công ty vẫn yên tâm', p:'Công ty dặn vài lưu ý, lưu số điện thoại của bạn. Bạn đi vui và về đúng hẹn.'}}
+      {t:'Đi, nhưng gửi bạn cùng phòng địa chỉ, số điện thoại để có chuyện gì còn liên lạc được ngay.', ok:0, out:{t:'Bạn cùng phòng không phải công ty', p:'Công ty và Hiệp hội vẫn không biết bạn ở đâu. Có anh chị đi chơi bị tai nạn, phải tự trả gần 50 triệu viện phí vì đã vi phạm quy định đi chơi không xin phép.', r:1}},
+      {t:'Đi luôn, nghỉ lễ là thời gian riêng của mình.', ok:0, out:{t:'Không ai liên lạc được', p:'Điện thoại hết pin. Công ty và Hiệp hội tìm bạn suốt 3 ngày, lo không biết đi đâu. Ngày về, bạn được mời lên gặp quản lý và nhận biên bản cảnh cáo.', r:1}},
+      {t:'Nộp giấy xin phép hoặc nói trước cho công ty và Hiệp hội, ghi rõ địa chỉ, số điện thoại.', ok:1, out:{t:'Đi chơi mà công ty vẫn yên tâm', p:'Công ty dặn vài lưu ý, lưu số điện thoại của bạn. Bạn đi chơi vui và về cũng đúng hẹn.'}}
     ],
-    law:{t:'Đi xa, ngủ ngoài: xin phép trước.', p:[
-      'Cần xin phép công ty và Hiệp hội trước khi ngủ bên ngoài: nộp giấy ghi địa chỉ, số điện thoại, lý do.',
+    law:{t:'Đi xa, trọ bên ngoài: xin phép trước.', p:[
+      'Cần xin phép công ty và Hiệp hội trước khi trọ ở bên ngoài nộp giấy ghi địa chỉ, số điện thoại, lý do.',
       'Không nên ngủ lại phòng của người khác giới.',
-      'Đi xa không báo, không ai liên lạc được: công ty và Hiệp hội phải lo như trường hợp bạn đã bỏ trốn.'],
+      'Đi xa không báo, không ai liên lạc được: Công ty và Hiệp hội rất lo lắng.'],
       src:NOIQUY},
     fix:'Lỡ đi rồi mới nhớ: gọi ngay cho người hướng dẫn, báo bạn đang ở đâu và ngày nào về.'},
   {k:'branch', title:'Đêm 3 · Camera trong phòng', real:1, foe:'yeu',
     ctx:'Bạn nghi bạn cùng phòng hay lục đồ của mình. Trên mạng bán loại camera mini rất rẻ.',
     whisper:'Gắn lén một cái camera, có bằng chứng là xong. Chắc không sao.',
-    flags:['Phòng là nơi người khác thay đồ, sinh hoạt riêng','Gắn camera phải xin phép công ty và người ở chung','Mâu thuẫn có người hướng dẫn hỗ trợ'],
+    flags:['Phòng là nơi người khác sinh hoạt riêng tư','Gắn camera phải xin phép công ty và người ở chung','Mâu thuẫn có người hướng dẫn hỗ trợ'],
     opts:[
       {t:'Đối chất thẳng trước mặt cả phòng cho bạn ấy xấu hổ.', ok:0, out:{t:'Từ nghi ngờ thành đánh nhau', p:'Cuộc đối chất thành cãi nhau rồi xô xát. Gây thương tích hay cầm đến dao là bị cho về nước ngay.', r:2}},
-      {t:'Khóa đồ quý vào tủ và báo người hướng dẫn để được hỗ trợ.', ok:1, out:{t:'Chuyện được giải quyết đúng cách', p:'Người hướng dẫn nói chuyện riêng với hai bạn và cả phòng thống nhất lại quy tắc. Đồ của bạn an toàn, tình cảm trong phòng không vỡ.'}},
-      {t:'Gắn lén camera trong phòng để có bằng chứng rõ ràng trước khi nói.', ok:0, out:{t:'Bằng chứng quay lại chống bạn', p:'Camera ghi cả lúc bạn cùng phòng thay đồ. Gắn camera không xin phép là xâm phạm quyền riêng tư, người bị truy cứu trách nhiệm lại là bạn.', r:3}}
+      {t:'Cất đồ có giá trị vào tủ có khóa và báo người hướng dẫn để được hỗ trợ.', ok:1, out:{t:'Chuyện được giải quyết đúng cách', p:'Người hướng dẫn nói chuyện riêng với hai bạn và cả phòng thống nhất lại quy tắc. Đồ của bạn an toàn, tình cảm trong phòng không vỡ.'}},
+      {t:'Gắn lén camera nhỏ trong phòng để có bằng chứng rõ ràng trước khi nói chuyện.', ok:0, out:{t:'Bằng chứng quay lại chống bạn', p:'Camera có thể ghi cả những hình ảnh nhạy cảm. Gắn camera không xin phép là xâm phạm quyền riêng tư, người bị truy cứu trách nhiệm lại là bạn.', r:3}}
     ],
     law:{t:'Sống chung: tôn trọng riêng tư, giải quyết bằng lời nói.', p:[
       'Tự ý gắn camera nơi người khác sinh hoạt là xâm phạm quyền riêng tư, có thể bị truy cứu trách nhiệm.',
@@ -1595,21 +1810,21 @@ a31:{ai:3, t:'Ba đêm ở ký túc xá', d:'Ba lần Yêu "Chắc Không Sao" g
       src:NOIQUY},
     fix:'Lỡ gắn rồi: tháo ngay, xóa dữ liệu, báo người hướng dẫn và xin lỗi bạn cùng phòng.'}
 ]},
-a32:{ai:3, t:'Nội quy nhà chung', d:'Căn phòng KTX, việc nên và không nên, mốc 20 tuổi', mins:6, steps:[
+a32:{ai:3, t:'Nội quy nhà chung', d:'Căn phòng KTX, việc nên và không nên làm', mins:6, steps:[
   {k:'scene', intro:'Chạm vào từng góc trong căn phòng KTX để xem những nội quy hay gặp.',
     spots:[
       {k:'gen', name:'Lối vào', x:12, y:66, why:'Tháo giày ở lối vào (genkan), xếp gọn. Không đi giày dép vào phòng.'},
       {k:'bep', name:'Bếp', x:37, y:40, why:'Nấu xong tắt bếp ga; ra khỏi phòng kiểm tra lại lần nữa. Hỏa hoạn ở KTX là chuyện rất nghiêm trọng.'},
-      {k:'dh', name:'Điều hòa', x:65, y:22, why:'Bật điều hòa thì đóng cửa sổ. Tiền điện chia nhau, lãng phí rất dễ thành mâu thuẫn.'},
+      {k:'dh', name:'Điều hòa', x:65, y:22, why:'Bật điều hòa thì đóng cửa sổ. Tiền điện hằng tháng chia đều, lãng phí rất dễ thành mâu thuẫn.'},
       {k:'bc', name:'Ban công', x:89, y:34, why:'Phơi đồ gọn gàng, mặc áo đàng hoàng khi ra ban công, nói nhỏ sau 10 giờ tối.'},
-      {k:'rac', name:'Góc rác', x:75, y:70, why:'Phân loại rác theo lịch của khu: rác cháy được, không cháy được, chai lọ… Bỏ đúng ngày, đúng giờ.'}
+      {k:'rac', name:'Góc rác', x:75, y:70, why:'Phân loại rác theo lịch của khu: rác cháy được, không cháy được, chai lọ… Bỏ đúng ngày giờ quy định.'}
     ], src:NOIQUY+' · hợp đồng thuê nhà'},
   {k:'swipe', labels:{trap:'Không nên', safe:'Nên'}, intro:'Mỗi thẻ là một việc ở KTX. Chọn "Nên" hoặc "Không nên".',
     cards:[
       {t:'Đi giày dép vào trong phòng cho nhanh.', a:'trap', why:'Ở Nhật, tháo giày ở lối vào (Genkan) trước khi vào nhà.'},
       {t:'Nuôi một chú mèo nhỏ trong phòng cho đỡ buồn.', a:'trap', why:'Không được nuôi thú vật trong KTX.'},
-      {t:'Kiểm tra bếp ga và tàn thuốc trước khi ra khỏi phòng.', a:'safe', why:'Một đốm lửa quên tắt có thể cháy cả dãy nhà. Các anh chị đi trước luôn ngoái lại nhìn bếp một lần trước khi khóa cửa.'},
-      {t:'Vừa bật điều hòa vừa mở cửa sổ cho thoáng.', a:'trap', why:'Tiền điện, nước, gas bạn tự trả. Đã có hai bạn TTS đánh nhau chỉ vì chuyện tiết kiệm điện.'},
+      {t:'Kiểm tra bếp ga và tàn thuốc trước khi ra khỏi phòng.', a:'safe', why:'Một đốm lửa quên tắt có thể cháy cả dãy nhà. Chú ý nhìn lại bếp đã tắt chưa trước khi khóa cửa.'},
+      {t:'Vừa bật điều hòa vừa mở cửa sổ cho thoáng.', a:'trap', why:'Tiền điện, nước, gas bạn tự trả. Đã có hai bạn TTS mâu thuẫn với nhau chỉ vì chuyện tiết kiệm điện.'},
       {t:'Gọi video với gia đình thật to lúc 23 giờ.', a:'trap', why:'Sau 10 giờ tối nên giữ yên lặng. Tiếng ồn là lý do hàng xóm phàn nàn nhiều nhất.'},
       {t:'Tự lắp internet trong phòng cho tiện.', a:'trap', why:'Lắp internet hay truyền hình cáp phải được công ty đồng ý.'},
       {t:'Dọn sạch phòng và phân loại rác trước ngày về nước.', a:'safe', why:'Chi phí dọn dẹp, vứt rác khi về nước TTS phải tự chịu. Để lại phòng sạch cũng là giữ chỗ ở cho Kohai.'}
@@ -1624,11 +1839,11 @@ a33:{ai:3, t:'Nhập gia tùy tục', d:'Đọc bài Tikme và viết quy tắc 
       {t:'Hành vi nào về rác mới thực sự phạm pháp, có thể bị phạt rất nặng?', o:['Bỏ rác sai ngày','Phân loại sai chai nhựa và lon, bị dán nhãn nhắc nhở','Đổ trộm rác, vứt rác bừa bãi nơi công cộng'], a:2, why:'Bài viết nêu mức phạt có thể đến 5 năm tù và/hoặc 10 triệu yên.'},
       {t:'Trên tàu điện, xe buýt, bạn nên làm gì với điện thoại?', o:['Chuyển sang chế độ im lặng, không nghe gọi','Nghe gọi bình thường nhưng nói nhỏ, che miệng lại','Mở loa ngoài xem video'], a:0, why:'Gây ồn nơi công cộng bị xem là thiếu tôn trọng người xung quanh.'}
     ],
-    after:'Chuyện rác không chỉ là luật. Có bạn TTS mới sang một tháng đã bị chủ nhà không cho tiếp tục thuê ở vì vứt rác sai. Từ đó, khu nhà ấy ngại cho người nước ngoài thuê.',
+    after:'Chuyện rác không chỉ là luật. Có bạn TTS mới sang một tháng đã bị chủ nhà không cho tiếp tục thuê ở vì vứt rác sai. Từ đó, khu nhà ấy ngại cho người nước ngoài thuê luôn.',
     src:'Luật xử lý chất thải Nhật Bản (廃棄物処理法) · '+NOIQUY},
   {k:'write', intro:'Các anh chị đi trước khuyên: ngay những ngày đầu, cả phòng nên thống nhất quy tắc chung để tránh mâu thuẫn.',
     fields:[{key:'phong', label:'Ba quy tắc tôi muốn cả phòng thống nhất ngay tuần đầu là…', ph:'Ví dụ: chia lịch dọn dẹp, giữ yên lặng sau 22 giờ, ai dùng đồ của người khác phải hỏi trước.', req:1, min:6}],
-    opt:{key:'mauthuan', label:'Khi có mâu thuẫn với bạn cùng phòng, bạn sẽ mở lời thế nào để không thành cãi nhau?', ph:'Ví dụ: Mình nói chuyện một chút được không? Mình thấy hơi khó chịu khi… Cậu thấy mình nên làm thế nào?'}}
+    opt:{key:'mauthuan', label:'Khi có mâu thuẫn với bạn cùng phòng, bạn sẽ mở lời thế nào để không thành cãi nhau?', ph:'Ví dụ: Mình nói chuyện một chút được không? Mình thấy hơi khó chịu khi… Bạn thấy mình nên làm thế nào?'}}
 ]},
 
 /* ===== ẢI 4 · XƯỞNG RÈN ===== */
@@ -1654,55 +1869,55 @@ a41:{ai:4, t:'Đọc phiếu lương', d:'Từ tổng thu nhập đến số ti�
       {k:'ry', jp:'寮費', lbl:'Tiền nhà (KTX)', val:'−20,000', why:'Tiền KTX trừ thẳng vào lương. Điện, nước, gas thường bạn tự trả thêm.'},
       {k:'td', jp:'手取り', lbl:'Thực lĩnh', val:'≈144,340', tot:1, sub:1}
     ],
-    done:'Từ 210.000 yên tổng thu nhập, bạn thực lĩnh khoảng 144.340 yên. Biết trước để không bất ngờ, và không nghe lời rủ "việc thêm" vì tưởng mình bị trừ oan.',
+    done:'Từ 210.000 yên tổng thu nhập, bạn thực lĩnh khoảng 144.340 yên. Hãy tìm hiểu trước cách tính để không bị bất ngờ hay nghĩ mình bị "trừ oan" nhé.',
     src:L_LD+', Điều 32 (giờ làm) và Điều 37 (tiền tăng ca)'},
   {k:'tikme', url:'https://tikme.com/kien-thuc/thue-bao-hiem', title:'Pháp luật & Bảo hiểm tại Nhật: Nắm vững kiến thức, làm chủ cuộc sống', cat:'Tikme · Quy định & Bảo hiểm', mins:8,
     intro:'Đọc mục "Thuế & Bảo hiểm" và "Những điều tuyệt đối KHÔNG được làm", rồi quay lại trả lời 3 câu hỏi.',
     qs:[
       {t:'Trong các khoản bị trừ, khoản nào năm đầu thường chưa phải đóng?', o:['Bảo hiểm y tế','Thuế cư trú (住民税)','Bảo hiểm hưu trí (厚生年金)'], a:1, why:'Thuế cư trú tính trên thu nhập năm trước nên thường bắt đầu trừ từ năm thứ 2.'},
-      {t:'Theo bài viết, khi bị công ty đối xử không tốt hoặc nợ lương, sai lầm phổ biến là gì?', o:['Báo OTIT hoặc Hiệp hội','Bỏ trốn vì nghĩ mình không có quyền phản kháng','Ghi chép lại sự việc rồi hỏi người hướng dẫn trước'], a:1, why:'Bỏ trốn làm bạn mất tư cách lưu trú, mất cả sự bảo vệ của pháp luật. Đường đúng là báo đúng kênh.'},
-      {t:'Làm "phục vụ quán nhậu" ban đêm có tiếp viên, dù chỉ rửa bát, thì sao?', o:['Được, vì chỉ rửa bát','Được nếu chỉ làm ngày nghỉ và quán trả lương đủ','Vi phạm nghiêm trọng, có thể bị trục xuất'], a:2, why:'Người có tư cách TTS tuyệt đối không làm việc ở nơi thuộc diện giải trí người lớn, kể cả việc phụ.'}
+      {t:'Theo bài viết, khi bị công ty đối xử không tốt hoặc nợ lương, sai lầm phổ biến là gì?', o:['Báo OTIT hoặc Hiệp hội','Bỏ trốn vì nghĩ mình không có quyền phản kháng','Ghi chép lại sự việc rồi hỏi người hướng dẫn trước'], a:1, why:'Bỏ trốn làm bạn mất tư cách lưu trú, mất luôn cả sự bảo vệ của pháp luật. Điều nên làm là báo đến đúng kênh.'},
+      {t:'Làm "phục vụ quán nhậu" ban đêm ở quán Bar, dù chỉ rửa bát, thì sao?', o:['Được, vì chỉ rửa bát','Được nếu chỉ làm ngày nghỉ và quán trả lương đủ','Vi phạm nghiêm trọng, có thể bị trục xuất'], a:2, why:'TTS không được làm thêm ở bất kỳ đâu, càng không được làm ở quán bar hay nơi giải trí về đêm, kể cả việc phụ như rửa bát.'}
     ],
     after:'Phiếu lương là của bạn. Giữ lại từng tháng để đối chiếu, làm quyết toán thuế và thủ tục nhận lại Nenkin khi về nước.',
     src:L_LD+' · '+L_XNC}
 ]},
 a42:{ai:4, t:'Ba ngã rẽ ở xưởng', d:'Trung thực với công ty, lên tiếng khi bị xâm phạm', mins:7, steps:[
-  {k:'branch', title:'Ngã rẽ 1 · Năm phút giờ nghỉ', real:1, foe:'yeu',
-    ctx:'Giờ nghỉ trưa, ai ra khỏi xưởng phải chấm công. Bạn đang buồn ngủ, nghĩ: nếu đi vòng qua chỗ hâm đồ ăn rồi mới chấm công, mình sẽ có thêm vài phút.',
+  {k:'branch', img:'clock', title:'Ngã rẽ 1 · Năm phút giờ nghỉ', real:1, foe:'yeu',
+    ctx:'Giờ nghỉ trưa, ai ra khỏi xưởng phải chấm công. Bạn đang buồn ngủ, nghĩ: nếu đi vòng qua chỗ hâm đồ ăn trước rồi mới quay lại chấm công sau, mình sẽ có thêm vài phút để ăn và nghỉ trưa.',
     whisper:'Có năm phút thôi, ai mà để ý. Chắc không sao.',
     flags:['Chấm công là lời hứa về thời gian của bạn với công ty','Đồng nghiệp người Nhật để ý rất kỹ','Lòng tin mất rồi rất khó lấy lại'],
     opts:[
       {t:'Chấm công đúng giờ, tranh thủ ngủ trưa trong giờ nghỉ.', ok:1, out:{t:'Giờ nào việc nấy', p:'Bạn nghỉ đủ, vào ca đúng giờ với đồ bảo hộ chỉnh tề. Đồng nghiệp tin bạn, công ty dễ giao việc mới cho bạn.'}},
       {t:'Đi vòng một lần thôi, mai không làm nữa.', ok:0, out:{t:'Một lần thành nhiều lần', p:'Một bạn TTS từng làm đúng như vậy, bị nhắc nhở rồi vẫn tái phạm. Đồng nghiệp bức xúc báo lên công ty, bạn phải viết cam kết không tái phạm.', r:1}},
-      {t:'Lấy thêm một gói đồ ăn của công ty, coi như bù cho buổi làm mệt.', ok:0, out:{t:'Từ ăn gian đến mất việc', p:'Một bạn đã lên Kỹ năng đặc định lấy hai gói đồ ăn nhưng chỉ trả tiền gói rẻ. Camera ghi lại, công ty cho bạn tự kết thúc hợp đồng. Sau đó công ty lắp thêm camera, cả nhóm bị giảm lòng tin.', r:2}}
+      {t:'Lấy thêm một gói đồ ăn của công ty, coi như bù cho buổi làm mệt.', ok:0, out:{t:'Từ ăn gian đến mất việc', p:'Một bạn đã lên Kỹ năng đặc định lấy hai gói đồ ăn nhưng chỉ trả tiền gói rẻ. Camera ghi lại, bạn ấy bị giảm lòng tin.', r:0}}
     ],
     law:{t:'Trung thực trong việc nhỏ giữ được việc lớn.', p:[
       'Giờ nghỉ trưa thường 45 đến 60 phút, đủ để ăn và nghỉ. Ngoài giờ đó là giờ làm.',
       'Lấy đồ của công ty, của đồng nghiệp khi chưa được phép là trộm cắp, dù món nhỏ.',
       'Bị sa thải vì hành vi sai trái thì TTS tự trả tiền vé về nước.'],
       src:L_LD+', Điều 34 (giờ nghỉ) · '+L_HS+' (tội trộm cắp)'},
-    fix:'Lỡ làm rồi: chủ động xin lỗi người hướng dẫn, nói rõ và hứa không tái phạm. Tự nhận còn hơn để camera nói thay.'},
+    fix:'Lỡ làm rồi: chủ động xin lỗi người hướng dẫn, nói rõ và hứa không tái phạm. Tự nhận còn hơn để đợi check lại camera.'},
   {k:'branch', title:'Ngã rẽ 2 · Câu nói của Senpai', real:1, foe:'yeu',
     ctx:'Mấy tuần nay, một Senpai trong tổ ngày nào cũng nói trước mặt mọi người: "Chậm thế. Không cho tăng ca nữa. Về nước đi." Bạn thấy rất nặng nề.',
     whisper:'Cứ chịu đựng đi, nói ra lại mất việc. Chắc rồi sẽ qua.',
-    flags:['Lời nói lặp lại, dọa cắt tăng ca, đuổi về nước','Khác với nhắc nhở về cách làm việc','Có người được giao việc lắng nghe bạn'],
+    flags:['Lời đe dọa lặp lại, dọa cắt tăng ca, đuổi về nước','Khác với nhắc nhở về cách làm việc','Người thực lòng muốn giúp bạn tiến bộ sẽ không đe dọa vậy'],
     opts:[
       {t:'Im lặng chịu đựng, cố làm nhanh hơn.', ok:0, out:{t:'Một năm rưỡi im lặng', p:'Một bạn TTS đã chịu đựng như vậy suốt một năm rưỡi, đến khi không chịu nổi thì đòi chuyển vị trí hoặc về nước. Lúc đó mọi chuyện đã khó gỡ hơn rất nhiều.', r:2}},
       {t:'Đăng bài lên Facebook kể tội công ty để mọi người biết và lên tiếng giúp mình.', ok:0, out:{t:'Chuyện riêng thành chuyện lớn', p:'Bài đăng lan đi, công ty và Hiệp hội biết qua mạng thay vì nghe bạn nói. Chuyện chưa được giải quyết mà bạn còn bị đánh giá thiếu chuyên nghiệp.', r:1}},
-      {t:'Ghi lại ngày giờ, lời nói; báo người hướng dẫn, Hiệp hội hoặc Esuhai.', ok:1, out:{t:'Nói ra đúng người, đúng lúc', p:'Hiệp hội và công ty vào cuộc, xác nhận lời nói đó là không phù hợp và nói chuyện với Senpai. Bạn được lắng nghe, công việc ổn định lại.'}}
+      {t:'Báo người hướng dẫn, Hiệp hội hoặc Esuhai.', ok:1, out:{t:'Nói ra đúng người, đúng lúc', p:'Hiệp hội và công ty vào cuộc, xác nhận lời nói đó là không phù hợp và nói chuyện với Senpai. Bạn được lắng nghe, công việc ổn định lại.'}}
     ],
     law:{t:'Không im lặng chịu bị bắt nạt.', p:[
       'Lời nói đe dọa, hạ nhục lặp đi lặp lại như "không cho tăng ca, về nước đi" là lúc Hiệp hội và công ty cần vào cuộc.',
       'Bị nhắc vì làm sai thì lắng nghe và sửa. Bị bắt nạt thì báo cáo sớm, kèm ghi chép cụ thể.',
-      'Thấy bạn mình bị bắt nạt, đừng nói "em không làm cùng nên không rõ". Hãy cùng bạn đi báo.'],
+      'Thấy bạn mình bị bắt nạt, đừng nói "em không làm cùng nên không rõ". Hãy cùng bạn báo cáo vấn đề.'],
       src:'Luật phòng chống quấy rối quyền lực nơi làm việc (パワハラ防止法) · '+L_TTKN+', Điều 49 (quyền tố cáo)'},
-    fix:'Nếu đã chịu đựng lâu rồi: vẫn chưa muộn. Kể với anh chị Esuhai bằng tiếng Việt, mang theo những gì bạn đã ghi lại.'},
+    fix:'Nếu đã chịu đựng lâu rồi: vẫn chưa muộn. Kể với anh chị Esuhai, mang theo những gì bạn đã ghi lại.'},
   {k:'branch', title:'Ngã rẽ 3 · Giữ hộ hộ chiếu', real:1, foe:'yeu',
     ctx:'Một buổi sáng, quản lý thu hộ chiếu và thẻ cư trú của cả nhóm TTS, nói là "giữ hộ cho khỏi mất".',
     whisper:'Công ty giữ hộ thì càng an toàn. Chắc không sao.',
     flags:['Thẻ cư trú phải luôn mang theo người','Giữ hộ chiếu, thẻ cư trú của TTS là vi phạm','Có kênh báo cáo, không cần làm căng'],
     opts:[
-      {t:'Cả nhóm cùng tự ý nghỉ làm một ngày để công ty thấy mình phản đối việc này.', ok:0, out:{t:'Đúng ý, sai cách', p:'Nghỉ làm không báo là vi phạm nội quy, chuyện giấy tờ chưa được giải quyết mà cả nhóm còn bị lập biên bản.', r:1}},
+      {t:'Cả nhóm cùng tự ý nghỉ làm một ngày để công ty thấy mình phản đối việc này.', ok:0, out:{t:'Đúng ý, sai cách', p:'Nghỉ làm không báo là vi phạm nội quy, chuyện giấy tờ chưa được giải quyết mà cả nhóm còn bị nhắc nhở.', r:0}},
       {t:'Lễ phép xin giữ lại thẻ cư trú; nếu không được, báo Hiệp hội hoặc OTIT.', ok:1, out:{t:'Giấy tờ về đúng chủ', p:'Hiệp hội trao đổi với công ty, hộ chiếu và thẻ cư trú được trả lại cho từng người. Bạn không bị đối xử bất lợi vì đã báo cáo.'}},
       {t:'Đưa luôn, công ty bảo gì thì làm nấy.', ok:0, out:{t:'Giấy tờ không còn trong tay bạn', p:'Khi cần đi khám bệnh, bị cảnh sát hỏi giấy tờ hay muốn đổi chỗ thực tập, bạn không có gì trong tay. Giữ giấy tờ của TTS là dấu hiệu nơi làm việc có vấn đề.', r:0}}
     ],
@@ -1719,8 +1934,8 @@ a43:{ai:4, t:'Phải trái phân minh', d:'Lỗi của mình, vi phạm của c�
     items:[
       {t:'Bị nhắc nhiều lần vì đến muộn 5 phút.', a:0, why:'Đúng giờ là tác phong cơ bản. Lắng nghe và sửa.', src:''},
       {t:'Làm thêm giờ nhưng phiếu lương không tính tiền tăng ca.', a:1, why:'Hỏi lại công ty trước, có thể do nhầm lẫn. Nếu đúng là không trả, đó là vi phạm Luật Tiêu chuẩn lao động: báo Hiệp hội.', src:L_LD+', Điều 37'},
-      {t:'Sau một năm, công ty chuyển bạn sang công đoạn khác.', a:2, why:'Công ty thuyên chuyển để bạn học thêm kỹ năng và hỗ trợ Kohai sau này. Hãy hợp tác.', src:''},
-      {t:'Trêu đồng nghiệp nữ người Nhật chuyện yêu đương dù chị ấy không vui.', a:0, why:'Đây là quấy rối. Đã có đồng nghiệp phải nghỉ một tuần vì hoảng loạn.', src:''},
+      {t:'Sau một năm, công ty chuyển bạn sang công đoạn khác.', a:2, why:'Công ty thuyên chuyển để bạn học thêm kỹ năng và hỗ trợ Kohai sau này, hãy hợp tác.', src:''},
+      {t:'Trêu đồng nghiệp nữ người Nhật chuyện yêu đương dù chị ấy không vui.', a:0, why:'Đây là quấy rối. Đã có trường hợp một đồng nghiệp nữ phải nghỉ làm một tuần vì tinh thần hoảng loạn.', src:''},
       {t:'Công ty cho sang làm ở một công ty khác, cùng công việc thực tập, rồi trả thù lao trực tiếp.', a:1, why:'TTS chỉ được thực tập ở nơi ghi trong kế hoạch thực tập đã được duyệt. Sang chỗ khác dù cùng việc là sai quy định: hãy trao đổi lại với công ty và hỏi Hiệp hội.', src:L_TTKN},
       {t:'Mùa cao điểm, công việc thời vụ có ngày làm hơn 8 tiếng theo lịch đã thông báo.', a:2, why:'Với công việc thời vụ, luật cho phép công ty điều chỉnh giờ làm vào mùa cao điểm.', src:L_LD},
       {t:'Làm hỏng dụng cụ vì không làm theo hướng dẫn.', a:0, why:'Làm hỏng đồ của công ty có thể phải bồi thường. Không hiểu thì hỏi người chỉ đạo đến khi hiểu.', src:''}
@@ -1751,22 +1966,22 @@ a51:{ai:5, t:'Bản đồ phố', d:'Sáu góc phố và bốn biển báo', min
       {k:'st', name:'Siêu thị', jp:'スーパー', x:44, y:27,
         q:'Hộp kem dưỡng da 800 yên, quầy đang đông. Yêu thì thầm: "Cho vào túi, ai mà biết."',
         o:['Cho vào túi, lỡ bị hỏi thì nói là mình quên chưa trả','Bóc ra dùng thử rồi đặt lại kệ','Không lấy. Muốn mua thì xếp hàng trả tiền'], a:2,
-        why:'Một bạn TTS từng lấy hộp kem ở siêu thị, hai hôm sau cảnh sát đến vì camera ghi lại. Bạn còn bao biện "em lỡ" nên càng bị đánh giá nặng. Trộm cắp thì bị sa thải và tự trả vé về nước.',
+        why:'Một bạn TTS từng lấy hộp kem ở siêu thị, hai hôm sau cảnh sát đến vì camera ghi lại. Bạn còn bao biện "em lỡ" nên càng bị đánh giá nặng. Trộm cắp thì sẽ bị sa thải và chi phí mua vé về nước phải tự chi trả.',
         src:L_HS+' (tội trộm cắp)'},
       {k:'vu', name:'Ruộng khoai', jp:'畑', x:76, y:24,
         q:'Ruộng khoai bên đường vừa thu hoạch, còn sót nhiều củ. Bạn cùng phòng rủ nhặt về nấu.',
         o:['Nhặt thôi, ruộng thu hoạch xong rồi','Không nhặt; muốn thì hỏi xin chủ ruộng','Nhặt ít thôi, vài củ sót lại thì chủ cũng bỏ đi'], a:1,
         why:'Hai bạn nữ TTS từng bị bắt vì lấy 25 củ khoai trong vườn. Trong tiếng Nhật, "hái trộm" và "ăn cắp" là cùng một chữ: 盗む.',
         src:L_HS+' (tội trộm cắp)'},
-      {k:'bien', name:'Bãi biển', jp:'浜', x:60, y:86,
+      {k:'bien', name:'Bãi biển', jp:'浜', x:60, y:80,
         q:'Bãi biển có nhiều sò, nhiều người đang cào. Bạn cũng muốn bắt một ít.',
         o:['Tìm biển báo, hỏi người địa phương; không chắc thì không bắt','Cào luôn, vì nhiều người địa phương cũng đang cào ngay bên cạnh','Cào một ít ăn tại chỗ'], a:0,
         why:'Ba bạn TTS ở Aichi từng bị cơ quan quản lý giữ vì bắt sò, công ty phải đến bảo lãnh. Nơi đó có biển cấm nhưng các bạn không để ý, lại thấy nhiều người bắt. Nhiều vùng biển có quyền đánh bắt riêng.',
         src:'Luật Thủy sản Nhật Bản (漁業法) và quy định về quyền đánh bắt của địa phương'},
-      {k:'de', name:'Đê chắn sóng', jp:'防波堤', x:82, y:76,
+      {k:'de', name:'Đê chắn sóng', jp:'防波堤', x:84, y:66,
         q:'Đầu đê có biển "Cấm vào", nhưng cuối đê câu được cá to. Tuần trước nhóm bạn vào câu vẫn không sao.',
         o:['Vào câu, tuần trước có sao đâu','Vào nhưng mặc áo phao cho chắc','Câu ở khu vực được phép'], a:2,
-        why:'Năm 2026, một bạn TTS đi câu ở khu vực cấm bị sóng cuốn và may mắn sống sót. Khu vực bị cấm nghĩa là đã từng có tai nạn. Vào nơi cấm là phạm luật, và có thể mất mạng.',
+        why:'Từng có một bạn TTS đi câu ở khu vực cấm bị sóng cuốn và may mắn sống sót. Khu vực bị cấm nghĩa là đã từng có tai nạn. Vào nơi cấm là phạm luật, và có thể rất nguy hiểm.',
         src:'Biển cấm của cơ quan quản lý cảng và chính quyền địa phương'},
       {k:'cv', name:'Công viên', jp:'公園', x:30, y:68,
         q:'Một bé gái khoảng 5 tuổi đứng khóc một mình. Trong túi bạn có kẹo.',
@@ -1787,12 +2002,12 @@ a52:{ai:5, t:'Hai bánh xe', d:'Xe đạp ở Nhật: tiện, nhưng có luật'
   {k:'branch', title:'Chiếc "xe đạp điện" của anh họ', real:1, foe:'yeu',
     ctx:'Anh họ ở tỉnh bên sắp về nước, bán lại chiếc "xe đạp điện" giá 2 man. Xe có tay ga, không cần đạp vẫn chạy được 30 km/h.',
     from:'Anh họ', sub:'Sắp về nước',
-    msgs:['Xe đạp điện thôi em, ở đây ai cũng đi, không cần bằng đâu.'],
+    msgs:['Xe đạp điện thôi em, ở đây ai cũng đi được, không cần bằng lái đâu.'],
     whisper:'Anh họ ở Nhật lâu rồi, chắc không sao.',
-    flags:['Xe tự chạy bằng ga, không cần đạp','"Ai cũng đi" không phải là căn cứ','Hỏi Hiệp hội trước khi mua mất có một tin nhắn'],
+    flags:['Xe tự chạy bằng ga, không cần đạp','"Ai cũng đi được" chưa chắc là điều đó đúng luật','Hỏi Hiệp hội trước khi mua chỉ mất có một tin nhắn'],
     opts:[
       {t:'Mua, nhưng chỉ đi đường làng vắng, không đi qua chỗ đông người.', ok:0, out:{t:'Đường vắng vẫn là đường', p:'Cảnh sát tuần tra dừng xe. Đường vắng hay đông thì xe máy không bằng lái vẫn là vi phạm.', r:3}},
-      {t:'Mua luôn, rẻ mà tiện.', ok:0, out:{t:'Hơn một tháng lên đồn', p:'Năm 2026, một bạn TTS đi loại xe này bị cảnh sát dừng. Bạn bị gọi lên đồn lấy lời khai suốt hơn một tháng, công ty đình chỉ làm việc 5 ngày. Bao nhiêu uy tín gây dựng trước đó gần như mất hết.', r:3}},
+      {t:'Mua luôn, rẻ mà tiện.', ok:0, out:{t:'Hơn một tháng lên đồn', p:'Năm 2026, một bạn TTS đi loại xe này bị cảnh sát yêu cầu dừng lại. Bạn bị gọi lên đồn lấy lời khai suốt hơn một tháng, công ty đình chỉ làm việc 5 ngày, ảnh hưởng nhiều đến công việc.', r:3}},
       {t:'Hỏi người hướng dẫn hoặc Hiệp hội trước khi mua.', ok:1, out:{t:'Một tin nhắn, tránh cả tháng rắc rối', p:'Người hướng dẫn giải thích: xe đạp trợ lực phải đạp mới chạy thì không cần bằng; xe tự chạy bằng ga là xe máy. Bạn không mua chiếc xe đó.'}}
     ],
     law:{img:'veh', t:'Xe trợ lực và xe có ga: nhìn giống nhau, luật khác nhau.', p:[
@@ -1813,21 +2028,21 @@ a52:{ai:5, t:'Hai bánh xe', d:'Xe đạp ở Nhật: tiện, nhưng có luật'
       {t:'Mất xe nhưng không báo, mượn tạm xe bạn đi.', a:'trap', why:'Có bạn mất xe rồi im lặng cho qua, đến khi cảnh sát đối chiếu mới lộ ra, rắc rối hơn nhiều. Báo cảnh sát ngay là cách tự bảo vệ mình.'}
     ], src:'Luật Giao thông đường bộ Nhật Bản (道路交通法; vé xanh cho xe đạp từ 1/4/2026) · Luật về sử dụng xe đạp an toàn (đăng ký chống trộm)'},
   {k:'say', who:'tan', mood:'',
-    text:'Xe đạp ở Nhật đều có số khung, đăng ký theo tên người dùng. Năm 2026, một chiếc xe đứng tên Hiệp hội bị người khác dùng để trộm đồ trong siêu thị, vì nhóm TTS hay đổi xe cho nhau mà không báo. Nhớ nhé cháu: mất xe thì báo cảnh sát ngay; cho, bán hay đổi xe thì báo Hiệp hội.'}
+    text:'Xe đạp ở Nhật đều có số khung, đăng ký theo tên người dùng. Năm 2026, một chiếc xe đứng tên Hiệp hội bị người khác dùng để trộm đồ trong siêu thị, vì nhóm TTS hay đổi xe cho nhau mà không báo. Nhớ nhé: Mất xe thì báo cảnh sát ngay. Còn nếu cho, bán hay đổi xe thì báo Hiệp hội.'}
 ]},
 a53:{ai:5, t:'Phép lịch sự nơi công cộng', d:'Bốn từ tiếng Nhật bạn sẽ gặp trên áp phích', mins:5, steps:[
   {k:'classify', intro:'Mỗi hành vi dưới đây thuộc loại nào? Đây là những từ bạn sẽ gặp trên áp phích ở ga tàu và nơi làm việc.',
     cats:['迷惑行為 · Gây phiền nhiễu','ストーカー · Đeo bám','痴漢 · Sàm sỡ','セクハラ · Quấy rối nơi làm việc'],
     items:[
       {t:'Gọi điện, cười đùa ồn ào trên tàu điện.', a:0, why:'Làm phiền người khác nơi công cộng.'},
-      {t:'Thích một chị đồng nghiệp, ngày nào cũng chờ ở cổng, nhắn tin liên tục dù chị không trả lời.', a:1, why:'Theo dõi, chờ đợi, liên lạc liên tục khi người kia không muốn là hành vi đeo bám, có thể bị xử lý theo luật.'},
+      {t:'Thích một chị đồng nghiệp, ngày nào cũng chờ ở cổng, nhắn tin liên tục đến tối khuya dù chị không trả lời.', a:1, why:'Theo dõi, chờ đợi, liên lạc liên tục khi người kia không muốn là hành vi đeo bám, có thể bị xử lý theo luật.'},
       {t:'Lợi dụng tàu đông để chạm vào người lạ.', a:2, why:'Chạm vào cơ thể người khác trái ý muốn là tội phạm ở Nhật.'},
       {t:'Ở xưởng, trêu chọc đồng nghiệp nữ chuyện yêu đương dù chị ấy khó chịu.', a:3, why:'Lời nói, yêu cầu mang tính tình dục ở nơi làm việc là quấy rối, dù mình nghĩ chỉ là đùa.'},
-      {t:'Chụp lén người khác bằng điện thoại.', a:0, why:'Quay lén là hành vi bị cấm, có thể bị xử lý hình sự.'}
+      {t:'Chụp lén người khác bằng điện thoại.', a:0, why:'Quay/chụp lén người khác là hành vi bị cấm, có thể bị xử lý hình sự.'}
     ]},
   {k:'say', who:'tan', mood:'serious', src:'Luật quy định về hành vi đeo bám (ストーカー規制法) · Luật Bình đẳng cơ hội việc làm nam nữ (phòng chống quấy rối tình dục nơi làm việc)',
-    text:'Ở Nhật, thước đo không phải là "mình chỉ đùa", mà là người kia cảm thấy thế nào. Có bạn TTS trêu một đồng nghiệp nữ lớn tuổi đến mức chị ấy hoảng loạn phải nghỉ một tuần, các Kohai còn cười theo. Cả nhóm bị nhắc nhở, riêng bạn ấy tái phạm và phải về nước. Ở nhà cũng vậy: mặc áo đàng hoàng, đừng cởi trần ngoài ban công; muốn làm quen thì đừng xin số điện thoại người lạ.'},
-  {k:'write', intro:'Câu hộ thân cho những lúc vui quá trớn.',
+    text:'Ở Nhật, thước đo không phải là "mình chỉ đùa", mà là người kia cảm thấy thế nào. Có bạn TTS trêu một đồng nghiệp nữ lớn tuổi đến mức chị ấy hoảng loạn phải nghỉ một tuần, các Kohai còn cười theo. Cả nhóm bị nhắc nhở, riêng bạn ấy tái phạm và phải về nước. Ở nhà cũng vậy: mặc áo đàng hoàng, đừng cởi trần ngoài ban công.'},
+  {k:'write', intro:'Câu "hộ thân" cho những lúc vui quá trớn.',
     fields:[{key:'pho', label:'Khi thấy bạn mình đùa quá trớn với người khác, tôi sẽ…', ph:'Ví dụ: …không cười theo, kéo bạn ra và nhắc nhẹ "người ta không vui đâu".', req:1, min:5}],
     opt:{key:'pho2', label:'Ở phố Nhật, điều gì khiến bạn thấy khác Việt Nam nhất, và bạn sẽ thay đổi thói quen nào?', ph:'Ví dụ: Ở Việt Nam mình hay đi xe trên vỉa hè. Sang Nhật mình sẽ đi dưới lòng đường bên trái và không đeo tai nghe.'}}
 ]},
@@ -1836,11 +2051,11 @@ a53:{ai:5, t:'Phép lịch sự nơi công cộng', d:'Bốn từ tiếng Nhật
 w7:{ai:7, warm:1, t:'Khởi động 30 giây', d:'Đúng hay sai? Ba câu nhanh', mins:1, steps:[
   {k:'tf', items:[
     {t:'Đánh bài ăn tiền với bạn bè qua mạng thì không sao, vì không ở sòng bạc.', a:false, why:'Ở Nhật, đánh bạc ăn tiền là phạm luật, dù qua mạng hay giữa bạn bè, trừ các hình thức Nhà nước cho phép.'},
-    {t:'Hiệp hội có thể cấm TTS cho vay mượn tiền và chơi hụi.', a:true, why:'Đây là quy định thường gặp ở các Hiệp hội, để TTS không vướng vào nợ nần, mâu thuẫn.'},
-    {t:'Vay nóng để trả nợ cũ là cách nhanh nhất để thoát nợ.', a:false, why:'Vay nóng chồng thêm lãi lên nợ cũ. Đó là cách nhanh nhất để nợ không bao giờ hết.'}
+    {t:'Hiệp hội có thể cấm TTS cho vay mượn tiền và chơi hụi.', a:true, why:'Đây là quy định hoặc nhắc nhở có thể gặp ở các Hiệp hội, vì đã có nhiều TTS vướng vào nợ nần, mâu thuẫn.'},
+    {t:'Vay nóng để trả nợ cũ là cách nhanh nhất để thoát nợ.', a:false, why:'Vay nóng chồng thêm lãi lên nợ cũ, đó lại là cách nhanh nhất để nợ không bao giờ hết.'}
   ]}
 ]},
-a71:{ai:7, t:'Phòng chiếu Kōban', d:'Xem phim của Cảnh sát Tokyo, dừng lại và chọn', mins:22, steps:[
+a71:{ai:7, t:'Vòng xoáy trượt dần', d:'Xem phim của Cảnh sát Tokyo, dừng lại và chọn', mins:22, steps:[
   {k:'video', vid:'ppPxUuyRwSo', title:'Downward Spiral · Vòng xoáy đi xuống',
     intro:'Chú mời cháu xem bộ phim Cảnh sát Thủ đô Tokyo làm cho người nước ngoài. Phim nói tiếng Nhật, có phụ đề tiếng Việt. Xem từng đoạn, rồi chọn xem nhân vật nên làm gì.',
     who:'Minh là du học sinh muốn thành kỹ sư. Dũng là thực tập sinh, bạn cùng quê. Thảo là bạn cùng lớp của Minh.',
@@ -1864,24 +2079,24 @@ a71:{ai:7, t:'Phòng chiếu Kōban', d:'Xem phim của Cảnh sát Tokyo, dừn
       {s:548, e:658, lbl:'Đoạn 5 · Lời của Thảo',
         q:'Thảo phát hiện Minh làm thêm quá giờ và gặp chuyện nguy hiểm. Thảo nói sẽ đi cùng Minh đến gặp thầy cô hoặc cảnh sát. Nếu bạn là Minh?',
         o:['"Kệ tớ, không liên quan đến cậu"','Hứa để mai tính','Nhận lời, đi cùng Thảo ngay'], a:2,
-        why:'Trong phim, Minh gạt Thảo đi. Người dám can ngăn mình mới là bạn thật. Du học sinh chỉ được làm thêm tối đa 28 giờ/tuần; TTS thì không được làm thêm chỗ nào khác.'},
+        why:'Trong phim, Minh gạt Thảo đi. Minh không hiểu người dám can ngăn mình mới là bạn thật sự. Du học sinh chỉ được làm thêm tối đa 28 giờ/tuần; TTS thì không được làm thêm chỗ nào khác.'},
       {s:658, e:990, lbl:'Đoạn 6 · Kết cục và "Giá như…"', q:''}
     ],
     src:'Video "Downward Spiral" (Phụ đề tiếng Việt), kênh chính thức Cảnh sát Thủ đô Tokyo (警視庁), 2023'}
 ]},
-a72:{ai:7, t:'Vòng xoáy', d:'Mỗi lần gật đầu là một nấc trượt', mins:5, steps:[
+a72:{ai:7, t:'Giá như lúc đó', d:'Mỗi lần gật đầu là một nấc trượt', mins:5, steps:[
   {k:'order', spiral:1, intro:'Sắp xếp các bước trượt của Minh và Dũng theo đúng thứ tự trong phim.',
     items:['Dũng bỏ nơi thực tập, ở quá hạn visa','Cho người cư trú bất hợp pháp ở chung','Dùng thẻ cư trú giả đi xin việc','Chơi bài ăn tiền qua mạng xã hội','Nợ 50 man, bị dọa bắt bố mẹ trả','Bán tài khoản ngân hàng, đi nhận "tiền bẩn"'],
-    done:'Không bước nào trông như tội ác lớn. Mỗi lần chỉ là một cái gật đầu nhỏ. Chính vì vậy nó mới là vòng xoáy.',
+    done:'Không bước nào trông như một vi phạm lớn. Mỗi lần chỉ là một cái gật đầu nhỏ. Chính vì vậy nó mới là vòng xoáy.',
     src:''},
   {k:'law', law:{t:'Những tội danh nằm trong một bộ phim 16 phút.', p:[
       'Ở quá hạn visa và che giấu người cư trú bất hợp pháp: vi phạm Luật Quản lý xuất nhập cảnh.',
-      'Đánh bạc ăn tiền: phạm tội đánh bạc. Dùng thẻ cư trú giả: tội nặng, bị trục xuất.',
-      'Bán tài khoản, đi nhận tiền của người bị lừa: đồng phạm lừa đảo, dù chỉ "đi lấy hộ một gói đồ".'],
+      'Đánh bạc ăn tiền: Phạm tội đánh bạc, còn dùng thẻ cư trú giả: Tội nặng, bị trục xuất.',
+      'Bán tài khoản, đi nhận tiền của người bị lừa: Đồng phạm lừa đảo, dù chỉ "đi lấy hộ một gói đồ".'],
       src:L_XNC+' · '+L_HS+' (tội đánh bạc, tội lừa đảo) · Luật phòng chống chuyển giao tiền do phạm tội'}},
   {k:'write', intro:'Phim kết thúc bằng những câu "giá như lúc đó…". Đến lượt bạn.',
     fields:[{key:'gianhu', label:'Giá như lúc đó Minh…', ph:'Ví dụ: …nghe lời Thảo, đi cùng bạn đến gặp thầy cô ngay hôm đó.', req:1, min:5}],
-    opt:{key:'gianhu2', label:'Còn bạn thì sao? Điều mà bạn quyết nhất định sẽ không làm, không để xảy ra với mình ở Nhật là gì?', ph:'Ví dụ: Mình sẽ không bao giờ phải nói "giá như mình đã từ chối ván bài đầu tiên".'}}
+    opt:{key:'gianhu2', label:'Còn bạn thì sao? Điều mà bạn nhất quyết sẽ không làm, không để xảy ra với mình ở Nhật là gì?', ph:'Ví dụ: Mình sẽ không bao giờ phải nói "giá như mình đã từ chối ván bài đầu tiên".'}}
 ]},
 a73:{ai:7, t:'Lão Đỏ Đen', d:'Lô đề, vay nóng và chuyện chơi game', mins:7, steps:[
   {k:'branch', title:'Lô đề trong nhóm đồng hương', real:1, foe:'ngu',
@@ -1891,7 +2106,7 @@ a73:{ai:7, t:'Lão Đỏ Đen', d:'Lô đề, vay nóng và chuyện chơi game'
     flags:['"Đánh nhỏ cho vui" là cách mọi con nợ bắt đầu','Chuyển tiền cho người lạ, không ai bảo đảm','Đánh bạc ăn tiền là phạm luật ở Nhật'],
     opts:[
       {t:'Không tham gia, rời nhóm và báo người hướng dẫn.', ok:1, out:{t:'Lão Đỏ Đen mất một con mồi', p:'Bạn rời nhóm. Vài tháng sau nghe tin admin nhóm bị bắt, nhiều người trong nhóm bị gọi lên làm việc.'}},
-      {t:'Đánh thử 1 man, thua thì thôi.', ok:0, out:{t:'"Thua thì thôi" không bao giờ dừng ở 1 man', p:'Năm 2026, một bạn Kỹ năng đặc định mê lô đề, vướng vào tổ chức cờ bạc, phải vay tiền, kể cả dùng giấy tờ cá nhân để vay. Bạn bị cho về nước, gia đình phải gửi một số tiền lớn để giải quyết và lấy lại giấy tờ.', r:4}},
+      {t:'Đánh thử 1 man, thua thì thôi.', ok:0, out:{t:'"Thua thì thôi" không bao giờ dừng ở 1 man', p:'Năm 2025 một bạn Kỹ năng đặc định mê lô đề, vướng vào tổ chức cờ bạc, phải vay tiền, kể cả dùng giấy tờ cá nhân để vay. Bạn bị cho về nước, gia đình phải gửi một số tiền lớn để giải quyết và lấy lại giấy tờ.', r:4}},
       {t:'Nhờ người khác đánh hộ để mình không phải đứng tên chuyển khoản.', ok:0, out:{t:'Không đứng tên vẫn là đánh bạc', p:'Tiền là của bạn, người hưởng lợi là bạn. Nhờ đánh hộ chỉ kéo thêm một người nữa vào vòng nguy hiểm.', r:3}}
     ],
     law:{t:'Cờ bạc ăn tiền: phát hiện là về nước.', p:[
@@ -1899,31 +2114,31 @@ a73:{ai:7, t:'Lão Đỏ Đen', d:'Lô đề, vay nóng và chuyện chơi game'
       'TTS chơi cờ bạc lô đề, khi bị phát hiện thì gần như chắc chắn bị cho về nước.',
       'Nợ cờ bạc kéo theo vay nóng, cầm cố giấy tờ, rồi đến lời rủ bán tài khoản.'],
       src:L_HS+', Điều 185 và 186 (tội đánh bạc)'},
-    fix:'Lỡ đánh rồi: dừng ngay, không đánh "gỡ". Nếu đã nợ hoặc bị đòi tiền, kể ngay với Hiệp hội hoặc Esuhai trước khi nợ lớn thêm.'},
+    fix:'Lỡ đánh rồi: dừng ngay, không vay mượn thêm tiền đánh "gỡ". Nếu đã nợ hoặc bị đòi tiền, kể ngay với Hiệp hội hoặc Esuhai trước khi nợ lớn thêm.'},
   {k:'calc'},
   {k:'check'}
 ]},
 
 /* ===== TÂY TRÚC ===== */
-f1:{ai:8, t:'Trước ngày về', d:'Về nước sạch sẽ để cửa quay lại luôn mở', mins:4, steps:[
-  {k:'swipe', labels:{trap:'Không nên', safe:'Nên'}, intro:'Còn một tháng nữa là về nước. Việc nào nên làm, việc nào không?',
+f1:{ai:8, t:'Trước ngày về', d:'Thu xếp chu toàn để cửa quay lại luôn mở', mins:4, steps:[
+  {k:'swipe', suitcase:1, labels:{trap:'Không nên', safe:'Nên'}, intro:'Còn một tháng nữa là về nước. Việc nào nên làm, việc nào không?',
     cards:[
-      {t:'Ra ngân hàng làm thủ tục đóng tài khoản.', a:'safe', why:'Tài khoản đã đóng thì không ai lợi dụng tên bạn được.'},
+      {it:'bank', ic:'bank', t:'Ra ngân hàng làm thủ tục đóng tài khoản.', a:'safe', why:'Tài khoản đã đóng thì không ai lợi dụng tên bạn được.'},
       {t:'Bán lại điện thoại kèm SIM đứng tên mình cho đồng hương.', a:'trap', why:'Nhượng điện thoại, SIM đứng tên mình là vi phạm luật. Hãy báo nhà mạng hủy hợp đồng.'},
-      {t:'Trả hết nợ thẻ tín dụng, tiền mua trả góp trước khi bay.', a:'safe', why:'Có TTS về nước còn nợ thẻ 12 man và cố tình không trả. Nợ xấu có thể ảnh hưởng nghiêm trọng đến cơ hội quay lại Nhật.'},
+      {it:'credit', ic:'credit', t:'Trả hết nợ thẻ tín dụng, tiền mua trả góp trước khi bay.', a:'safe', why:'Có TTS về nước còn nợ thẻ 12 man và cố tình không trả. Nợ xấu có thể ảnh hưởng nghiêm trọng đến cơ hội quay lại Nhật.'},
       {t:'Để lại hóa đơn điện, nước chưa trả vì đằng nào cũng về.', a:'trap', why:'Thanh toán đủ mọi khoản trước khi về. Để lại nợ là để lại tiếng xấu cho Kohai và chính mình.'},
-      {t:'Dọn sạch phòng KTX, vứt rác đúng ngày.', a:'safe', why:'Phí dọn dẹp, vứt rác khi về nước TTS tự chịu. Phòng sạch là món quà cho Kohai.'},
-      {t:'Nộp lại thẻ cư trú tại sân bay khi rời Nhật hẳn.', a:'safe', why:'Khi rời Nhật mà không quay lại, thẻ cư trú được nộp lại tại cửa khẩu.'},
-      {t:'Làm thủ tục nhận lại tiền hưu trí (Nenkin) trong 2 năm sau khi rời Nhật.', a:'safe', why:'Đây là quyền lợi của bạn: nhận lại một phần tiền hưu trí đã đóng.'},
+      {it:'broom', ic:'broom', t:'Dọn sạch phòng KTX, vứt rác đúng ngày.', a:'safe', why:'Phí dọn dẹp, vứt rác khi về nước TTS tự chịu. Phòng sạch là món quà cho Kohai.'},
+      {it:'idcard', ic:'idcard', t:'Nộp lại thẻ cư trú tại sân bay khi rời Nhật hẳn.', a:'safe', why:'Khi rời Nhật mà không quay lại, thẻ cư trú được nộp lại tại cửa khẩu.'},
+      {it:'coin', ic:'coin', t:'Làm thủ tục nhận lại tiền hưu trí (Nenkin) trong 2 năm sau khi rời Nhật.', a:'safe', why:'Đây là quyền lợi của bạn: nhận lại một phần tiền hưu trí đã đóng.'},
       {t:'Muốn về sớm thì tự đặt vé bay, không cần báo ai.', a:'trap', why:'Đã có TTS nhận lương tháng đầu rồi tự đặt vé bỏ về, khiến công ty và các bên rất khó xử. Muốn dừng chương trình, hãy nói thẳng với công ty và Esuhai.'}
     ], src:L_XNC+' (nộp lại thẻ cư trú khi rời Nhật) · Luật Bảo hiểm hưu trí phúc lợi (khoản nhận lại một lần) · Luật phòng chống chuyển giao tiền do phạm tội · '+SRC_SOTAY+', mục 9(2)'},
-  {k:'say', who:'tan', mood:'', text:'Về nước sạch sẽ không chỉ là xong một chương trình. Đó là để cánh cửa quay lại Nhật luôn mở cho cháu: Kỹ năng đặc định, Kỹ sư, hay đơn giản là một chuyến du lịch thăm lại công ty cũ.'}
+  {k:'say', who:'tan', mood:'', text:'Thu xếp chu toàn trước khi về nước không chỉ là xong một chương trình. Đó là để cánh cửa quay lại Nhật luôn mở cho cháu: Kỹ năng đặc định, Kỹ sư, hay đơn giản là một chuyến du lịch thăm lại công ty cũ.'}
 ]},
 f2:{ai:8, t:'Túi cứu viện', d:'Một tấm thẻ mang theo suốt những năm ở Nhật', mins:4, steps:[
   {k:'sos'}
 ]},
 f3:{ai:8, t:'Trang bí kíp không chữ', d:'Trang cuối cùng do chính bạn viết', mins:5, steps:[
-  {k:'say', who:'hau', mood:'think', text:'Trong Tây du ký có lần thầy trò mở những cuộn sách mang về, thấy toàn giấy trắng. Hóa ra trang không chữ lại quý nhất, vì nó chờ chính người đọc viết lên. [Tên] đã có bảy bí kíp viết bằng luật. Trang cuối cùng phải do chính bạn viết.'},
+  {k:'say', who:'hau', mood:'think', text:'Trong truyện Tây du ký, khi Thầy trò Đường Tăng mở những quyển kinh mang về, thấy toàn giấy trắng. Trang cuối cùng này phải do chính bạn tự viết, nhắc nhở chính mình…'},
   {k:'write', intro:'Viết trang bí kíp của riêng bạn. Trang này sẽ in trên vé hoàn thành.',
     fields:[{key:'kinh', label:'Ba điều tôi hứa giữ suốt những năm ở Nhật là…', ph:'Ví dụ: Không bao giờ cho mượn thẻ, tài khoản, điện thoại. Nghi ngờ thì hỏi người hướng dẫn trước. Đi đến nơi, về đến chốn để bố mẹ yên lòng.', req:1, min:10}],
     opt:{key:'tang', label:'Ngày về, bạn muốn mang thành quả về tặng ai, và vì sao?', ph:'Ví dụ: Tặng mẹ, vì mẹ đã vay tiền cho mình đi học và chưa từng than một câu.'}}
@@ -1932,37 +2147,37 @@ f3:{ai:8, t:'Trang bí kíp không chữ', d:'Trang cuối cùng do chính bạn
 /* ===== ẢI 6 · HANG HỒ LY ===== */
 w6:{ai:6, warm:1, t:'Khởi động 30 giây', d:'Đúng hay sai? Ba câu nhanh', mins:1, steps:[
   {k:'tf', items:[
-    {t:'Kẻ lừa đảo thường là người lạ, mình không quen.', a:false, why:'Nhiều vụ của anh chị TTS bắt đầu từ người quen: bạn học cũ, đồng hương, người yêu qua mạng.'},
+    {t:'Kẻ lừa đảo thường là người lạ, mình không quen.', a:false, why:'Nhiều vụ anh chị TTS bị lừa bắt đầu từ người quen: bạn học cũ, đồng hương, người yêu qua mạng.'},
     {t:'Nhật Bản an toàn nên không cần cảnh giác như ở Việt Nam.', a:false, why:'Kẻ xấu nhắm vào người mới sang, chưa rành tiếng và luật. An toàn là khi mình biết tự bảo vệ.'},
-    {t:'Lời mời càng gấp, càng dặn giữ bí mật thì càng đáng ngờ.', a:true, why:'Gấp để bạn không kịp hỏi ai. Bí mật để không ai kịp can.'}
+    {t:'Lời mời càng gấp, càng dặn mình giữ bí mật thì càng đáng ngờ.', a:true, why:'Gấp để bạn không kịp hỏi ai, bí mật để không ai kịp can ngăn.'}
   ]}
 ]},
 a61:{ai:6, t:'Ba lần biến hình', d:'Hồ Ly đội 3 lốt, và cái giá thật của 3 man', mins:9, steps:[
-  {k:'say', who:'hau', mood:'think', text:'Trong truyện, Bạch Cốt Tinh hóa thành ba người khác nhau để lừa thầy Đường Tăng. Hồ Ly cũng vậy. Mỗi ngã rẽ, [Tên] chọn một lối. Chọn sai cũng không sao: bạn sẽ thấy chuyện gì xảy ra, rồi quay lại chọn tiếp.'},
+  {k:'say', who:'hau', mood:'think', text:'Trong truyện, Bạch Cốt Tinh hóa thành ba người khác nhau để lừa Đường Tăng. Hồ Ly cũng vậy. Mỗi ngã rẽ, [Tên] hãy chọn một lối. Chọn sai cũng không sao, bạn sẽ thấy hậu quả xảy ra, rồi quay lại chọn tiếp cho đúng.'},
   {k:'branch', title:'Lốt 1 · Người đồng hương tốt bụng', real:1,
-    ctx:'Còn 2 tuần nữa là bạn hết hạn và về nước. Anh Hải quen qua nhóm Facebook đồng hương, từng chở bạn đi mua đồ, nhắn tin:',
+    ctx:'Còn 2 tuần nữa là bạn hết thời hạn làm việc và về nước. Anh Hải- quen qua nhóm Facebook "Người Việt xa xứ", từng chở bạn đi mua đồ, nhắn tin:',
     from:'Anh Hải', sub:'Đồng hương · quen 8 tháng',
-    msgs:['Em sắp về rồi hả?','Tài khoản ngân hàng với cái điện thoại, em để lại cho anh nhé. Anh trả 3 man.','Đằng nào em về cũng bỏ. Để lại vừa có tiền, vừa giúp anh.'],
-    flags:['Trả tiền cao cho thứ "đằng nào cũng bỏ"','Thứ anh ấy cần là tài khoản và số điện thoại đứng tên bạn','Dùng tình cảm để ép: "giúp anh"'],
+    msgs:['Em sắp về rồi hả?','Tài khoản ngân hàng với cái điện thoại cũ, em để lại cho anh nhé. Anh trả em 3 man.','Đằng nào em về cũng bỏ. Để lại vừa có tiền, vừa giúp anh.'],
+    flags:['Trả tiền cao cho thứ "đằng nào cũng bỏ"','Thứ anh ấy cần là tài khoản và số điện thoại đứng tên bạn','Dùng tình cảm để ép: "Giúp anh"'],
     opts:[
-      {t:'Đồng ý. Sắp về rồi, có thêm 3 man mua quà cho bố mẹ cũng tốt.', ok:0, out:{t:'4 tháng sau…', p:'Bạn về Việt Nam với 3 man. Tài khoản đứng tên bạn bị dùng để nhận tiền của một vụ lừa đảo. Cảnh sát Nhật lần theo tên chủ tài khoản. Khi bạn muốn quay lại Nhật làm việc, hồ sơ gặp khó.', r:3}},
-      {t:'Hỏi anh ấy dùng vào việc gì. Nếu nghe hợp lý thì để lại cho anh ấy.', ok:0, out:{t:'Lý do nào nghe cũng hợp lý', p:'"Anh cần tài khoản để nhận tiền làm thêm thôi." Bạn tin và đưa. Nhưng vấn đề không nằm ở lý do: cho người khác dùng tài khoản đứng tên mình đã là phạm luật, dù họ dùng vào việc gì.', r:3}},
+      {t:'Đồng ý. Sắp về rồi, có thêm 3 man mua quà cho bố mẹ cũng tốt.', ok:0, out:{t:'4 tháng sau…', p:'Bạn về Việt Nam với 3 man. Tài khoản đứng tên bạn bị dùng để nhận tiền của một vụ lừa đảo. Cảnh sát Nhật lần theo tên chủ tài khoản. Khi bạn muốn quay lại Nhật để làm việc, hồ sơ không được duyệt.', r:3}},
+      {t:'Hỏi anh ấy dùng vào việc gì. Nếu nghe hợp lý thì để lại cho anh ấy.', ok:0, out:{t:'Lý do nào nghe cũng hợp lý', p:'"Anh cần tài khoản để nhận tiền làm thêm thôi." Bạn tin và đưa. Nhưng vấn đề không nằm ở lý do: Cho người khác dùng tài khoản đứng tên mình đã là phạm luật, dù họ dùng vào việc gì.', r:3}},
       {t:'Từ chối. Trước khi về, đóng tài khoản và hủy hợp đồng điện thoại.', ok:1, out:{t:'Bạn về nước nhẹ nhàng', p:'Tài khoản đã đóng, hợp đồng điện thoại đã hủy. Không ai dùng được tên bạn ở Nhật nữa. Cánh cửa quay lại Nhật vẫn rộng mở.'}}
     ],
     law:{t:'Tài khoản, thẻ ngân hàng và điện thoại đứng tên bạn chỉ dành cho bạn.', p:[
       'Bán, cho thuê, cho mượn tài khoản hay thẻ rút tiền là vi phạm Luật phòng chống chuyển giao tiền do phạm tội.',
       'Nhượng điện thoại, SIM đứng tên mình cho người khác là vi phạm Luật phòng chống sử dụng trái phép điện thoại di động.',
       'Sắp về nước? Đóng tài khoản ngân hàng và hủy hợp đồng điện thoại trước khi đi.',
-      'Năm 2026, hai TTS năm thứ hai phải về nước vì cho mượn tài khoản, thế chấp hộ chiếu, dù cảnh sát chưa vào cuộc. Ngay lúc cho mượn đã là sai.'],
+      'Năm 2026, có hai bạn TTS năm thứ hai phải kết thúc thực tập, về nước trước hạn vì cho mượn tài khoản, thế chấp hộ chiếu. Ngay lúc cho mượn là đã vi phạm luật Nhật Bản.'],
       src:'Luật phòng chống chuyển giao tiền do phạm tội (犯罪収益移転防止法), Điều 28 · Luật phòng chống sử dụng trái phép điện thoại di động · '+SRC_SOTAY+', mục 9(2)'},
     fix:'Báo ngay ngân hàng để khóa tài khoản, báo Hiệp hội hoặc Esuhai, rồi đến đồn cảnh sát trình báo. Báo càng sớm, càng dễ chứng minh bạn là người bị lợi dụng.'},
   {k:'branch', title:'Lốt 2 · Người yêu qua mạng', real:1,
     ctx:'Bạn quen Linh qua một ứng dụng hẹn hò được hơn 1 tháng. Hai người nói chuyện mỗi tối, rất hợp nhau. Một hôm Linh nhắn:',
     from:'Linh', sub:'Quen qua ứng dụng hẹn hò',
-    msgs:['[Tên] ơi, tớ đặt ít đồ online mà nhà tớ hay vắng.','Cho tớ gửi về địa chỉ KTX của cậu nhé. Cậu nhận rồi gửi tiếp giúp tớ.','Tớ gửi cậu 5.000 yên tiền công nha ❤️'],
+    msgs:['[Tên] ơi, tớ đặt ít đồ online mà hôm nay có việc bận không ở nhà.','Cho tớ gửi về địa chỉ KTX của cậu nhé. Cậu nhận rồi gửi tiếp giúp tớ.','Tớ gửi cậu 5.000 yên tiền công nha ❤️'],
     flags:['Chưa gặp ngoài đời đã nhờ việc liên quan đến hàng hóa, địa chỉ','Trả tiền công cho một việc quá dễ','Hàng không gửi thẳng cho người đặt mà phải qua tay bạn'],
     opts:[
-      {t:'Từ chối nhẹ nhàng, rồi kể chuyện với người hướng dẫn hoặc Esuhai.', ok:1, out:{t:'Hồ Ly lộ mặt', p:'Bị từ chối, Linh giận dỗi rồi biến mất. Người hướng dẫn kể cho bạn: chiêu "yêu qua mạng, nhờ nhận hàng" này nhiều anh chị TTS đã gặp.'}},
+      {t:'Từ chối nhẹ nhàng, rồi kể chuyện với người hướng dẫn hoặc Esuhai.', ok:1, out:{t:'Hồ Ly lộ mặt', p:'Bị từ chối, Linh giận dỗi rồi biến mất. Người hướng dẫn kể cho bạn: chiêu "quen qua mạng, nhờ nhận hàng" này nhiều anh chị TTS đã gặp.'}},
       {t:'Nhận giúp. Người yêu nhờ mà, lại còn có tiền công nữa.', ok:0, out:{t:'2 tuần sau…', p:'Thùng hàng là đồ mua bằng thẻ tín dụng bị đánh cắp. Cảnh sát đến KTX vì địa chỉ nhận hàng là của bạn. Bạn bị đưa về đồn làm rõ, công ty phải đến bảo lãnh. Còn Linh thì xóa tài khoản.', r:3}},
       {t:'Nhận giúp lần này thôi, và nhất định không lấy tiền công cho đỡ ngại.', ok:0, out:{t:'Một lần là đủ', p:'Không lấy tiền công vẫn là nhận và chuyển hàng giúp một người bạn chưa từng gặp. Chỉ một lần, địa chỉ KTX và tên bạn đã nằm trong hồ sơ vụ việc.', r:3}}
     ],
@@ -1973,23 +2188,23 @@ a61:{ai:6, t:'Ba lần biến hình', d:'Hồ Ly đội 3 lốt, và cái giá t
       src:L_HS+' (tội lừa đảo, tội làm giả văn bản) · '+SRC_SOTAY+', mục 9(2)'},
     fix:'Đừng mở, đừng gửi tiếp. Giữ nguyên tin nhắn và gói hàng, báo ngay công ty hoặc Hiệp hội. Có thể gọi đường dây tư vấn của cảnh sát #9110 (khi chưa khẩn cấp).'},
   {k:'branch', title:'Lốt 3 · Anh làm dịch vụ', real:1,
-    ctx:'Bạn đang ở năm thứ nhất, lương chưa nhiều. Trong nhóm Facebook người Việt ở tỉnh, tài khoản "Việc Thơm" nhắn riêng:',
+    ctx:'Bạn đang ở năm thứ nhất, lương chưa nhiều. Trong nhóm Facebook người Việt ở tỉnh, có tài khoản "Việc Thơm" nhắn riêng:',
     from:'Việc Thơm', sub:'Nhắn từ nhóm Facebook',
-    msgs:['Cuối tuần rảnh không em? Chạy xe đạp giao hàng quanh ga thôi.','3 man một ngày, trả tiền mặt cuối buổi.','Không cần thẻ cư trú. Nhớ đừng nói với công ty nha.'],
+    msgs:['Cuối tuần rảnh không em? Chạy xe đạp giao hàng quanh ga thôi.','3 man một ngày, trả tiền mặt ngay cuối buổi.','Không cần thẻ cư trú, em nhớ đừng nói với công ty nha.'],
     flags:['Tiền nhiều bất thường cho việc rất nhẹ','Không cần giấy tờ, trả tiền mặt: không có gì để chứng minh','Dặn giấu công ty'],
     opts:[
       {t:'Đi thử một buổi cuối tuần cho biết, không ai biết đâu.', ok:0, out:{t:'Buổi đầu tiên…', p:'Bạn được giao chở mấy thùng hàng. Cảnh sát dừng xe kiểm tra: hàng không rõ nguồn gốc, bạn không giải thích được. Bạn vừa làm việc ngoài tư cách lưu trú, vừa có thể bị xem là đồng phạm.', r:4}},
-      {t:'Từ chối, chụp màn hình gửi người hướng dẫn hoặc Esuhai.', ok:1, out:{t:'Một tin nhắn giúp cả nhóm', p:'Người hướng dẫn cảm ơn bạn và nhắc cả nhóm TTS trong công ty. Không ai trong nhóm bị kéo vào.'}},
+      {t:'Từ chối, chụp màn hình gửi người hướng dẫn hoặc Esuhai.', ok:1, out:{t:'Một tin nhắn giúp cho cả nhóm phòng tránh', p:'Người hướng dẫn cảm ơn bạn và nhắc cả nhóm TTS trong công ty. Không ai trong nhóm bị kéo vào.'}},
       {t:'Nhận, nhưng chỉ làm ngày nghỉ để không ảnh hưởng công ty.', ok:0, out:{t:'Ngày nghỉ cũng không được', p:'Thẻ cư trú của bạn ghi rõ: không được làm việc ngoài hoạt động đã đăng ký. Ngày làm hay ngày nghỉ đều như nhau. Bật kiếm tiền TikTok hay bán hàng online cũng bị tính là thu nhập ngoài.', r:2}}
     ],
     law:{t:'Thẻ cư trú cho phép bạn làm việc ở đúng một nơi: nơi đã đăng ký.', p:[
-      'Làm thêm ở nơi khác là làm việc ngoài tư cách lưu trú: có thể bị phạt tù đến 1 năm hoặc phạt tiền đến 2 triệu yên.',
+      'Làm thêm ở nơi khác là làm việc ngoài tư cách lưu trú: có thể bị phạt tiền đến 2 triệu yên; trường hợp nặng có thể bị phạt tù.',
       'Bỏ nơi làm việc rồi ở lại quá hạn là cư trú bất hợp pháp: có thể bị phạt tù đến 3 năm hoặc phạt tiền đến 3 triệu yên, rồi bị trục xuất.',
       'Quy định này áp dụng cho cả Thực tập sinh và Ikusei Shuro.'],
       src:L_XNC+', Điều 70 (cư trú bất hợp pháp) và Điều 73 (hoạt động ngoài tư cách lưu trú) · '+SRC_SOTAY+', mục 6 và 9'},
-    fix:'Lỡ nhận lời rồi thì dừng ngay, chưa đi buổi nào càng tốt. Kể thật với người hướng dẫn hoặc Esuhai. Nói thật sớm giúp mọi người kịp bảo vệ bạn.'},
+    fix:'Lỡ nhận lời rồi thì dừng ngay, chưa đi buổi nào càng tốt. Kể lại thành thật với người hướng dẫn hoặc Esuhai. Nói ra sớm giúp mọi người kịp bảo vệ bạn.'},
   {k:'cost'},
-  {k:'say', who:'hau', mood:'cheer', text:'Bạn để ý không? Cả ba lần, Hồ Ly đều không bảo bạn làm việc xấu. Nó chỉ nhờ "giúp một chút" bằng thứ đứng tên bạn: tài khoản, địa chỉ, sức lao động. Nhớ mẹo này là [Tên] nhìn thấu được nhiều lốt khác nữa!'}
+  {k:'say', who:'hau', mood:'cheer', text:'Bạn để ý không? Cả ba lần, Hồ Ly đều không bảo bạn làm việc xấu. Nó chỉ nhờ "giúp một chút", "làm thử một lần"... bằng thứ đứng tên bạn: tài khoản, địa chỉ, sức lao động. Nhớ mẹo này là [Tên] nhìn thấu được nhiều lốt khác nữa!'}
 ]},
 a62:{ai:6, t:'Hỏa nhãn kim tinh', d:'Soi một bài đăng tuyển người, phân biệt bẫy và việc an toàn', mins:5, steps:[
   {k:'flags', intro:'Bài đăng này xuất hiện trong một nhóm Facebook người Việt ở Nhật. Có 5 dấu hiệu bẫy. Chạm vào từng câu đáng ngờ.',
@@ -1997,7 +2212,7 @@ a62:{ai:6, t:'Hỏa nhãn kim tinh', d:'Soi một bài đăng tuyển người, 
     segs:[
       {t:'TUYỂN GẤP', f:1, why:'Ép bạn quyết nhanh, không kịp hỏi ai.'},
       {t:' 5 bạn làm nhà máy thực phẩm ở Osaka.'},
-      {t:' Lương 35 man/tháng, việc nhẹ.', f:1, why:'Gần gấp đôi lương thường mà lại "nhẹ". Việc nhẹ lương cao gần như luôn là bẫy.'},
+      {t:'Lương 35 man/tháng, việc nhẹ nhàng.', f:1, why:'Gần gấp đôi lương thường mà việc lại "nhẹ". Việc nhẹ lương cao gần như luôn là bẫy.'},
       {t:' Có phòng ở gần ga.'},
       {t:' Không cần thẻ cư trú, không cần hộ chiếu.', f:1, why:'Nơi làm việc hợp pháp luôn phải kiểm tra giấy tờ. Không cần giấy tờ nghĩa là làm chui.'},
       {t:' TTS đang làm ở công ty cũ vẫn nhận.', f:1, why:'Mời TTS bỏ công ty đang làm, tức là rủ bỏ trốn.'},
@@ -2006,17 +2221,17 @@ a62:{ai:6, t:'Hỏa nhãn kim tinh', d:'Soi một bài đăng tuyển người, 
     ],
     law:{t:'Đây là lời rủ bỏ trốn, dù không dùng chữ "bỏ trốn".', p:[
       'Bỏ nơi thực tập để làm chỗ khác là vi phạm luật cư trú, sẽ bị cưỡng chế trục xuất.',
-      'Chỗ "lương cao" thường không hợp đồng, không bảo hiểm, công việc nguy hiểm.'],
+      'Lời giới thiệu "việc nhẹ, lương cao" thường không hợp đồng, không bảo hiểm, công việc nguy hiểm.'],
       src:L_XNC+' · '+SRC_SOTAY+', mục 6'}},
   {k:'swipe', intro:'Mỗi thẻ là một việc. Chọn "Bẫy" hoặc "An toàn". Trên điện thoại, bạn có thể quẹt trái (bẫy) hoặc phải (an toàn).',
     cards:[
-      {t:'Gửi tiền về nhà qua công ty chuyển tiền có giấy phép (như DCOM, SBI Remit), có hóa đơn.', a:'safe', why:'Ở Nhật, chỉ ngân hàng và công ty chuyển tiền được cấp phép mới được nhận chuyển tiền ra nước ngoài. Phí cao hơn chút nhưng được pháp luật bảo vệ.'},
-      {t:'Đưa tiền mặt cho người quen chuyển về Việt Nam giúp, tỷ giá cao hơn ngân hàng.', a:'trap', why:'Đây là chuyển tiền tay ba qua dịch vụ không phép. Tiền mất thì không đòi được, bạn còn có thể dính vào đường dây rửa tiền.'},
-      {t:'Bật chế độ kiếm tiền trên TikTok, Facebook để có thêm thu nhập.', a:'trap', why:'Đó là thu nhập ngoài công việc đã đăng ký. Đã có bạn TTS phải về nước vì việc này.'},
-      {t:'Mua iPhone giá chỉ một nửa trên Facebook, người bán yêu cầu chuyển khoản trước.', a:'trap', why:'Chiêu bán hàng qua mạng: nhận tiền rồi biến mất. Tài khoản nhận tiền thường là tài khoản mua lại của người đã về nước.'},
-      {t:'Trước ngày về nước, ra ngân hàng làm thủ tục đóng tài khoản.', a:'safe', why:'Đúng như Sổ tay TTS của OTIT hướng dẫn. Tài khoản đã đóng thì không ai lợi dụng được.'},
-      {t:'Chia sẻ ngay bài "động đất lớn, sắp có sóng thần" từ một trang lạ trên Facebook.', a:'trap', why:'Năm 2026 từng có tin động đất giật tít, dùng ảnh cũ để câu like. Tin quan trọng hãy kiểm tra với Hiệp hội hoặc trang chính thức trước khi tin và chia sẻ.'},
-      {t:'Cho bạn cùng phòng mượn thẻ cư trú để đi làm hợp đồng điện thoại.', a:'trap', why:'Tấm thẻ mang tên bạn: rơi vào tay người khác, nó có thể bị dùng làm giấy tờ giả. Vì vậy luật yêu cầu luôn mang theo, không cho mượn, không gửi ai giữ hộ.'}
+      {ic:'remit', t:'Gửi tiền về nhà qua công ty chuyển tiền có giấy phép (như DCOM, SBI Remit), có hóa đơn.', a:'safe', why:'Ở Nhật, chỉ ngân hàng và công ty chuyển tiền được cấp phép mới được nhận chuyển tiền ra nước ngoài. Phí cao hơn chút nhưng được pháp luật bảo vệ.'},
+      {ic:'cash', t:'Đưa tiền mặt cho người quen chuyển về Việt Nam giúp, tỷ giá cao hơn ngân hàng.', a:'trap', why:'Đây là "chuyển tiền tay ba" qua dịch vụ không phép. Tiền mất thì bạn không đòi được, còn có thể dính vào đường dây rửa tiền.'},
+      {ic:'tiktok', t:'Bật chế độ kiếm tiền trên TikTok, Facebook để có thêm thu nhập.', a:'trap', why:'Đó là thu nhập ngoài công việc đã đăng ký. Đã có bạn TTS phải về nước vì việc này.'},
+      {ic:'iphone', t:'Mua iPhone giá chỉ một nửa trên Facebook, người bán yêu cầu chuyển khoản trước.', a:'trap', why:'Chiêu bán hàng qua mạng hay gặp: nhận tiền rồi biến mất. Tài khoản nhận tiền thường là tài khoản mua lại của người đã về nước.'},
+      {ic:'bank', t:'Trước ngày về nước, ra ngân hàng làm thủ tục đóng tài khoản.', a:'safe', why:'Đúng như Sổ tay TTS của OTIT hướng dẫn. Tài khoản đã đóng thì không ai lợi dụng được.'},
+      {ic:'quake', t:'Chia sẻ ngay bài "Động đất lớn, sắp có sóng thần" từ một trang lạ trên Facebook.', a:'trap', why:'Năm nào cũng có tin động đất giật tít, dùng ảnh cũ để câu like. Tin quan trọng hãy kiểm tra với Hiệp hội hoặc trang chính thức trước khi tin và chia sẻ.'},
+      {ic:'idcard', t:'Cho bạn cùng phòng mượn thẻ cư trú để đi làm hợp đồng điện thoại.', a:'trap', why:'Tấm thẻ mang tên bạn: rơi vào tay người khác, nó có thể bị dùng làm giấy tờ giả. Vì vậy luật yêu cầu luôn mang theo thẻ cư trú bên người, không cho mượn, không gửi ai giữ hộ.'}
     ], src:'Luật Ngân hàng và Luật Dịch vụ thanh toán Nhật Bản (chuyển tiền chỉ qua đơn vị được cấp phép) · '+L_XNC+' · '+SRC_SOTAY+', mục 9(2) và 10'}
 ]},
 a63:{ai:6, t:'Kế hộ thân', d:'Biết gọi ai khi Hồ Ly tìm đến', mins:4, steps:[
@@ -2028,12 +2243,12 @@ a63:{ai:6, t:'Kế hộ thân', d:'Biết gọi ai khi Hồ Ly tìm đến', min
         why:'Báo người hướng dẫn, Hiệp hội hoặc Esuhai để họ cảnh báo cả nhóm. Chưa có nguy hiểm trước mắt nên chưa cần gọi 110.'},
       {t:'Bạn lỡ nhận giúp một thùng hàng lạ. Người gửi đang giục bạn gửi tiếp.', good:[0,1,2,5], ok:[3], bad:[6,7], must:[],
         why:'Đừng mở, đừng gửi tiếp. Báo công ty hoặc Hiệp hội ngay, có thể gọi #9110 để cảnh sát tư vấn.'},
-      {t:'Một nhóm người đến KTX đòi nợ thay bạn cùng phòng và dọa đánh.', good:[4,0,1,2], ok:[3,5], bad:[6,7], must:[4],
+      {t:'Một nhóm người đến trước cửa KTX đòi nợ người bạn cùng phòng và dọa đánh.', good:[4,0,1,2], ok:[3,5], bad:[6,7], must:[4],
         why:'Bị đe dọa là khẩn cấp: gọi 110 trước. Sau đó báo công ty, Hiệp hội hoặc Esuhai.'}
     ]},
-  {k:'write', intro:'Viết câu hộ thân cho chính mình: một điều bạn muốn luôn nhớ. Một câu ngắn là đủ.',
+  {k:'write', intro:'Viết câu "hộ thân" cho chính mình: một điều bạn muốn luôn nhớ. Một câu ngắn là đủ.',
     fields:[{key:'bua', label:'Khi có người nhờ mình "giúp một chút" bằng tài khoản, địa chỉ hay giấy tờ của mình, thì tôi sẽ…', ph:'Ví dụ: …từ chối ngay và nhắn cho người hướng dẫn ở công ty.', req:1, min:4}],
-    opt:{key:'tuchoi', label:'Nếu người rủ là bạn thân, bạn sẽ nói gì để từ chối mà vẫn giữ tình bạn?', ph:'Ví dụ: Tớ quý cậu, nhưng thứ gì đứng tên tớ thì tớ không đưa ai được. Mình cùng hỏi chị Hiệp hội nhé.'}}
+    opt:{key:'tuchoi', label:'Nếu người rủ rê là bạn thân, bạn học cùng lớp cũ thì bạn sẽ nói gì để từ chối mà vẫn giữ tình bạn?', ph:'Ví dụ: Tớ quý cậu, nhưng thứ gì đứng tên tớ thì tớ không đưa ai được. Mình cùng hỏi chị Hiệp hội nhé.'}}
 ]}
 };
 
@@ -2064,7 +2279,7 @@ var QA = [
   {c:'viec', q:'Ikusei Shuro có được chuyển việc không?', a:'Được, theo nguyện vọng, khi đã làm ít nhất 1 năm ở nơi đầu tiên, đậu kỳ thi kỹ năng và đạt trình độ tiếng Nhật theo quy định (khoảng A2). TTS thì chỉ chuyển nơi thực tập khi công ty khó khăn hoặc bất khả kháng, qua Hiệp hội.', s:'Luật Ikusei Shuro (hiệu lực 1/4/2027) · Luật Thực tập kỹ năng', ai:4},
   {c:'viec', q:'Bị Senpai nói "về nước đi" nhiều lần, có nên chịu đựng?', a:'Không. Ghi lại cụ thể và báo sớm cho người hướng dẫn, Hiệp hội hoặc Esuhai. Bị nhắc vì làm sai thì lắng nghe và sửa; bị bắt nạt thì không im lặng.', s:'Luật phòng chống quấy rối quyền lực nơi làm việc (パワハラ防止法)', ai:4},
   {c:'ktx', q:'Bố mẹ sang thăm có ngủ lại KTX được không?', a:'Không. Người ngoài không được vào ở trong KTX, hợp đồng thuê nhà ghi rõ số người ở. Muốn đón người thân, hỏi trước quy định của công ty.', s:'Quy định của công ty, Hiệp hội (tùy nơi) · hợp đồng thuê nhà', ai:3},
-  {c:'ktx', q:'Đi chơi xa 7 ngày dịp lễ mà không báo có bị coi là bỏ trốn không?', a:'Có thể bị lo như trường hợp bỏ trốn, vì không ai biết bạn ở đâu. Đi xa, ngủ ngoài cần nộp giấy xin phép trước cho công ty và Hiệp hội.', s:'Quy định của công ty, Hiệp hội (tùy nơi)', ai:3},
+  {c:'ktx', q:'Đi chơi xa 7 ngày dịp lễ mà không báo có bị coi là bỏ trốn không?', a:'Công ty và Hiệp hội sẽ rất lo vì không liên lạc được với bạn, và đó là vi phạm quy định. Đi xa, trọ ở ngoài cần nộp giấy xin phép trước cho công ty và Hiệp hội.', s:'Quy định của công ty, Hiệp hội (tùy nơi)', ai:3},
   {c:'ktx', q:'18, 19 tuổi có được hút thuốc, uống rượu ở Nhật không?', a:'Không. Ở Nhật phải đủ 20 tuổi mới được hút thuốc (kể cả thuốc lá điện tử) và uống rượu bia.', s:'Luật cấm người dưới 20 tuổi hút thuốc, uống rượu', ai:3},
   {c:'ktx', q:'Nghi bạn cùng phòng lục đồ, có được gắn camera không?', a:'Không tự ý gắn. Camera trong nơi người khác sinh hoạt là xâm phạm quyền riêng tư. Khóa đồ quý và báo người hướng dẫn.', s:'Quy định của công ty, Hiệp hội (tùy nơi)', ai:3},
   {c:'ktx', q:'Vứt rác sai có bị phạt không?', a:'Thường túi rác bị để lại kèm nhãn nhắc nhở. Tái phạm nhiều lần có thể bị chủ nhà không cho tiếp tục thuê ở. Đổ trộm rác, vứt bừa nơi công cộng mới là phạm pháp và bị phạt rất nặng.', s:'Luật xử lý chất thải Nhật Bản (廃棄物処理法)', ai:3},
@@ -2175,8 +2390,9 @@ function anyDone(n){ var a=aiOf(n); return a.acts && a.acts.some(actDone); }
 var V = {v:'home'};
 function go(v, opt){
   var nv={v:v}; for(var k in (opt||{})) nv[k]=opt[k];
-  V=nv; if(v==='ai'||v==='act') sfx('whoosh');
+  var from=V.v; V=nv; if(v==='act') sfx('whoosh');
   try{ history.pushState(V,'', ''); }catch(e){}
+  if(v==='ai' && from!=='act' && S.gate && S.onb){ aiTransition(nv.n, function(){ render(true); }); return; }
   render(true);
 }
 window.addEventListener('popstate', function(e){
@@ -2359,7 +2575,7 @@ function homeLine(){
 function vHome(){
   var h='<div class="wrap">'+vanDiep()+
     sayHTML('hau', startDone()?'cheer':'hi', homeLine())+
-    '<div class="sec"><h2>Bản đồ du ký</h2><p>Từ Đất Việt vượt biển sang xứ Phù Tang. Mây mù tan dần khi bạn đi tới. Chạm vào một nơi trên bản đồ để vào ải.</p></div>'+
+    '<div class="sec"><h2>Bản đồ du ký</h2><p>Từ Đất Việt vượt biển đến xứ Phù Tang. Mây mù sẽ tan dần trên hành trình bạn đi. Chạm vào một ải trên hành trình để bước vào.</p></div>'+
     '<div class="note"><b>Bản thử '+VERSION+':</b> đã đủ 7 ải và Phù Tang. Các ải mở lần lượt: qua ải trước, nhận con dấu mới mở ải sau.</div>'+
     mapHTML()+
     '<details class="maplist"><summary>'+icon('map',16)+' Xem dạng danh sách</summary><div class="map">'+nodeHTML(START)+AIS.map(function(a){ return nodeHTML(a); }).join('')+nodeHTML(FINAL)+'</div></details>'+
@@ -2383,13 +2599,12 @@ function vAi(n){
       '<div class="aihero__row"><div class="kseal'+(a.k.length>1?' k2':'')+'" style="--ac:'+a.col+'"><span>'+a.k+'</span></div>'+
       '<div><div class="aihero__code">'+code+'</div><h1>'+esc(a.vn)+'</h1><div class="aihero__ro"><span class="jp">'+a.kana+'</span>'+esc(a.ro)+' '+spk(a.k)+'</div></div></div>'+
       '<div class="meter"><i style="width:'+Math.round(dn/acts.length*100)+'%"></i></div>'+
-      '<div class="aihero__meta"><span>'+dn+'/'+acts.length+' chặng xong</span><span>Khoảng '+mins+' phút</span></div>'+
+      '<div class="aihero__meta"><span>'+dn+'/'+acts.length+' chặng xong</span><span>'+mins+' phút</span></div>'+
     '</section>';
   if(a.bossLine){
     var beat=acts.every(actDone), bm=beat?(a.boss==='yeu'?'deflated':'angry'):(a.boss==='ngu'?'smug':(a.boss==='yeu'?'sly':'sly'));
     h+='<div class="boss'+(beat?' beat':'')+'"><div>'+av(a.boss,bm)+'</div><div><small>'+(beat?'Đã bị đánh bại!':'Yêu quái của ải')+'</small><b>'+esc(CHAR[a.boss].n)+'</b><p>'+esc(a.bossLine)+'</p></div></div>';
   }
-  if(a.shield) h+='<div class="shield">'+icon('shield',22)+'<p><b>Luật này bảo vệ bạn.</b> '+esc(a.shield)+'</p></div>';
   h+=sayHTML('hau', dn===acts.length?'cheer':'hi', T(a.intro||''));
   h+='<div class="steps">';
   if(a.warm){
@@ -2428,6 +2643,7 @@ function vAct(id){
   return '<div class="wrap">'+
     '<button class="back" data-act="ai" data-n="'+a.ai+'">'+icon('back',18)+' '+esc(ai.vn)+'</button>'+
     '<header class="acthead"><small>'+lbl+'</small><h1>'+esc(a.t)+'</h1>'+(a.steps.length>1?'<div class="prog" aria-label="Bước '+(st.i+1)+' trên '+a.steps.length+'">'+prog+'</div>':'')+'</header>'+
+    (actDone(id)?'<div class="redo"><span>'+icon('check',16,3)+' Bạn đã hoàn thành chặng này.</span><button class="btn btn--sm btn--soft" data-act="redoAsk" data-id="'+id+'">'+icon('redo',15)+' Làm lại để ôn</button></div>':'')+
     '<div class="stepbox" id="stepbox"></div>'+
     '<div class="sbar" id="sbar"></div>'+
     (st.i>0?'<div style="text-align:center;margin-top:10px"><button class="btn btn--link" data-act="prevStep">Xem lại bước trước</button></div>':'')+
@@ -2475,7 +2691,7 @@ function finishAct(){
   setTimeout(function(){
     go('ai',{n:a.ai});
     var tot=0; for(var k in S.xp){ if(k.split('.')[1]===id) tot+=S.xp[k]; }
-    if(first) pointToast(tot,0,msg); 
+    if(first) pointToast(tot,0,msg); else toast('Ôn xong chặng này! Kết quả lần đầu vẫn được giữ.',4000); 
     if(first && !a.warm && ai.acts.every(actDone) && ai.kinh && a.ai>=1 && a.ai<=7) setTimeout(function(){ if(!S.seals[a.ai] && V.v==='ai') victory(a.ai); }, 1400);
     if(first && a.ai===8 && ai.acts.every(actDone)) setTimeout(function(){ if(!S.seals[8] && V.v==='ai') toast('Bạn đã đi hết hành trình. Chạm "Nhận vé hoàn thành" để mở trang bí kíp cuối cùng.',6000); }, 1400);
     if(first && a.ai===0 && startDone()) setTimeout(function(){ if(V.v==='ai') toast('Xong phần Lên đường! Ải 1 · Cổng Làng đã mở cửa.'); }, 4300);
@@ -2607,10 +2823,10 @@ function clsPick(i,j){
 /* --- thang hậu quả --- */
 STEP.ladder = {
   view:function(){
-    return '<h3>Thang hậu quả</h3><p class="hint" style="margin-top:4px">Ở mỗi ải, khi bạn chọn sai, Chú Tanaka sẽ chỉ ra bạn đang ở nấc nào trên chiếc thang này.</p>'+
+    return '<h3>Thang hậu quả</h3><p class="hint" style="margin-top:4px">Ở mỗi ải, khi bạn chọn sai, Chú Tanaka sẽ chỉ ra bạn có thể bị nhắc nhở hay xử phạt mức độ nào trên thang này.</p>'+
       ladderHTML(null)+
 
-      sayHTML('hau','cheer',T('Đừng lo, [Tên]. Biết trước chiếc thang này là để không bao giờ phải bước lên nó.'));
+      sayHTML('hau','cheer',T('Nhưng [Tên] đừng lo. Biết trước chiếc "thang hậu quả" này là để bạn tránh không bao giờ phải bước lên nó.'));
   },
   state:function(){ return {ok:true}; }
 };
@@ -2636,7 +2852,7 @@ STEP.branch = {
   view:function(s,x){
     x.tried=x.tried||[];
     var L='ABC';
-    var h='<h3>'+esc(s.title)+'</h3>'+(s.real?'<span class="real">Dựa trên chuyện đã từng xảy ra</span>':'')+'<p class="ctx">'+T(s.ctx)+'</p>'+
+    var h='<h3>'+esc(s.title)+'</h3>'+(s.img?'<div class="bimg">'+illus(s.img)+'</div>':'')+(s.real?'<span class="real">Dựa trên chuyện đã từng xảy ra</span>':'')+'<p class="ctx">'+T(s.ctx)+'</p>'+
       (s.msgs && s.msgs.length ? '<div class="phone"><div class="phone__top"><div class="pav">'+esc(s.from.split(' ').pop().charAt(0))+'</div><div><b>'+esc(s.from)+'</b><small>'+esc(s.sub)+'</small></div></div>'+
       s.msgs.map(function(m){ return '<div class="bub">'+T(m)+'</div>'; }).join('')+'</div>' : '')+
       (s.whisper ? (x.solved ? sayHTML('yeu','deflated', '<span>"'+T(s.whisper)+'"</span><br><b style="font-style:normal;color:#3F7A22">Xì… Yêu xẹp lép rồi!</b>') : sayHTML('yeu','whisper', '<span>"'+T(s.whisper)+'"</span>')) : '');
@@ -2657,7 +2873,7 @@ STEP.branch = {
         h+='<div class="out out--good" id="outc"><div class="out__t">'+icon('check',20)+' '+esc(o.out.t)+'</div><p>'+T(o.out.p)+'</p>'+revealHTML(s,1)+'</div>'+lawHTML(s.law,'praise')+(x.fixSeen?'':fixHTML(s.fix));
       } else {
         h+='<div class="out out--bad" id="outc"><div class="out__t">'+esc(o.out.t)+'</div><p>'+T(o.out.p)+'</p>'+revealHTML(s,0)+goalHit(o.out.r)+'</div>'+(o.out.r!=null?ladderHTML(o.out.r):'')+fixHTML(s.fix)+
-          '<button class="btn btn--soft btn--full" data-act="retry">'+icon('back',18)+' Thử chọn lại</button>';
+          '<button class="btn btn--gold btn--full invite retrybtn" data-act="retry">'+icon('redo',18)+' Thử chọn lại</button>';
       }
     }
     return h;
@@ -2723,16 +2939,16 @@ STEP.swipe = {
     var h='<p class="hint">'+esc(s.intro)+'</p><div class="counter">'+icon('check',18)+' Đúng '+nOK+'/'+N+'</div>';
     if(x.shown!=null){
       var c=s.cards[x.shown], right=x.last===c.a;
-      h+='<div class="dcard"><small>'+(s.labels?(c.a==='trap'?'Việc không nên làm':'Việc nên làm'):(c.a==='trap'?'Đây là bẫy':'Đây là việc an toàn'))+'</small>'+esc(c.t)+'</div>'+
+      h+=(s.suitcase?suitHTML(s,x):'')+'<div class="dcard">'+(c.ic?'<span class="dic">'+illus(c.ic)+'</span>':'')+'<small>'+(s.labels?(c.a==='trap'?'Việc không nên làm':'Việc nên làm'):(c.a==='trap'?'Đây là bẫy':'Đây là việc an toàn'))+'</small>'+esc(c.t)+'</div>'+
         '<div class="out '+(right?'out--good':'out--bad')+'"><p><span class="verdict">'+(right?'Đúng rồi!':'Thử lại nhé.')+'</span> '+esc(c.why)+(right?'':' Thẻ này sẽ quay lại sau.')+'</p></div>'+
         '<button class="btn btn--soft btn--full" data-act="swNext" id="swNext">'+(x.q.length?'Thẻ tiếp theo':'Xem kết quả')+'</button>';
     } else if(x.q.length){
       var cc=s.cards[x.q[0]];
-      h+='<div class="deck" id="deck"><div class="dcard" id="dcard"><small>Việc '+(N-x.q.length+1)+' / '+N+(x.ok.length+x.q.length>N?'':'')+'</small>'+esc(cc.t)+'</div></div>'+
+      h+=(s.suitcase?suitHTML(s,x):'')+'<div class="deck" id="deck"><div class="dcard" id="dcard">'+(cc.ic?'<span class="dic">'+illus(cc.ic)+'</span>':'')+'<small>Việc '+(N-x.q.length+1)+' / '+N+'</small>'+esc(cc.t)+'</div></div>'+
         '<div class="swbtns"><button class="btn trap" data-act="sw" data-v="trap">'+esc(LB.trap)+'</button><button class="btn safe" data-act="sw" data-v="safe">'+esc(LB.safe)+'</button></div>'+
         '<p class="swhint">Quẹt trái: '+esc(LB.trap.toLowerCase())+' · quẹt phải: '+esc(LB.safe.toLowerCase())+'</p>';
     } else {
-      h+='<div class="out out--good"><div class="out__t">'+icon('check',20)+' Bạn phân loại đúng cả '+N+' việc</div><p>'+(s.labels?'Bạn đã biết rõ việc nào nên và không nên làm.':'Nhớ nhé: việc an toàn luôn có giấy tờ, có hóa đơn, không cần giấu ai.')+'</p></div>'+srcLine(s.src);
+      h+=(s.suitcase?suitHTML(s,x):'')+'<div class="out out--good"><div class="out__t">'+icon('check',20)+' Bạn phân loại đúng cả '+N+' việc</div><p>'+(s.labels?'Bạn đã biết rõ việc nào nên và không nên làm.':'Nhớ nhé: việc an toàn luôn có giấy tờ, có hóa đơn, không cần giấu ai.')+'</p></div>'+srcLine(s.src);
     }
     return h;
   },
@@ -2748,6 +2964,7 @@ STEP.swipe = {
     c.addEventListener('pointerup', end); c.addEventListener('pointercancel', end);
   }
 };
+function suitHTML(s,x){ var it=s.cards.map(function(c,i){ return c.it?{k:c.it,on:(x.ok||[]).indexOf(i)>=0}:null; }).filter(Boolean); var n=it.filter(function(z){ return z.on; }).length; return '<div class="suitbox">'+suitcaseSVG(it)+'<p>Hành lý trước ngày về: <b>'+n+'/'+it.length+'</b> việc đã xong</p></div>'; }
 function swAnswer(v){
   var s=CUR.s, x=xs(CUR.id,CUR.i); if(x.shown!=null || !x.q.length) return;
   var i=x.q.shift(); x.last=v; x.shown=i;
@@ -2771,7 +2988,7 @@ STEP.channels = {
       ['siren','Cảnh sát tư vấn #9110','Khi cần hỏi cảnh sát nhưng chưa khẩn cấp.']
     ];
     return sayHTML('hau','hi',T('Trong truyện, mỗi khi gặp yêu quái quá mạnh, Ngộ Không biết đi cầu cứu đúng người. [Tên] cũng cần biết gọi ai.'))+
-      '<h3>Bản đồ cứu viện</h3><div class="chan">'+C.map(function(c){ return '<div class="'+(c[3]||'')+'"><span class="ic">'+icon(c[0],20)+'</span><span><b>'+esc(c[1])+'</b><small>'+esc(c[2])+'</small></span></div>'; }).join('')+'</div>'+
+      '<div class="dial"><div class="dial__top"><span>9:41</span><b>Danh bạ cứu viện</b><span>'+icon('phone',14)+'</span></div><div class="dial__sos"><div><b>110</b><small>Cảnh sát</small></div><div><b>119</b><small>Cứu thương · cứu hỏa</small></div></div><div class="chan">'+C.map(function(c){ return '<div class="'+(c[3]||'')+'"><span class="ic">'+icon(c[0],20)+'</span><span><b>'+esc(c[1])+'</b><small>'+esc(c[2])+'</small></span></div>'; }).join('')+'</div></div>'+
       '<div class="fix"><b>Bỏ túi nhanh</b><p>Thường thì báo từng bước, bắt đầu từ người gần mình nhất. Nhưng khi bị bạo lực, đe dọa hay bị giữ giấy tờ, bạn được gọi thẳng cảnh sát hoặc OTIT. Luật cấm công ty, Hiệp hội xử lý bất lợi với bạn vì đã tố cáo vi phạm.</p></div>'+
       '<p class="small muted">Khi chế độ Ikusei Shuro bắt đầu (4/2027), tên tổ chức và số điện thoại có thể thay đổi. Esuhai sẽ cập nhật cho bạn.</p>'+
       srcLine(L_TTKN+', Điều 49 (quyền tố cáo) · '+SRC_SOTAY+', mục 13–14');
@@ -2864,10 +3081,10 @@ STEP.rcard = {
     var btn=function(f,cls){ var i=RC_FIELDS.indexOf(f); return '<button class="rcf'+(x.seen.indexOf(f.k)>=0?' on':'')+(cls||'')+'" data-act="rcf" data-k="'+f.k+'"><small>'+esc(f.lbl)+'</small>'+(f.k==='ten'?rcVal('ten'):esc(rcVal(f.k)))+'</button>'; };
     var F=function(k){ return RC_FIELDS.filter(function(f){ return f.k===k; })[0]; };
     var h='<p class="hint">'+esc(s.intro)+'</p>'+
-      '<div class="rc" id="rcard"><div class="rc__h"><b>在留カード</b><span>Thẻ cư trú · hình minh họa</span></div>'+
+      '<div class="rc rc--real" id="rcard"><div class="rc__h"><b>在留カード <small>RESIDENCE CARD</small></b><span>No. AB12345678CD</span></div>'+
       '<div class="rc__g"><div class="rc__f">'+btn(F('ten'))+btn(F('tc'))+btn(F('han'))+btn(F('lam'))+btn(F('hl'))+'</div>'+
-      '<button class="rc__ph'+(x.seen.indexOf('ten')>=0?' on':'')+'" data-act="rcf" data-k="ten" aria-label="Ảnh">'+av('hau','hi')+'</button></div>'+
-      '<div class="rc__back">'+btn(F('dc'))+'</div></div>'+
+      '<button class="rc__ph'+(x.seen.indexOf('ten')>=0?' on':'')+'" data-act="rcf" data-k="ten" aria-label="Ảnh"><svg viewBox="0 0 60 72"><rect width="60" height="72" rx="4" fill="#DCE3FF"/><circle cx="30" cy="28" r="13" fill="#8C93B0"/><path d="M8 72q4-24 22-24t22 24z" fill="#8C93B0"/></svg></button></div>'+
+      '</div><div class="rc rc--real rc--back"><div class="rc__h"><b>Mặt sau</b><span>住居地記載欄 · 資格外活動許可欄</span></div>'+btn(F('dc'))+'<div class="rc__perm"><small>Ô xin phép hoạt động ngoài tư cách</small><span>(TTS thường để trống)</span></div></div>'+
       '<p class="rc__note">Hình minh họa để học, không phải mẫu thẻ thật.</p>';
     if(x.seen.length){
       h+='<div class="found-list">'+x.seen.map(function(k,i){ var f=F(k); return '<div><i style="background:var(--ok)">'+(i+1)+'</i><span><b>'+esc(f.lbl)+'</b> · '+esc(f.why)+'</span></div>'; }).join('')+'</div>';
@@ -2988,22 +3205,6 @@ function expTap(k){ var s=CUR.s, x=xs(CUR.id,CUR.i); x.seen=x.seen||[]; if(x.see
   var n=s.items.filter(function(it){ return !it.sub; }).length; if(x.seen.length===n){ var g=addXP('exp.'+CUR.id+'.'+CUR.i,10,true); if(g) pointToast(g,0,'Đọc xong phiếu lương!'); } }
 
 /* --- bản đồ phố --- */
-function streetSVG(){
-  return '<svg viewBox="0 0 360 230" class="smap__bg" aria-hidden="true" preserveAspectRatio="none">'+
-    '<rect width="360" height="230" fill="#EAF4E4"/>'+
-    '<path d="M210 150 Q260 135 300 150 T360 140 V230 H170 Q190 175 210 150Z" fill="#CFE7F7"/>'+
-    '<path d="M228 168 Q262 156 296 168" stroke="#fff" stroke-width="2" fill="none" opacity=".8"/>'+
-    '<path d="M262 190 L336 166" stroke="#9AA6B8" stroke-width="7" stroke-linecap="round"/>'+
-    '<rect x="331" y="148" width="8" height="18" rx="2" fill="#E8604F"/>'+
-    '<path d="M0 120 C80 110 140 128 200 112 S300 92 360 96" stroke="#D9DEEA" stroke-width="16" fill="none"/>'+
-    '<path d="M0 120 C80 110 140 128 200 112 S300 92 360 96" stroke="#fff" stroke-width="2" stroke-dasharray="8 8" fill="none"/>'+
-    '<path d="M150 0 C140 60 160 90 150 230" stroke="#D9DEEA" stroke-width="12" fill="none"/>'+
-    '<rect x="22" y="40" width="70" height="30" rx="4" fill="#C9D3FB"/><rect x="18" y="34" width="78" height="8" rx="3" fill="#2F4BD8"/>'+
-    '<rect x="130" y="18" width="62" height="36" rx="4" fill="#FFE2C7"/><rect x="130" y="18" width="62" height="9" rx="3" fill="#F07A3E"/>'+
-    '<g fill="#B7D69C"><rect x="240" y="30" width="80" height="8" rx="4"/><rect x="240" y="44" width="80" height="8" rx="4"/><rect x="240" y="58" width="80" height="8" rx="4"/></g>'+
-    '<circle cx="85" cy="168" r="22" fill="#9ACB7E"/><circle cx="115" cy="178" r="15" fill="#8CC06F"/><rect x="60" y="192" width="44" height="6" rx="3" fill="#C7B08A"/>'+
-    '</svg>';
-}
 STEP.street = {
   view:function(s,x){
     x.done=x.done||{}; x.bad=x.bad||{};
@@ -3386,9 +3587,9 @@ function repSection(a){
   var h='<section class="rsec"><div class="rsec__h"><span class="kseal'+(a.k.length>1?' k2':'')+'" style="width:44px;height:44px;border-radius:12px;box-shadow:none"><span style="font-size:'+(a.k.length>1?14:20)+'px">'+a.k+'</span></span><div><small>'+(a.n===8?'ĐIỂM ĐÍCH':'CỬA ẢI '+pad(a.n))+'</small><b>'+esc(a.vn)+'</b></div>'+(S.seals[a.n]?'<span class="rsec__seal">'+sealSVG(a.badge.k,40)+'</span>':'')+'</div>';
   var choices=[], writes=[];
   a.acts.forEach(function(id){ ACTS[id].steps.forEach(function(s,i){
-    var x=S.d['x.'+id+'.'+i]; if(!x) return;
-    if(s.k==='branch' && x.solved) choices.push([s.title, (x.tried||[]).length]);
-    if(s.k==='video' && x.a) s.segs.forEach(function(g,k){ if(g.q && x.a[k] && x.a[k].ok) choices.push([g.lbl,(x.a[k].bad||[]).length]); });
+    var x=S.d['x.'+id+'.'+i], fx=firstX(id,i); if(!x && !fx) return; x=x||{}; fx=fx||{};
+    if(s.k==='branch' && fx.solved) choices.push([s.title, (fx.tried||[]).length]);
+    if(s.k==='video' && fx.a) s.segs.forEach(function(g,k){ if(g.q && fx.a[k] && fx.a[k].ok) choices.push([g.lbl,(fx.a[k].bad||[]).length]); });
     if(s.k==='write') s.fields.concat(s.opt?[s.opt]:[]).forEach(function(f){ if(x[f.key]) writes.push([f.label,x[f.key]]); });
     if(s.k==='check' && x.luat) writes.push(['Luật chơi game của tôi',x.luat]);
   }); });
@@ -3404,7 +3605,7 @@ function vRep(){
     '<div class="rgrid"><div><small>Học viên</small><b>'+esc(S.name)+'</b></div><div><small>Lớp · Diện</small><b>'+esc(S.cls)+' · '+esc(S.path)+'</b></div><div><small>Thầy cô hướng dẫn</small><b>'+esc(S.teacher&&S.teacher.n?tName():'Chưa điền')+'</b></div><div><small>Lên đường</small><b>'+fmtDate(S.created)+'</b></div></div>'+
     (goalText()?'<div class="rgoal"><small>Mục tiêu của tôi</small><p>'+esc(goalText())+'</p></div>':'')+'<div class="tiles rtiles" style="margin-top:12px"><div class="tl dau"><small>Con dấu</small><b>'+doneCount()+'<span style="font-size:14px;color:var(--muted)">/'+TOTAL_ACTS+'</span></b></div><div class="tl xp"><small>XP</small><b>'+xpTotal()+'</b></div><div class="tl ins"><small>Insight</small><b>'+insTotal()+'</b></div><div class="tl fire"><small>Chuỗi ngày</small><b>'+streak()+'</b></div></div></section>'+
     AIS.map(repSection).join('')+repSection(FINAL)+
-    (S.seals[8]?'<section class="rsec">'+ticketHTML()+'</section>':'')+
+    (S.seals[8]?'<section class="rsec">'+ticketHTML()+'</section>':'')+statsHTML()+
     '<p class="ver">In lúc '+fmtTime(Date.now())+' ngày '+fmtDate(Date.now())+' · Phiên bản '+VERSION+'</p></div>';
   return h;
 }
@@ -3525,7 +3726,7 @@ function spk(t){ return ('speechSynthesis' in window) ? '<button class="spk" dat
 
 /* --- Xe nào cần bằng lái? --- */
 var VEH=[
-  {k:'bike', n:'Xe đạp thường', need:0, why:'Xe đạp thường không cần bằng lái. Nhớ luật: đi bên trái lòng đường, bật đèn, không điện thoại, không tai nghe.'},
+  {k:'bike', n:'Xe đạp thường', need:0, why:'Xe đạp thường không cần bằng lái. Nhớ luật: đi bên trái lòng đường, bật đèn, không dùng điện thoại, không đeo tai nghe khi đang đạp xe.'},
   {k:'assist', n:'Xe đạp trợ lực điện', need:0, why:'Có pin và mô tơ nhưng phải đạp mới chạy, mô tơ chỉ hỗ trợ. Không cần bằng lái.'},
   {k:'moped', n:'Xe có tay ga, có bàn đạp', need:1, why:'Nhìn giống xe đạp, nhưng tự chạy bằng ga không cần đạp nên thường được xếp là xe gắn máy: cần bằng lái, biển số, bảo hiểm bắt buộc.'},
   {k:'scooter', n:'Xe máy 50cc', need:1, why:'Xe máy cần bằng lái Nhật, biển số và bảo hiểm bắt buộc. Bằng lái Việt Nam không dùng trực tiếp được.'}
@@ -3659,18 +3860,27 @@ function cerTap(){
    PHẦN 5f · MỤC TIÊU CÁ NHÂN · CÁI GIÁ CỦA 3 MAN · PDF KHỔ A4
    ========================================================= */
 var GOALS=[['nha','Tiết kiệm xây, sửa nhà cho bố mẹ'],['no','Trả nợ, đỡ đần gia đình'],['nghe','Học nghề, lên Kỹ năng đặc định'],['von','Có vốn làm ăn khi về nước'],['khac','Một mục tiêu khác']];
-function goalText(){ var g=S.goal||{}; if(g.t && g.t.trim()) return g.t.trim(); var f=GOALS.filter(function(x){ return x[0]===g.k; })[0]; return f?f[1]:''; }
 STEP.goal = {
   view:function(s,x){
     var g=S.goal||{};
-    return sayHTML('hau','think',T('Trước khi lên đường, cho mình hỏi một câu: sau những năm ở Nhật, [Tên] muốn mang về điều gì? Mình sẽ nhớ mục tiêu này suốt hành trình.'))+
-      '<div class="card" id="goalbox"><div class="chips">'+GOALS.map(function(o){ return '<button class="chp'+(g.k===o[0]?' sel':'')+'" data-act="goalk" data-k="'+o[0]+'">'+esc(o[1])+'</button>'; }).join('')+'</div>'+
-      '<div class="wfield" style="margin-top:12px"><div class="formula">Viết rõ hơn một chút: mục tiêu của tôi là…</div><textarea class="inp" id="goalT" placeholder="Ví dụ: Để dành 500 triệu xây lại nhà cho bố mẹ, và học thêm tiếng Nhật để lên Kỹ năng đặc định.">'+esc(g.t||'')+'</textarea></div></div>'+
-      '<p class="small muted">Mục tiêu chỉ hiện với bạn. Nó sẽ xuất hiện ở các ngã rẽ, để bạn thấy mỗi lựa chọn chạm đến điều mình mong muốn thế nào.</p>';
+    return sayHTML('hau','think',T('Trước khi lên đường, cho mình hỏi bạn một câu: Sau những năm tháng ở Nhật, [Tên] muốn mang về điều gì nhất? Mình sẽ nhớ mục tiêu này suốt hành trình.'))+
+      '<div class="card" id="goalbox"><div class="formula">Viết thật ngắn gọn nhé: mục tiêu của tôi là…</div>'+
+      '<textarea class="inp" id="goalT" placeholder="Viết 1–2 câu bằng lời của bạn.">'+esc(g.t||'')+'</textarea>'+
+      '<p class="small" style="margin:8px 0 0;color:var(--ink-2)">'+icon('bulb',14)+' Nhìn lại điều bạn đã viết ở ga Nhìn Xa và ga Ước Mơ trong khóa Career Design nhé.</p>'+
+      '<details class="tip"'+((S.goal||{}).k?' open':'')+'><summary>Gợi ý nhỏ</summary><p class="small muted" style="margin:6px 0">Chạm một gợi ý để chép vào ô, rồi sửa lại theo cách của bạn.</p><div class="chips">'+
+        GOALS.filter(function(o){ return o[0]!=='khac'; }).map(function(o){ return '<button class="chp" data-act="goalk" data-k="'+o[0]+'">'+esc(o[1])+'</button>'; }).join('')+'</div></details></div>'+
+      '<p class="small muted">Mình sẽ thỉnh thoảng "nhắc nhẹ" để bạn thấy mỗi lựa chọn ở các ngã rẽ sẽ ảnh hưởng đến mục tiêu của bạn như thế nào.</p>';
   },
-  state:function(){ var g=S.goal||{}; return (g.k && words(g.t)>=3) ? {ok:true} : {ok:false,msg:!g.k?'Chọn mục tiêu của bạn':'Viết rõ mục tiêu (vài chữ là đủ)',q:'#goalbox'}; },
+  state:function(){ var g=S.goal||{}; return words(g.t)>=5 ? {ok:true} : {ok:false,msg:'Viết mục tiêu của bạn (1–2 câu)',q:'#goalbox'}; },
   wire:function(){ var t=$('#goalT'); if(!t) return; t.addEventListener('input',function(){ S.goal=S.goal||{}; S.goal.t=t.value; save(); drawBar(); }); }
 };
+function goalPick(k){
+  var o=GOALS.filter(function(z){ return z[0]===k; })[0]; if(!o) return;
+  var t=$('#goalT'); var cur=t?t.value.trim():'';
+  S.goal=S.goal||{}; S.goal.k=k; S.goal.t = cur ? cur.replace(/[.;,\s]+$/,'')+'; '+o[1].toLowerCase() : o[1];
+  save(); drawStep(); var t2=$('#goalT'); if(t2){ t2.focus(); t2.setSelectionRange(t2.value.length,t2.value.length); }
+}
+function goalText(){ var g=S.goal||{}; return (g.t||'').trim(); }
 function goalHit(r){
   var g=goalText().replace(/[.!?…\s]+$/,''); if(!g) return '';
   var msg = r==null ? 'Mục tiêu "'+g+'" của [Tên] có thể chưa kịp bắt đầu đã dừng lại.' :
@@ -3711,6 +3921,7 @@ function a4Sections(){
     '<div class="tiles rtiles"><div class="tl dau"><small>Con dấu</small><b>'+doneCount()+'<span>/'+TOTAL_ACTS+'</span></b></div><div class="tl xp"><small>XP</small><b>'+xpTotal()+'</b></div><div class="tl ins"><small>Insight</small><b>'+insTotal()+'</b></div><div class="tl fire"><small>Chuỗi ngày</small><b>'+streak()+'</b></div></div></section>';
   var out=[top]; AIS.forEach(function(a){ var h=repSection(a); if(h) out.push(h); }); var f=repSection(FINAL); if(f) out.push(f);
   if(S.seals[8]) out.push('<section class="rsec">'+ticketHTML()+'</section>');
+  out.push(statsHTML());
   return out;
 }
 function buildA4(){
@@ -3747,6 +3958,82 @@ function printFallback(){
   setTimeout(function(){ window.print(); },700);
 }
 window.addEventListener('afterprint', function(){ document.body.classList.remove('printa4'); });
+
+/* =========================================================
+   PHẦN 5g · CHUYỂN CẢNH CÓ HAIKU · LÀM LẠI ĐỂ ÔN · THỐNG KÊ HỌC TẬP
+   ========================================================= */
+/* --- Màn chuyển cảnh khi vào ải --- */
+function lmkSolo(n){
+  var p=MPOS[n], a=aiOf(n);
+  return '<svg viewBox="'+(p[0]-70)+' '+(p[1]-108)+' 140 136" aria-hidden="true">'+mapDefs()+lmk(n,a.col||'#2F4BD8')+'</svg>';
+}
+var TRN=null;
+function aiTransition(n, cb){
+  var a=aiOf(n); S.d.tr=S.d.tr||{}; var full=!S.d.tr[n] && !noMotion(); S.d.tr[n]=1; save();
+  var code = n===0?'CHUẨN BỊ':(n===8?'ĐIỂM ĐÍCH':'CỬA ẢI '+pad(n));
+  var el=document.createElement('div'); el.className='trn'+(full?' full':' short'); el.id='trn'; el.setAttribute('role','dialog'); el.setAttribute('aria-label',a.vn);
+  el.innerHTML='<div class="trn__fog f1"></div><div class="trn__fog f2"></div>'+
+    '<div class="trn__in"><div class="trn__art" style="--ac:'+(a.col||'#F4B63B')+'">'+lmkSolo(n)+'</div>'+
+    '<p class="trn__code">'+code+'</p><h2 class="trn__name">'+esc(a.vn)+'</h2>'+
+    (full && a.haiku ? '<div class="trn__hk">'+a.haiku.map(function(l,i){ return '<p style="animation-delay:'+(0.9+i*0.55)+'s">'+esc(l)+'</p>'; }).join('')+'</div>' : '')+
+    '</div><button class="trn__skip" data-act="trnSkip">Bỏ qua '+icon('next',14)+'</button>';
+  document.body.appendChild(el);
+  if(full){ tone(98,0,1.2,'sine',1.4); noise(0,.9,300,.35,900); setTimeout(function(){ tone(73,0,1.4,'sine',1.2); },700); }
+  TRN={cb:cb, t:setTimeout(endTransition, full?4300:1100)};
+  el.addEventListener('click', function(e){ if(!e.target.closest('.trn__skip')) endTransition(); });
+}
+function endTransition(){
+  if(!TRN) return; clearTimeout(TRN.t); var cb=TRN.cb; TRN=null;
+  var el=$('#trn'); if(el){ el.classList.add('out'); setTimeout(function(){ el.remove(); }, noMotion()?0:380); }
+  if(cb) cb();
+}
+
+/* --- Làm lại để ôn: giữ kết quả lần đầu --- */
+function firstX(id,i){ var f=S.d['first.'+id]; return (f && f[i]) || S.d['x.'+id+'.'+i]; }
+function redoAsk(id){
+  var ov=document.createElement('div'); ov.className='ov'; ov.setAttribute('role','dialog'); ov.setAttribute('aria-modal','true');
+  ov.innerHTML='<div class="ov__box" style="text-align:left"><div style="display:flex;gap:10px;align-items:center"><div style="width:52px;flex:none">'+av('hau','think')+'</div><h2 style="font-size:20px;margin:0">Làm lại chặng này để ôn?</h2></div>'+
+    '<p style="margin:12px 0 6px">Kết quả lần đầu và điểm bạn đã có <b>vẫn được giữ nguyên</b>. Những câu bạn đã viết sẽ hiện sẵn để bạn sửa thêm.</p>'+
+    '<div class="btnrow" style="justify-content:flex-end"><button class="btn btn--soft" data-act="closeOv">Thôi</button><button class="btn" data-act="redoGo" data-id="'+id+'">Làm lại</button></div></div>';
+  ov.addEventListener('click', function(e){ if(e.target===ov) ov.remove(); });
+  document.body.appendChild(ov);
+}
+function redoGo(id){
+  var a=ACTS[id]; if(!a) return;
+  if(!S.d['first.'+id]){ var snap={}; a.steps.forEach(function(s,i){ var x=S.d['x.'+id+'.'+i]; if(x) snap[i]=JSON.parse(JSON.stringify(x)); }); S.d['first.'+id]=snap; }
+  a.steps.forEach(function(s,i){
+    var k='x.'+id+'.'+i, x=S.d[k]||{};
+    if(s.k==='write'){ var keep={}; s.fields.concat(s.opt?[s.opt]:[]).forEach(function(f){ if(x[f.key]) keep[f.key]=x[f.key]; }); S.d[k]=keep; }
+    else if(s.k==='check'){ S.d[k]={c:x.c||[],luat:x.luat||''}; }
+    else if(s.k==='sos'||s.k==='goal'){ /* giữ nguyên */ }
+    else delete S.d[k];
+  });
+  S.d['st.'+id]={i:0,max:0}; save(true);
+  $$('.ov').forEach(function(o){ o.remove(); });
+  V.scroll=0; render(true); toast('Bắt đầu ôn lại. Kết quả lần đầu vẫn được giữ.',4000);
+}
+
+/* --- Thống kê học tập (cuối bản ghi chép và PDF) --- */
+function markVisit(){ if(!S.gate) return; S.vis=S.vis||{}; var k=today(); if(!S.vis[k]){ S.vis[k]=1; save(); } }
+document.addEventListener('visibilitychange', function(){ if(document.visibilityState==='visible') markVisit(); });
+function writtenWords(){
+  var n=words(goalText());
+  Object.keys(ACTS).forEach(function(id){ ACTS[id].steps.forEach(function(s,i){
+    var x=S.d['x.'+id+'.'+i]||{};
+    if(s.k==='write') s.fields.concat(s.opt?[s.opt]:[]).forEach(function(f){ n+=words(x[f.key]); });
+    if(s.k==='check') n+=words(x.luat);
+  }); });
+  return n;
+}
+function statsHTML(){
+  var dd=Object.keys(S.days).filter(function(k){ return S.days[k]>0; }).sort();
+  var vis={}; Object.keys(S.vis||{}).forEach(function(k){ vis[k]=1; }); dd.forEach(function(k){ vis[k]=1; });
+  var total=dd.reduce(function(s,k){ return s+S.days[k]; },0), dn=doneCount();
+  var per=dd.map(function(k){ var p=k.split('-'); return p[2]+'.'+p[1]+': '+Math.round(S.days[k])+' phút'; }).join(' · ');
+  return '<section class="rsec rstats"><small>Thống kê học tập</small><p>Số ngày có học: <b>'+dd.length+'</b> · Số ngày mở khóa học: <b>'+Object.keys(vis).length+'</b> · Tổng thời gian: <b>'+Math.round(total)+' phút</b>'+
+    (dn?' · Trung bình mỗi chặng: <b>'+(total/dn).toFixed(1)+' phút</b>':'')+' · Tổng số chữ tự viết: <b>'+writtenWords()+'</b></p>'+
+    (per?'<p>Thời gian từng ngày: '+per+'</p>':'')+'</section>';
+}
 
 /* =========================================================
    PHẦN 6 · RƯƠNG KINH
@@ -3876,7 +4163,7 @@ function nbKinh(){
   /* điều luật đã gặp */
   var laws=[];
   Object.keys(ACTS).forEach(function(id){ ACTS[id].steps.forEach(function(s,i){
-    var x=S.d['x.'+id+'.'+i]; if(!x) return;
+    var x=firstX(id,i); if(!x) return;
     if(s.k==='branch' && x.solved) laws.push([s.law, ACTS[id].ai]);
     if(s.k==='flags' && x.f && x.f.length===s.segs.filter(function(g){return g.f;}).length) laws.push([s.law, ACTS[id].ai]);
   }); });
@@ -4002,7 +4289,10 @@ document.addEventListener('click', function(e){
     case 'rep': if(nbOpen) closeNb(true); $$('.ov').forEach(function(o){ o.remove(); }); go('rep'); break;
     case 'pdf': makePDF(); break;
     case 'printA4': buildA4(); document.body.classList.add('printa4'); setTimeout(function(){ window.print(); },300); break;
-    case 'goalk': S.goal=S.goal||{}; S.goal.k=t.getAttribute('data-k'); save(); var keep=$('#goalT')?$('#goalT').value:''; S.goal.t=S.goal.t||keep; drawStep(); break;
+    case 'goalk': goalPick(t.getAttribute('data-k')); break;
+    case 'trnSkip': endTransition(); break;
+    case 'redoAsk': redoAsk(t.getAttribute('data-id')); break;
+    case 'redoGo': redoGo(t.getAttribute('data-id')); break;
     case 'costq': costAns(j); break;
     case 'rptOpen': if(V.v!=='rep') go('rep'); openReport(true,false); break;
     case 'rptPdf': RPT.done.pdf=1; drawReport(); makePDF(); break;
@@ -4037,7 +4327,7 @@ document.addEventListener('pointerdown', function(e){ if($('#toast').classList.c
 
 /* khởi động */
 try{ history.replaceState(V,'',''); }catch(e){}
-if(S.gate) markDay();
+if(S.gate){ markDay(); markVisit(); }
 render(true);
 </script>
 </body>
