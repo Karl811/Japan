@@ -120,5 +120,5 @@
   if(typeof render==='function'){var courseRender=render;render=function(enter){courseRender(enter);refreshButtons();};}
   refreshButtons();
   if(document.readyState==='complete')register();else window.addEventListener('load',register,{once:true});
-  window.HP05PWA={showHelp:showHelp,version:'20261110-pwa-1'};
+  window.HP05PWA={showHelp:showHelp,version:'20261110-pwa-2'};
 })();

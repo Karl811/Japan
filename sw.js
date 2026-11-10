@@ -1,6 +1,6 @@
 /* Increment VERSION when publishing a new app-shell release. Never clear learner storage. */
 'use strict';
-const VERSION='20261110-pwa-1';
+const VERSION='20261110-pwa-2';
 const BASE=new URL(self.registration.scope);
 const PREFIX='hp05-pwa-'+encodeURIComponent(BASE.pathname)+'-';
 const CACHE=PREFIX+VERSION;

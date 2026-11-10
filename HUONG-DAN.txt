@@ -1,6 +1,19 @@
 NHẬT BẢN DU KÝ · HỌC PHẦN 05
 TK13 + GAME PHỐ PHƯỜNG + ỨNG DỤNG WEB PWA
-Bản đóng gói: 10/11/2026
+Bản đóng gói: 10/11/2026 · v2 (đồng bộ màu thanh hệ thống)
+
+CẬP NHẬT v2
+Đổi màu thanh hệ thống sang #F4F6FE, trùng nền sáng của app; đồng bộ
+màu khởi động và vùng an toàn sát mép trên/dưới. Giữ chữ/biểu tượng hệ
+thống dễ đọc trên nền sáng. Không ẩn đồng hồ, pin hay nút điều hướng.
+Màu/thanh điều hướng cuối cùng do Android/iOS và trình duyệt quyết định.
+Chưa kiểm tra màu thanh hệ thống trên điện thoại thật.
+
+Nếu đã cài bản cũ: tải bộ v2 lên cùng địa chỉ GitHub Pages, mở ứng dụng
+khi có mạng và chọn Cập nhật khi được báo, rồi đóng hẳn và mở lại app.
+Nếu máy vẫn giữ màu cũ, hãy Sao lưu bài làm trong Sổ tay trước, sau đó
+xóa biểu tượng ứng dụng và thêm lại từ website đã cập nhật; Khôi phục
+bản sao lưu nếu cần. Không cần xóa toàn bộ dữ liệu trình duyệt.
 
 1. BỘ NÀY GỒM NHỮNG GÌ?
 
@@ -17,7 +30,7 @@ Không cần đưa lên App Store hoặc Google Play.
 
 2. ĐƯA LÊN GITHUB MỘT LẦN
 
-a) Giải nén TK13-PWA-Game-Pho-Phuong-GitHub.zip trên máy.
+a) Giải nén TK13-PWA-Game-Pho-Phuong-GitHub-v2.zip trên máy.
 b) Mở kho GitHub đang dùng cho khóa học → thẻ Code.
 c) Chọn Add file → Upload files.
 d) Kéo TOÀN BỘ nội dung vừa giải nén vào vùng tải lên, gồm cả thư mục
