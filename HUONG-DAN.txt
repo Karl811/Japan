@@ -1,0 +1,134 @@
+NHẬT BẢN DU KÝ · HỌC PHẦN 05
+TK13 + GAME PHỐ PHƯỜNG + ỨNG DỤNG WEB PWA
+Bản đóng gói: 10/11/2026
+
+1. BỘ NÀY GỒM NHỮNG GÌ?
+
+Đây là bộ đầy đủ để thay bản website trước: nội dung TK13 final, game
+2.5D riêng cho ải 05. Phố Phường, và các tệp để cài thành ứng dụng web.
+TK13.html gốc của thầy được giữ nguyên ở thư mục ban đầu.
+
+Khi vào ải 05, học viên chọn học theo giao diện gốc hoặc vào game.
+Có thể chuyển qua lại và dùng chung bài làm. Ải Cổng Làng không có game.
+Ảnh và mã game chỉ tải khi học viên chọn vào game.
+
+PWA có biểu tượng riêng và mở trong cửa sổ ứng dụng từ màn hình chính.
+Không cần đưa lên App Store hoặc Google Play.
+
+2. ĐƯA LÊN GITHUB MỘT LẦN
+
+a) Giải nén TK13-PWA-Game-Pho-Phuong-GitHub.zip trên máy.
+b) Mở kho GitHub đang dùng cho khóa học → thẻ Code.
+c) Chọn Add file → Upload files.
+d) Kéo TOÀN BỘ nội dung vừa giải nén vào vùng tải lên, gồm cả thư mục
+   assets và icons. Giữ nguyên tên và cấu trúc thư mục. Không chỉ tải
+   riêng index.html hoặc đưa nguyên tệp ZIP lên rồi dừng ở đó.
+e) Chọn Commit changes. Nếu được hỏi, thay thế các tệp cùng tên.
+
+Ngay tại thư mục gốc của kho phải có:
+  index.html
+  manifest.webmanifest
+  sw.js
+  pwa.js
+  pwa.css
+  offline.html
+  navigation.js
+  street-game.js
+  street-game.css
+  .nojekyll
+  HUONG-DAN.txt
+  assets/street.webp
+  icons/app-192.png
+  icons/app-512.png
+  icons/maskable-512.png
+  icons/apple-touch-icon.png
+  icons/app-icon.svg
+
+Lưu ý: hai ảnh hay tệp icon đặt ngoài thư mục tương ứng sẽ không đúng
+đường dẫn. Sau khi tải, kiểm tra trên GitHub vẫn thấy hai thư mục assets
+và icons ở cùng cấp với index.html.
+
+Nếu Pages đã chạy ở kho hiện tại thì giữ cấu hình đó. Nếu chưa:
+Settings → Pages → Build and deployment → Source: Deploy from a branch
+→ Branch: main, thư mục /(root) → Save.
+Đợi GitHub triển khai thành công, mở liên kết HTTPS GitHub Pages.
+Ví dụ nếu dùng kho Karl811/Japan: https://karl811.github.io/Japan/
+Đây là liên kết dự kiến theo tên kho; bộ này chưa được tự tải lên kho.
+
+Cài PWA từ liên kết website HTTPS. Không cài từ trang xem mã github.com
+hoặc từ tệp HTML mở trực tiếp trên máy.
+
+3. CÀI TRÊN ANDROID
+
+a) Mở liên kết khóa học bằng Chrome, giữ mạng trong lần đầu.
+b) Chạm Cài ứng dụng trên trang. Nếu Chrome cho phép, xác nhận Cài đặt.
+c) Nếu trang hiện hướng dẫn, mở menu ⋮ của Chrome → Cài đặt và tạo lối
+   tắt → Cài đặt. Một số phiên bản ghi Thêm vào màn hình chính.
+d) Mở biểu tượng Nhật Bản Du Ký trên điện thoại.
+
+Chrome quyết định thời điểm hiện lời mời cài. Nếu chưa thấy tùy chọn,
+hãy tương tác và ở lại trang một lúc rồi xem lại menu. Không bắt buộc
+phải xuất hiện lời mời tự động ngay khi mở trang.
+
+4. CÀI TRÊN IPHONE / IPAD
+
+a) Mở liên kết khóa học bằng Safari, giữ mạng trong lần đầu.
+b) Chạm Chia sẻ → Thêm vào màn hình chính.
+c) Nếu thấy Mở dưới dạng ứng dụng web (Open as Web App), hãy bật.
+d) Chạm Thêm, rồi mở biểu tượng Nhật Bản Du Ký trên màn hình chính.
+
+Chrome hiện tại trên iPhone cũng có Chia sẻ → Thêm vào màn hình chính.
+Nếu máy chưa có mục này, mở liên kết bằng Safari và làm như trên.
+Tên/vị trí menu có thể khác theo phiên bản iOS và ngôn ngữ máy.
+iPhone dùng thao tác thêm thủ công; không có cùng hộp cài tự động như
+Chrome Android. Nút Cài ứng dụng trong khóa học sẽ hướng dẫn đúng máy.
+
+5. DÙNG KHI MẤT MẠNG VÀ LƯU BÀI
+
+- Mở online lần đầu và chờ nội dung tải xong để lưu khóa học trên máy.
+- Game Phố Phường dùng ngoại tuyến sau khi đã chọn vào game và cảnh đã
+  được tải/lưu đầy đủ. Không tải ảnh game cho người chỉ học bản gốc.
+- Video, bài đọc trên website khác và các chức năng tải thư viện ngoài
+  vẫn cần Internet. Đây không phải bộ tải sẵn mọi nội dung bên ngoài.
+- Bài làm vẫn lưu trên thiết bị bằng cơ chế sẵn có của TK13; không có
+  đồng bộ tài khoản hay đồng bộ tự động giữa nhiều thiết bị.
+- Khi chuyển từ trình duyệt sang ứng dụng, nhất là trên iPhone, nếu chưa
+  thấy bài cũ, dùng Sao lưu ở Sổ tay của bản đang học, rồi Khôi phục trong
+  ứng dụng. Nên sao lưu trước khi chuyển hoặc xóa dữ liệu trình duyệt.
+- Hệ điều hành/trình duyệt có thể thu hồi bộ nhớ lưu ngoại tuyến. Khi đó
+  kết nối mạng để tải lại; bản sao lưu giúp bảo vệ bài làm.
+
+6. CẬP NHẬT KHÓA HỌC SAU NÀY
+
+Giữ nguyên địa chỉ website để thuận tiện giữ bài làm đã lưu.
+Khi ứng dụng phát hiện bản mới, học viên thấy nút Cập nhật và có thể để
+sau. Chọn Cập nhật sẽ lưu bài hiện tại trước khi tải lại ứng dụng.
+
+Ghi chú cho người bảo trì: khi phát hành thay đổi các tệp được lưu sẵn,
+tăng VERSION trong sw.js và phiên bản tham chiếu pwa.js/pwa.css trong
+index.html, rồi tải đầy đủ bộ mới. Không xóa localStorage của học viên.
+Nếu thay mã game, tăng mã phiên bản các tệp game cùng nhau.
+
+7. ĐÃ KIỂM TRA
+
+- Nội dung và dữ liệu TK13 giữ nguyên so với bộ tích hợp game trước.
+- Khai báo ứng dụng, đường dẫn trong thư mục kho GitHub, kích thước icon.
+- Trình duyệt nhận manifest và service worker hoạt động.
+- Mở lại khóa học khi ngắt mạng; mở lại cảnh game đã lưu khi ngắt mạng.
+- Hướng dẫn cài trên khung iPhone, giao diện không tràn ngang.
+- Cập nhật có chủ động lưu bài, không tự tải lại ngay lần cài đầu.
+- Bộ ZIP không chứa trang kiểm thử hoặc bài làm mẫu.
+
+Chưa cài trực tiếp trên điện thoại Android/iPhone thật và chưa triển khai
+bộ này lên GitHub của thầy. Sau khi tải lên, nên mở liên kết trên mỗi loại
+điện thoại và thử cài một lần để xác nhận menu của phiên bản máy đó.
+
+THAM KHẢO CHÍNH THỨC
+Chrome Android:
+https://support.google.com/chrome/answer/9658361?hl=en&co=GENIE.Platform%3DAndroid
+Chrome iPhone/iPad:
+https://support.google.com/chrome/answer/9658361?hl=en&co=GENIE.Platform%3DiOS
+Safari iPhone:
+https://support.apple.com/en-eg/guide/iphone/iphea86e5236/ios
+Điều kiện lời mời cài trên Chrome:
+https://web.dev/articles/install-criteria
